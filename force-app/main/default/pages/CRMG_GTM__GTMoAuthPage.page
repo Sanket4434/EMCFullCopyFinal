@@ -1,0 +1,9 @@
+<apex:page action="{!step2}" controller="CRMG_GTM.oAuthGTM" showHeader="false">
+    <apex:pageBlock >
+    
+    <apex:pageMessage strength="3" severity="INFO" title="{!oauthresponse}"></apex:pageMessage>
+    
+    <apex:outputLink rendered="{!oauthresponse != 'Authorization Failed'}" value="/apex/MyMeetings" >You are connected. Click here to schedule a meeting.</apex:outputLink>
+    
+    </apex:pageBlock>
+</apex:page>

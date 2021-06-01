@@ -1,0 +1,61 @@
+<apex:page controller="joinme.JoinMeEndCallStatusUIController" action="{!start}">
+
+  <apex:includeScript value="{!$Resource.joinme__jquery}"></apex:includeScript>
+
+  <apex:form id="jmform">
+
+    <apex:pageBlock rendered="{!displayMessageSection}">
+      <apex:pageBlockSection columns="1">
+
+        <apex:pageBlockSectionItem >
+          <apex:pageMessages ></apex:pageMessages>
+        </apex:pageBlockSectionItem>
+
+        <apex:pageBlockSectionItem rendered="{!displayMessageSectionError}">
+          <apex:outputLabel value="Response Status"></apex:outputLabel>
+          <apex:outputText value="{!responseStatus}"></apex:outputText>
+        </apex:pageBlockSectionItem>
+
+        <apex:pageBlockSectionItem rendered="{!displayMessageSectionError}">
+          <apex:outputLabel value="Response Error"></apex:outputLabel>
+          <apex:outputText value="{!responseError}"></apex:outputText>
+        </apex:pageBlockSectionItem>
+
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+
+    <apex:actionFunction name="parseMeetingData" action="{!parseMeetingData}" rerender="jmform">
+      <apex:param name="jString" assignTo="{!jsonString}" value=""/>
+    </apex:actionFunction>
+
+    <apex:actionFunction name="displayMessageError" action="{!displayMessageError}" rerender="jmform">
+      <apex:param name="responseStatus" assignTo="{!responseStatus}" value=""/>
+      <apex:param name="responseError" assignTo="{!responseError}" value=""/>
+    </apex:actionFunction>
+
+  </apex:form>
+
+  <script type="text/javascript">
+
+    $jm = jQuery.noConflict();
+
+    $jm(document).ready(function() {
+
+      link = "https://secure.join.me/API/v3/MeetingDetails/{!URLENCODE(code)}";
+
+      $jm.ajax({
+        url: link,
+        dataType: "jsonp",
+        success: function(response) {
+          var info = JSON.stringify(response);
+          parseMeetingData(info);
+        },
+        error: function(data, status, error) {
+          displayMessageError(status, error);
+        }
+      });
+
+    })
+  </script>
+
+</apex:page>

@@ -1,0 +1,37 @@
+<apex:page controller="SDOC.SDUtil">
+  <!-- SDAudit's runSDocsReport runs if SDConfig param is not specified as 'true';
+  otherwise, this page is used for SDConfig -->
+  <apex:outputPanel rendered="{!authenticationParam}">
+    <apex:form id="myForm">
+      Interval (in days) 
+      <apex:inputText value="{!interval}"/>
+      Number of Intervals
+      <apex:inputText value="{!numIntervals}"/>
+      <apex:commandButton value="Run Audit"  onclick="clearData();" reRender="mainPanel"/>
+      <apex:actionFunction name="clearData" action="{!clearData}" oncomplete="runAudit();"/>
+      <apex:actionFunction name="runAudit" action="{!runSDocsReport}" oncomplete="runAuditOnComplete();" reRender="mainPanel" />
+      <apex:outputPanel id="mainPanel">
+        <script>
+          function runAuditOnComplete() {
+              if ('{!finishedRunningReport}' === 'true' ) {
+                  alert("Report has finished running. Results have been emailed to S-Docs.")
+                  return;
+              }
+              runAudit();
+          }
+        </script>
+ 	    <table>
+          <tr>
+            <td>Start</td><td>End</td><td>Total # SFDC Licenses</td><td>Total # Community Licenses</td>
+            <td>SFDC License</td><td># SFDC Users Generating S-Docs</td><td>S-Doc Community License</td>
+            <td># Community Users Generating S-Docs</td><td>S-Doc Uniformity Ratio</td><td>Run As or Site Guest User T/F</td>
+            <td># Active S-Doc Templates</td><td># Documents Created</td><td># Documents Emailed</td>
+            <td># SFDC Users Generating S-Sign Requests</td><td># Community Users Generating S-Sign Requests</td>
+            <td>S-Sign Uniformity Ratio</td><td># Active S-Sign Templates</td><td>Envelopes Created</td><td>Envelopes Completed</td>
+          </tr>
+          <apex:outputText value="{!usageReportTableRows}" escape="false" />
+        </table>
+      </apex:outputPanel>
+    </apex:form>
+  </apex:outputPanel>
+</apex:page>

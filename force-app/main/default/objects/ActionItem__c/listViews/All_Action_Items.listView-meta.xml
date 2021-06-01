@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Action_Items</fullName>
+    <columns>NAME</columns>
+    <columns>Issue_Title__c</columns>
+    <columns>Due_Date__c</columns>
+    <columns>Priority_Image__c</columns>
+    <columns>Effort_Estimation_In_Hours__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Ticket_User__c</columns>
+    <columns>Reported_By__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Action Items</label>
+</ListView>

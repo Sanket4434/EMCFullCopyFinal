@@ -1,0 +1,180 @@
+<apex:page controller="CRMG_GTM.GTMConfigurationController" >
+     <c:LightningStyle />
+     <apex:form styleClass="Custom-Lightning-Style">
+        <apex:pageMessages ></apex:pageMessages>
+         <apex:pageBlock mode="edit">
+          <!--  <apex:tabPanel > -->
+             <!--   <apex:tab label="User Instructions" switchType="client" >
+                    
+                    <apex:pageBlockSection title="Step 1: Required for All Users" collapsible="false" columns="1">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputPanel >
+                                <fieldset><legend>Authorize GoToMeeting </legend>
+                                <ul>
+                                    <li><apex:outputLabel value="Go to Authorize GoToMeeting  tab"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click on Authorize GoToMeeting  Button"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="GoToMeeting  Authorization page will be displayed."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Please enter your GoToMeeting  UserName and Password."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="On successful authorization you will be land in salesforce page."></apex:outputLabel></li>
+                                </ul>
+                                <font color="red">*NOTE: Each User will be prompted to authenticate ("Authorize GoToMeeting") once per 364 days.</font>
+                                </fieldset>
+                            </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                    
+                     <apex:pageBlockSection collapsible="false" columns="1">
+                        <apex:pageBlockSectionItem >
+                            
+                        
+                            <apex:outputPanel >
+                                <fieldset><legend>Step 2: Adding GTM Conference Call Info Details</legend>
+                                <br/>
+                                <font color="red">*NOTE: This step is only required if you are using your own Conference Call Details. If you are using GoToMeeting Conference Call Details, please skip this step.</font>
+                                <ul>
+                                    <li><apex:outputLabel value="Go to setup"></apex:outputLabel></li>
+                                    <li><apex:outputLabel >Go to Manage Users >> Click on the "Edit" link that precedes your Name</apex:outputLabel></li>
+                                    <li><apex:outputLabel >Go to the field "GTM Conference Call Info"</apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Paste or type in your 3rd Party conference call details to this field"></apex:outputLabel></li>
+                                    <li><apex:outputLabel >Click on "Save"</apex:outputLabel></li>
+                                    <li><apex:outputLabel value="You are now ready to begin scheduling your GoToMeeting  appointments in Salesforce.com"></apex:outputLabel></li>
+                                </ul>
+                                </fieldset>
+                            </apex:outputPanel>
+                          
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                    
+                   <!-- <apex:pageBlockSection columns="1">
+                        <fieldset > <legend>Signature</legend>
+                                    You can automatically add your email signature to each of your outbound GoToMeeting invitaitons. To do so, go to the Sub Tab above labeled "Invite Signature". Once you're there, simiply paste and format your signature to text area, then click on "Save". Done.  You'll notice a checkbox labeled "Include Signature" on the last step of sending out your invitation. Just be sure to check that box and your signature will be included. 
+                                </fieldset>
+                    </apex:pageBlockSection>-->
+             <!--   </apex:tab> -->
+                
+         <!--       <apex:tab label="Administrator Instructions" switchType="client"> -->
+                    
+                    <apex:pageBlockSection title="Adding Buttons to page layouts on Standard and Custom Objects" collapsible="false" columns="1">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputPanel >
+                               
+                                <fieldset > <legend>Accounts/Contacts/Cases/Opportunities</legend>
+                                <ul>
+                                    <li><apex:outputLabel value="Go to Setup"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Go to App Setup >> Customize >> Accounts/Contacts/Cases/Opportunities"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click on Page Layouts."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Edit the Page Layouts."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click on Buttons sections."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Drag Schedule Meeting button in custom buttons area."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Save the page layout."></apex:outputLabel></li>
+                                    
+                                    
+                                    
+                                </ul>
+                                </fieldset>
+                                
+                               
+                                
+                                <fieldset > <legend>Leads</legend>
+                                <ul>
+                                    <li><apex:outputLabel value="Go to Setup"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Go to App Setup >> Customize >> Leads"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click on Page Layouts."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Edit the Page Layouts."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click on Buttons sections."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Drag Schedule Meeting, Invite to GoToMeeting and Schedule a Rep buttons to the custom buttons area."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Save the page layout."></apex:outputLabel></li>
+                                    <br/>
+                                    <span style="color:red;font-style: italic;">"Note: The "Schedule a Rep" button should only be used if your organization enables Users to Assign meetings to the GoToMeeting Accounts of other Users. This feature enables the User to select from a list of GoToMeeting users, view their calendars, then assign and invite Leads and Contacts to their meetings
+                                    </span>
+                                    <br/>
+                                    <br/>
+                                    <li>Next, go to Leads "Search Layouts".</li>
+                                    <li>Click on "Edit" link next to "Leads List View".</li>
+                                    <li>Go to "Available Buttons" and select "Invite to GoToMeeting".</li>
+                                    <li>Click on "Add".</li>
+                                    <li>Click on "Save".</li>
+                                </ul>
+                                </fieldset>
+                                
+                               
+                                
+                                <fieldset > <legend>Custom Objects</legend>
+                                <ul>
+                                To add the "Scheduled Meeting" button to the detail page of any custom object, copy the followiong code:
+                                <br/> <br/>
+                               <apex:outputText escape="false" value="{!ScheduleAMeeting}"></apex:outputText>
+                                <br/> <br/>
+                                     <li>Go to Setup</li>
+                                <li>Go to App Setup >> Create >> Objects</li>
+                                <li>Go to your Custom Object </li>
+                                <li>On your Custom Object go to  "Buttons, Links, and Actions"</li>
+                                <li>Click on "New Button or Link"</li>
+                                <li>Name your button "Schedule Meeting"</li>
+                                <li>For "Display Type" select Detail Page Button </li>
+                                <li>For "Behavior" select "Execute JavaScript"</li>
+                                <li>For "Content Source" select "onClick javascript" </li>
+                                <li>Paste the code you just copied </li><br/>
+                                <li>Highlight "INSERT MERGE FIELD HERE" , then select Record ID from the "Insert Merge Field" picklist</li><br/>
+                                <li>Click "Save"</li><br/>
+                                <li><apex:outputLabel value="Scroll up to the Page Layout section"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Edit the Page Layouts"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click on Buttons sections"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Drag Schedule Meeting button to the custom buttons area"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click Save"></apex:outputLabel></li>
+                                </ul>
+                                
+                                <ul>
+                                To add the "Invite to GoToMeeting" button to the detail page of any custom object, copy the followiong code:
+                                <br/> <br/>
+                                 var namespace = 'CRMG_GTM__';  <br/>
+                                location.href = '/apex/'+namespace+'MeetingInvite?recordId='+'INSERT MERGE FIELD HERE'; <br/>
+                                <br/> <br/>
+                                     <li>Go to Setup</li>
+                                <li>Go to App Setup >> Create >> Objects</li>
+                                <li>Go to your Custom Object </li>
+                                <li>On your Custom Object Go to  "Buttons, Links, and Actions"</li>
+                                <li>Click on "New Button or Link"</li>
+                                <li>Name your button "Invite to GoToMeeting"</li>
+                                <li>For "Display Type" select Detail Page Button </li>
+                                <li>For "Behavior" select "Execute JavaScript"</li>
+                                <li>For "Content Source" select "onClick JavaScript"</li>
+                                <li>Paste the code you just copied into the body of the merge field section</li>
+                                <li>Highlight "INSERT MERGE FIELD HERE" , then select Record ID from the "Insert Merge Field" picklist</li><br/>
+                                <li>Click "Save"</li><br/>
+                                 <li><apex:outputLabel value="Scroll up to the Page Layout section"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Edit the Page Layouts"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click on Buttons sections"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Drag Schedule Meeting button to the custom buttons area"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click Save"></apex:outputLabel></li><br/><br/>
+                                   <b><apex:outputLabel value="Done!"></apex:outputLabel></b>
+                                </ul>
+                                 </fieldset>
+                             <!--    <fieldset > <legend>Add GoToMeeting Parameter to Your Web Page</legend>
+                                <ul>-->
+                                <!--    <li><apex:outputLabel value="Go to Setup"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Go to App Setup >> Customize >> Opportunities"></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click on Page Layouts."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Edit the Page Layouts."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Click on Buttons sections."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Drag Schedule Meeting button in custom buttons area."></apex:outputLabel></li>
+                                    <li><apex:outputLabel value="Save the page layout."></apex:outputLabel></li> -->
+                              <!--  </ul>
+                                </fieldset>-->
+                                
+                            </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+               <!-- </apex:tab> -->
+                
+<!--                <apex:tab label="Invite Signature" switchType="client">-->
+<!--                    <fieldset > <legend>Signature</legend>-->
+<!--                       <apex:pageMessage severity="INFO" strength="3" summary="Paste your signature here, then click 'Save'."></apex:pageMessage>-->
+<!--                        <apex:inputField value="{!userObj.Signature__c}"/>-->
+<!--                    </fieldset>-->
+<!--                    <apex:commandButton value="Save" action="{!updateUserDetail}"/>-->
+<!--                </apex:tab>-->
+          <!--  </apex:tabPanel   -->         
+            </apex:pageBlock>
+     </apex:form>
+</apex:page>

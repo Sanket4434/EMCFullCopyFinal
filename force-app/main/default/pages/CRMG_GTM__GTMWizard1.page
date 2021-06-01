@@ -1,0 +1,344 @@
+<apex:page standardController="CRMG_GTM__Meeting__c" extensions="CRMG_GTM.GTMScheduleMeetingController" id="pg" tabStyle="My_Meetings__tab">
+	<c:LightningStyle />
+    
+<script language="JavaScript" type="text/javascript">
+
+    function CloseAndRefresh(){
+                window.opener.location.href="/{!$CurrentPage.parameters.id}";
+                window.top.close();
+       
+      }
+  
+   function scheduleMeeting() {
+      
+                  jsScheduleMeeting();
+                  return false;
+     }
+   function saveMeeting() {
+      
+                  jsSaveMeeting();
+                  return false;
+   }
+   function saveAndInvite() {
+                  //var st = document.getElementById('startTime').value;
+                  //var et = document.getElementById('endTime').value;
+                  jsSaveAndInvite();
+                  return false;
+  }
+  
+</script>
+
+<head> 
+  
+  <link rel="stylesheet" href="{!URLFOR($Resource.CSS, '/css/jquery-ui-1.8.16.custom.css')}" type="text/css" media="all" />
+        <style type="text/css"> 
+            /* css for timepicker */
+            .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+            .ui-timepicker-div dl { text-align: left; }
+
+            .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+
+            .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+
+            .ui-timepicker-div td { font-size: 90%; }
+
+            .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+        </style> 
+
+      <script type="text/javascript" src="{!URLFOR($Resource.Jquery, '/js/jquery-1.7.1.min.js')}"></script>
+      <script type="text/javascript" src="{!URLFOR($Resource.Jquery, '/js/jquery-ui-1.8.16.custom.min.js')}"></script>
+      <script type="text/javascript" src="{!URLFOR($Resource.Jquery, '/js/jquery-ui-timepicker-addon.js')}"></script>
+      <script type="text/javascript" src="{!URLFOR($Resource.Jquery, '/js/jquery-ui-sliderAccess.js')}"></script>
+    </head> 
+   
+    <apex:outputPanel id="opMeeting">
+        <apex:pageMessages ></apex:pageMessages>
+        <script language="JavaScript" type="text/javascript">
+        
+            window.onload = setDefault;
+            
+            function setDefault() {
+                if(document.getElementById('0') != null){
+                    document.getElementById('0').checked=true;
+                    document.getElementById('pg:frm:audioSel').value = document.getElementById('0').value;              
+                }
+                document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:2').checked=true;
+                
+                var defaultAudio =  '{!DefaultAudioOption}' ;
+                
+                if(defaultAudio == 'Provide VoIP only (requires microphone and speakers)'){
+                    document.getElementById('0').checked=true;
+                    document.getElementById('pg:frm:audioSel').value = document.getElementById('0').value;
+                    document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:0').checked=true;
+                }
+                else if(defaultAudio == 'Provide a conference call number only'){
+                    document.getElementById('0').checked=true;
+                    document.getElementById('pg:frm:audioSel').value = document.getElementById('0').value;
+                    document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:1').checked=true;
+                }
+                else if(defaultAudio == 'Both'){
+                    document.getElementById('0').checked=true;
+                    document.getElementById('pg:frm:audioSel').value = document.getElementById('0').value;
+                    document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:2').checked=true;
+                }
+                else if(defaultAudio == 'Provide your own conference call information'){
+                    document.getElementById('0').checked=false;
+                    document.getElementById('1').checked=true;
+                    document.getElementById('pg:frm:audioSel').value = document.getElementById('1').value; 
+                    document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:2').checked=false;
+                }
+                
+                
+             }
+            function redirecto() {
+                                var flag = true;
+                if('{!warningMessage}' != null && '{!warningMessage}' != ''){
+                    flag = confirm('{!warningMessage}');
+                } 
+                
+                if({!isSuccessful} && flag)
+                {
+                   
+                    if ('{!$CurrentPage.parameters.recordId}' != '' ) {
+                       
+                        var st = '{!JSENCODE(recordId)}';
+                        
+                        if(st.substring(0,3)== '00Q'){
+                       
+                             location.href = '/apex/gotomeetinginvitees?id='+'{!JSENCODE(meeting.Id)}'+'&recordId='+'{!JSENCODE(recordId)}'+'&selectedIds='+'{!JSENCODE(recordId)}'+'&selectedName='+ '{!JSENCODE(attendeeName)}' +',';
+                        }
+                        else
+                        location.href = '/apex/GTMWizard2?id='+'{!JSENCODE(meeting.Id)}'+'&recordId='+'{!JSENCODE(recordId)}';
+                    }
+                    else {
+                        location.href = '/apex/gotomeetinginvitees?id='+'{!JSENCODE(meeting.Id)}';
+                    }
+                }
+            }
+            function ShowAlertMessage() {
+                
+                if({!isSuccessful})
+                {
+                    location.href = '/apex/MyMeetings';
+                }
+            }
+            function cancel() {
+                
+                 location.href = '/apex/MyMeetings';
+                // alert(''+location.href);
+                return true;
+                
+            }
+            function SetCallAudioOption(obj) {
+                if(obj.checked){
+                    document.getElementById('pg:frm:audioSel').value = obj.value;
+                  }  
+                 if(obj.id=='0' || obj.id=='pg:frm:pb:pbs:pbsiRad:selRad:0' || obj.id=='pg:frm:pb:pbs:pbsiRad:selRad:1' || obj.id=='pg:frm:pb:pbs:pbsiRad:selRad:2'){
+                    if(obj.checked){
+                        document.getElementById('0').checked=true;
+                        document.getElementById('1').checked=false;
+                    
+                    }
+                 }
+                 
+                  if(obj.id=='1'){
+                    if(obj.checked){
+                        document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:0').checked=false;
+                        document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:1').checked=false;
+                        document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:2').checked=false;
+                        document.getElementById('0').checked=false;
+                    //  document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:1').disabled = false;
+                    }
+                 }
+                 
+                 
+            }
+            
+            function SetCallAudioOptionCheck(obj) {
+             
+                 if(obj.id=='0' || obj.id=='pg:frm:pb:pbs:pbsiRad:selRad:0' || obj.id=='pg:frm:pb:pbs:pbsiRad:selRad:1' || obj.id=='pg:frm:pb:pbs:pbsiRad:selRad:2'){
+                    if(obj.checked){
+                        document.getElementById('0').checked=true;
+                        document.getElementById('1').checked=false;
+                    
+                    }
+                 }
+                 
+                  if(obj.id=='1'){
+                    if(obj.checked){
+                        document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:0').checked=false;
+                        document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:1').checked=false;
+                        document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:2').checked=false;
+                        
+                        document.getElementById('0').checked=false;
+                    //  document.getElementById('pg:frm:pb:pbs:pbsiRad:selRad:1').disabled = false;
+                    }
+                 }
+                 
+                 
+            }
+            
+            function setEndTime(val){
+            //  alert(val);
+                var dd = document.getElementById('pg:frm:pb:pbs:edPbsi:edt');
+                //alert(dd);
+                for (var i = 0; i < dd.options.length; i++) {
+                //  alert(dd.options[i].value);
+                    if (dd.options[i].value === val) {
+                        dd.selectedIndex = i;
+                        break;
+                    }
+                }
+
+                
+            }
+        </script>
+    </apex:outputPanel>
+   
+   <apex:form id="frm" StyleClass="Custom-Lightning-Style">
+   		<apex:sectionHeader title="Meeting Scheduler" subtitle="{!meetingSubtitle}"/>     
+            <apex:inputHidden id="audioSel" value="{!meeting.CRMG_GTM__Conference_Options__c}"/>
+            <apex:actionFunction action="{!save}" name="jsScheduleMeeting" reRender="opMeeting" oncomplete="redirecto();">
+                <!--
+                <apex:param value="" name="p1" assignTo="{!meetingStartTime}"/>
+                <apex:param value="" name="p2" assignTo="{!meetingEndTime}"/>
+                -->
+            </apex:actionFunction>
+             <apex:actionFunction action="{!calculateEndTime}" name="calculateEndTime"  immediate="true" onComplete="setEndTime('{!meetingEndTime}')">
+               
+                <apex:param value="" name="p1" assignTo="{!meetingStartTime}"/> <!--
+                <apex:param value="" name="p2" assignTo="{!meetingEndTime}"/>
+                -->
+            </apex:actionFunction>
+            <apex:actionFunction action="{!save}" name="jsSaveMeeting" reRender="opMeeting" oncomplete="ShowAlertMessage();">
+                <!--
+                <apex:param value="" name="p1" assignTo="{!meetingStartTime}"/>
+                <apex:param value="" name="p2" assignTo="{!meetingEndTime}"/>
+                -->
+            </apex:actionFunction>
+            
+            <apex:pageMessage severity="INFO" summary="You are not authorize. Please authorize from Authorize Gotomeeting tab." rendered="{!NOT(validateGTM)}" strength="3"></apex:pageMessage>
+            <apex:pageBlock mode="edit" id="pb" rendered="{!validateGTM}">
+                <apex:messages />
+              
+                <apex:pageBlockSection columns="1" id="pbs"> 
+                    
+                    <apex:inputField value="{!meeting.CRMG_GTM__Subject__c}" label="Meeting Topic" required="true"></apex:inputField>
+                    <apex:inputField value="{!meeting.CRMG_GTM__StartDate__c}" label="Start Date" required="true"> </apex:inputField>
+                      
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Start Time"></apex:outputLabel>
+                        <apex:outputPanel >
+                        
+                            <apex:selectList value="{!meetingStartTime}"  size="1" onchange="calculateEndTime(this.value)">
+                                
+                             
+                                <apex:selectOptions value="{!TimeList}"></apex:selectOptions>
+                            </apex:selectList>
+                           
+                        </apex:outputPanel>
+                        
+                    </apex:pageBlockSectionItem>
+                    <!--
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Start Time"></apex:outputLabel>
+                        <input type="text" name="startTime" id="startTime" value="{!meetingStartTime}" />
+                        <script type="text/javascript">
+                        $('#startTime').timepicker({});
+                        </script>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Start Time"></apex:outputLabel>
+                        <input type="text" name="startTime" id="startTime" value="{!meetingStartTime}" />
+                        <script type="text/javascript">
+                        $('#startTime').timepicker({});
+                        </script>
+                    </apex:pageBlockSectionItem>
+                    -->
+                     
+                     
+                    <apex:pageBlockSectionItem id="edPbsi">
+                        <apex:outputLabel value="End Time"></apex:outputLabel>
+                        <apex:outputPanel id="edOpn">
+                            <apex:selectList value="{!meetingEndTime}" size="1" id="edt">
+                                <apex:selectOptions value="{!TimeList}"></apex:selectOptions>
+                            </apex:selectList>
+                        </apex:outputPanel>
+                        
+                    </apex:pageBlockSectionItem>
+                     
+                   <!-- <apex:pageBlockSectionItem >
+                        <apex:outputLabel value=""></apex:outputLabel>
+                        <apex:outputPanel >
+                            <apex:selectRadio value="{!meeting.TimeZone__c}" layout="pageDirection"  >
+                                <apex:selectOptions value="{!audioOptions}"></apex:selectOptions>
+                            </apex:selectRadio>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>-->
+                    
+                   
+                    
+                    <apex:pageBlockSectionItem id="pbsiRad" rendered="{!mode=='Insert'}">
+                        <apex:outputLabel value="Audio Options"></apex:outputLabel>
+                        <apex:outputPanel id="opnlRad"  layout="block">
+                            <input type="radio"  name="audio" value="Use GoToMeeting integrated audio" id="0"  onClick="SetCallAudioOption(this);" />Use GoToMeeting integrated audio   
+                            <br/>
+                            
+                                <div style="margin-left:50px;">
+                                    Provide the following options to my meeting participants:<br/>
+                                    
+                                    <apex:selectRadio id="selRad" value="{!meeting.CRMG_GTM__Conference_Audio_Options__c}" layout="pageDirection" onClick="SetCallAudioOptionCheck(this);">
+                                        <apex:selectOptions value="{!audioConferenceOptions}"/>
+                                    </apex:selectRadio>
+                                    
+                                </div>
+                            <input type="radio" name="audio" value="Provide your own conference call information" id="1" onClick="SetCallAudioOption(this);"/> Provide your own conference call information<br/>
+                                <div style="margin-left:50px;">
+                                </div>
+                            <!--<input type="radio" name="audio" value="Do not provide audio information" onClick="SetCallAudioOption(this);"/> Do not provide audio information<br/>
+                                
+                                <div style="margin-left:50px;">
+                                    <label>Password</label>
+                                    <input type="text"/>
+                                    <label>(not required)</label>
+                                </div>
+                                -->
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>                    
+                    <apex:inputField value="{!meeting.CRMG_GTM__MeetingType__c}" label="Meeting Type" ></apex:inputField>
+                    <apex:inputField value="{!meeting.CRMG_GTM__Password__c}" label="Password" ></apex:inputField>
+                        
+                    
+                    <!--
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Time zone"></apex:outputLabel>
+                        <apex:outputPanel >
+                            <apex:selectList value="{!meeting.TimeZone__c}"  size="1">
+                                <apex:selectOptions value="{!lstTimezones}"></apex:selectOptions>
+                            </apex:selectList>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    -->                    
+                                   
+                </apex:pageBlockSection> 
+              
+                <apex:pageBlockButtons location="bottom">
+                	<!-- 
+                    <input class="btn scheduling-organizer-next-btn" 
+                    id="meetingButton" 
+                    name="meetingButton" 
+                    onclick="if (!Scheduling.MeetingAssistantWizard.nextButtonOnclick()) {return false;}else{ if (Scheduling.MeetingAssistantWizard.populateHiddenField) { Scheduling.MeetingAssistantWizard.populateHiddenField(); } };A4J.AJAX.Submit('j_id0:j_id16',event,{'oncomplete':function(request,event,data){OrganizerController.CheckServerError('', true)},'similarityGroupingId':'meetingButton','parameters':{'meetingButton':'meetingButton'} } );return false;" 
+                    value="Next" tabindex="105" type="button" />
+                     -->
+                     <apex:commandButton value="Schedule Meeting" onclick="return scheduleMeeting();" rendered="{!meeting.Id = null}"/>
+                    <apex:commandButton value="Save" onclick="return scheduleMeeting();" rendered="{!mode=='Edit'}"/>
+                    <apex:commandButton immediate="true" value="Cancel" action="{!editCancel}" rendered="{!mode=='Edit'}"/>
+                    
+                    <apex:commandButton immediate="true" value="Cancel" action="{!cancel}" rendered="{!mode=='Insert'}" />
+                 <!--   <apex:commandButton immediate="true" value="Cancel" onclick="cancel();return false;" rendered="{!meeting.Id != null}"/> -->
+                    
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+        </apex:form>
+</apex:page>

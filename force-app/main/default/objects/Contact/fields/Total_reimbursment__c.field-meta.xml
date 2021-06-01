@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_reimbursment__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>only  current year  reimbursement total</inlineHelpText>
+    <label>Total reimbursment</label>
+    <summarizedField>Employee_Reimbursement__c.Total_Monthly_Reimbursement__c</summarizedField>
+    <summaryFilterItems>
+        <field>Employee_Reimbursement__c.Year__c</field>
+        <operation>equals</operation>
+        <value>2021</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Employee_Reimbursement__c.Contact_Id__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

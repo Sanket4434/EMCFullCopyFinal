@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMG_GTM__Scheduled_Meeting</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Scheduled Meeting</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/apex.js&quot;)}
+var namespace = &apos;CRMG_GTM&apos;;  
+var clsNamespace =&apos;&apos;;  
+if (namespace != &apos;&apos; &amp;&amp; namespace != null) {  
+clsNamespace = namespace +&apos;.&apos;; 
+namespace = namespace + &apos;__&apos;;  
+  
+}  
+location.href=&apos;/apex/&apos;+namespace+&apos;GTMWizard1?recordId=&apos;+&apos;{!CRMG_GTM__Custom_Object__c.Id}&apos;;</url>
+</WebLink>

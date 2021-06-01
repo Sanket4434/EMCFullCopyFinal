@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Title__c</fullName>
+    <externalId>false</externalId>
+    <label>Job Title</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Territory Manager</fullName>
+                <default>false</default>
+                <label>Territory Manager</label>
+            </value>
+            <value>
+                <fullName>Director of Product Strategy &amp; Marketing</fullName>
+                <default>false</default>
+                <label>Director of Product Strategy &amp; Marketing</label>
+            </value>
+            <value>
+                <fullName>Director of Sales</fullName>
+                <default>false</default>
+                <label>Director of Sales</label>
+            </value>
+            <value>
+                <fullName>CFO/COO</fullName>
+                <default>false</default>
+                <label>CFO/COO</label>
+            </value>
+            <value>
+                <fullName>Technical Support</fullName>
+                <default>false</default>
+                <label>Technical Support</label>
+            </value>
+            <value>
+                <fullName>Forced Air Product Manager</fullName>
+                <default>false</default>
+                <label>Forced Air Product Manager</label>
+            </value>
+            <value>
+                <fullName>Director of Product Strategy &amp; Technical Support</fullName>
+                <default>false</default>
+                <label>Director of Product Strategy &amp; Technical Support</label>
+            </value>
+            <value>
+                <fullName>Hydronics Application Specialist</fullName>
+                <default>false</default>
+                <label>Hydronics Application Specialist</label>
+            </value>
+            <value>
+                <fullName>Commercial Sales Manager</fullName>
+                <default>false</default>
+                <label>Commercial Sales Manager</label>
+            </value>
+            <value>
+                <fullName>Accounting Manager</fullName>
+                <default>false</default>
+                <label>Accounting Manager</label>
+            </value>
+            <value>
+                <fullName>President</fullName>
+                <default>false</default>
+                <label>President</label>
+            </value>
+            <value>
+                <fullName>Director of Human Resources</fullName>
+                <default>false</default>
+                <label>Director of Human Resources</label>
+            </value>
+            <value>
+                <fullName>Design Engineer Lead</fullName>
+                <default>false</default>
+                <label>Design Engineer Lead</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

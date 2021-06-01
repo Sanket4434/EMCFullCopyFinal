@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMG_GTM__Number_of_Attendees__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label># of Attendees</label>
+    <summaryFilterItems>
+        <field>CRMG_GTM__GTM_Attendees__c.CRMG_GTM__Is_Organiser__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>CRMG_GTM__GTM_Attendees__c.CRMG_GTM__GTM_Meeting_Detail__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

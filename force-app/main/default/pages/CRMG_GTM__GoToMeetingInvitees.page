@@ -1,0 +1,135 @@
+<apex:page standardController="CRMG_GTM__Meeting__c" id="meetingpage" extensions="CRMG_GTM.GoToMeetingDetails" tabStyle="My_Meetings__tab">
+    <apex:pageMessages />   
+    <apex:stylesheet value="{!URLFOR($Resource.CRMG_GTM__autosuggest1,'autoSuggest.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CRMG_GTM__js, 'jquery-1.6.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CRMG_GTM__jqueryautosuggest,'jquery.autoSuggest.js')}"/>
+    
+    <script language="JavaScript" type="text/javascript">
+    $(document).ready(function() { 
+        var sname = '{!selectedinviteesname}';
+        //alert('sname '+sname);
+        var stringToArray = new Array;
+        stringToArray = sname.split(",");
+        stringToArray.pop();
+        
+        var ss1 =['{!selectedinvitees}'];
+        var ss =['{!selectedinviteesname}'];
+        var cList = $('ul.as-selections')
+        if(ss!=''){
+        
+        document.getElementsByClassName('as-input')[0].value='';
+        $.each(stringToArray , function(i)
+        {
+       
+        var li = $('<li/>')
+        .addClass('as-selection-item blur')
+        .attr('id','as-selection-11')
+        .text(stringToArray[i])
+        .appendTo(cList.closest('ul').children(':first'));
+        var aaa = $('<a/>')
+        .addClass('as-close').addClass('as-closeE')
+        .text('×')
+        .appendTo(li); 
+            });        
+            var dd= ''+'{!selectedinvitees}';
+           
+            if((ss1!='') && (ss1!=null) &&(dd.charAt(dd.length-1)!= ',') )
+            var hidden = $('input.as-values').val(ss1+',');
+            else
+            var hidden = $('input.as-values').val(ss1);
+            }
+            });
+           
+            $('.as-closeE').live('click', function() {
+            var parentLi = $(this).parents('.as-selection-item');
+            var emailIdText = parentLi.text().substring(0,parentLi.text().length-1)+';';
+            var hiddenValue = $(this).parents('.as-original').find('.as-values');
+            hiddenValue.val(hiddenValue.val().replace(emailIdText,''));
+            parentLi.html("");
+            parentLi.removeClass('as-selection-item');
+            $(this).removeClass('as-close').removeClass('as-closeE');
+        });
+        
+        function selectEventSubject()
+        {
+            var lookingUrl = '{!$Site.Prefix}/apex/ComboBox';
+            window.open(lookingUrl, '' ,'fullscreen=no, height=250px, width=200px, top=150, left=250, scrollbars=1'); 
+        }
+        
+        function comboBoxPick(index)
+        {
+            document.getElementById('meetingpage:meetingform:meetingformblock:meetingformpageblock:item:eventSubject').value = index;
+            top.window.close();
+        }
+    </script>
+    
+    <c:LightningStyle />
+    <apex:form styleClass="Custom-Lightning-Style" id="meetingform" >
+        <apex:sectionHeader title="Meeting Scheduler"
+        subtitle="{!meetingSubtitle}"/>
+        <apex:pageMessages ></apex:pageMessages>
+        <apex:pageBlock id="meetingformblock">
+        <apex:pageBlockButtons >
+        	<apex:commandButton action="{!saveInvite}" value="Save" onclick="loadValues();" />
+            <apex:commandButton action="{!sendInvite}" value="Send Invite" onclick="loadValues();" rendered="{!NOT(HideSendInvite)}" />
+            <apex:commandButton action="{!backToMeeting}" value="Back"  />
+             <apex:commandButton action="{!cancelInvitees}" value="Cancel"  />
+        </apex:pageBlockButtons>
+        
+        <apex:pageBlockSection columns="1" id="meetingformpageblock">
+            <apex:outputField value="{!meeting.Name}"/>
+            <apex:outputField value="{!meeting.CRMG_GTM__Meeting_Id__c}"/>
+            <apex:outputField value="{!meeting.CRMG_GTM__StartDateTime__c}"/>
+            
+            <apex:outputField value="{!meeting.CRMG_GTM__MeetingURL__c}"/>
+            <!--<apex:inputField value="{!meeting.Include_Accept_Reject_Option__c}"/> -->
+            <apex:inputField value="{!meeting.CRMG_GTM__Include_Signature_Option__c}"/>
+            
+        <!--      <apex:pageBlockSectionItem >
+                <apex:outputlabel >Org Wide Emails</apex:outputlabel>
+                <apex:selectList id="orgwide" value="{!selectedOrgWide}" size="1">
+                    <apex:selectOptions value="{!OrgWideDefaultEmails}"/>
+                </apex:selectList>
+               </apex:pageBlockSectionItem>-->
+            
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Invitee(s)"></apex:outputLabel>
+                <apex:inputText value="{!invitessName}"  id="invitees" />
+            </apex:pageBlockSectionItem>
+            
+            <apex:pageBlockSectionItem id="item">
+                <apex:outputLabel >Subject</apex:outputLabel>
+                <apex:outputPanel >
+                    <apex:inputText id="eventSubject" value="{!eventSubject}" size="20"/>
+                    <a href="#" onclick="selectEventSubject();return false;"><img src="/s.gif" alt="Subject Combo (New Window)" class="comboboxIconOn" onblur="this.className = 'comboboxIcon';" onfocus="this.className = 'comboboxIconOn';" onmouseout="this.className = 'comboboxIcon';this.className = 'comboboxIcon';" onmouseover="this.className = 'comboboxIconOn';this.className = 'comboboxIconOn';" title="Subject Combo (New Window)"/></a>
+                </apex:outputPanel>
+            </apex:pageBlockSectionItem>
+            
+          <!--  <apex:pageBlockSectionItem helpText="Please use comma as a separtor.">
+                <apex:outputLabel value="Email Addresses"></apex:outputLabel>
+                <apex:inputTextarea value="{!emailAddresses}" cols="100" rows="5"  />
+            </apex:pageBlockSectionItem> -->
+            
+           
+               <apex:inputField value="{!meeting.CRMG_GTM__Meeting_Details__c}"  style="height:100px"/>
+           
+            <apex:inputHidden value="{!invitessIds}" id="invitees_id" />
+            
+        </apex:pageBlockSection>
+        
+           
+    </apex:pageBlock>
+    </apex:form>
+    <script>
+    
+        var element = $('input[type=text]')[1];
+        $(element).autoSuggest('/apex/GoToMeetingAjaxResponder', {selectedItemProp: "name", searchObjProps: "name,email",formatList: function(data,elem){ return elem.html(data.name +"&nbsp;&#60;"+ data.email +"&#62;&nbsp;" + "&nbsp;" + data.type); }});
+    </script>
+    <script>
+        function loadValues(){
+            var idVal = $('.as-values').val();
+            
+            $("#meetingpage\\:meetingform\\:meetingformblock\\:meetingformpageblock\\:invitees_id").val(idVal);
+        }
+    </script>
+</apex:page>

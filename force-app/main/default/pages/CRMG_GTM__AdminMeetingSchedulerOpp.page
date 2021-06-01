@@ -1,0 +1,55 @@
+<apex:page standardcontroller="Opportunity" extensions="CRMG_GTM.AdminMeetingSchedularOpp" id="pg">
+ <script>
+       var selectedChkbox;
+       var tableIdCount = 0;
+       function deSelectOthers(chkBox) {
+            if (chkBox.checked) {
+                if ((chkBox != selectedChkbox) && (selectedChkbox != null)) {
+                    selectedChkbox.checked = false;
+                }
+                selectedChkbox = chkBox;
+            }            
+        }
+        
+       
+    </script>
+    
+    <c:LightningStyle />
+    <apex:form id="frm" styleClass="Custom-Lightning-Style">
+    
+        <apex:actionFunction action="{!IframeURL}" name="IframeURL" rerender="pb2">
+            <apex:param name="firstParam" assignTo="{!strIframeURL}" value="" />
+        </apex:actionFunction>
+        
+        <apex:pageBlock title="Select User to Schedule meeting for!">
+            <apex:pageBlockTable value="{!users}" var="usr">
+                
+                <apex:column >
+                    <apex:facet name="header">Select</apex:facet>
+                    <apex:inputCheckBox styleClass="primaryCheckBox" onclick="deSelectOthers(this);IframeURL('{!usr.calURL}')"  value="{!usr.isSelected}"/>
+                      <script>
+                        if ("{!usr.isSelected}" == "true") {
+                           //var idForSelectedBox = "thePage:theForm:j_id2:theTable:"+tableIdCount+":primaryCheckBox";
+                             selectedChkbox = document.getElementsByClassName('primaryCheckBox');
+                         }
+                         tableIdCount++;
+                    </script>    
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">User</apex:facet>
+                    <a href="/{!usr.u.id}" target="_blank">{!usr.u.Name}</a>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Calendar</apex:facet>
+                    <a href="{!usr.calURL}" target="_blank">{!usr.u.Name} # Calendar</a>
+                </apex:column>
+            </apex:pageBlockTable> 
+            <apex:commandButton value="Schedule Meeting" action="{!ScheduleMeeting}"/>
+        </apex:pageBlock>
+        
+        <apex:pageBlock id="pb2">
+            <apex:iframe src="{!strIframeURL}" scrolling="true" id="theIframe" frameborder="false"/>
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

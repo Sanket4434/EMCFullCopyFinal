@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMG_GTM__Invite_To_GTM</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Invite To GTM</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>var namespace = &apos;CRMG_GTM__&apos;; 
+location.href = &apos;/apex/&apos;+namespace+&apos;MeetingInvite?recordId=&apos;+&apos;{!CRMG_GTM__Custom_Object__c.Id}&apos;;</url>
+</WebLink>

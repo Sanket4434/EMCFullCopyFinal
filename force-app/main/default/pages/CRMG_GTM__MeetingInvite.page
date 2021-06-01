@@ -1,0 +1,88 @@
+<apex:page controller="CRMG_GTM.InviteToMeeting" tabStyle="My_Meetings__tab">
+    <c:LightningStyle />
+        <apex:form styleClass="Custom-Lightning-Style">
+         
+            <script>
+                function inviteToMeeting() {
+                    var meetingSize = '{!lstMeetings.size}';
+                    for ( var i = 0 ; i < meetingSize ; i ++) {
+                        var rdo = 'rdo'+i+'';
+                        var b = document.getElementById(rdo).checked;
+                        if (b) {
+                            var meetingId = document.getElementById(rdo).value;
+                            jsInviteToMeeting(meetingId);
+                        }
+                        
+                    }
+                    return false;
+                }
+            </script>
+            
+            <apex:outputPanel id="op">
+                <apex:pagemessages ></apex:pagemessages>
+            </apex:outputPanel>
+            
+            <apex:actionFunction action="{!inviteToMeeting}" name="jsInviteToMeeting" reRender="op" >
+                <apex:param value="" name="p1" assignTo="{!meetingId}"/>
+            </apex:actionFunction>
+            <apex:pageBlock title="Select Meeting">
+            
+                <apex:pageBlockButtons >
+                    <apex:commandButton value="Select Meeting" onclick="return inviteToMeeting();" />    
+                    <apex:commandButton value="Cancel" action="{!cancel}" />         
+                </apex:pageBlockButtons>
+                <apex:outputLabel rendered="{!lstMeetings.size = 0}" value="No meetings found."></apex:outputLabel>
+                    
+                <apex:pageBlockSection columns="1" rendered="{!lstMeetings.size > 0}">
+                    <apex:pageBlockTable value="{!lstMeetings}" var="a" >
+                        <apex:column >                            
+                            <input type="radio" name="rdo" id="rdo{!a.index}" value="{!a.meeting.Id}" />
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">
+                             <apex:commandLink value="Subject" action="{!sortList}">
+                                <apex:param name="Subject__c"
+                                    value="Subject__c"
+                                    assignTo="{!orderByString}"/>
+                            </apex:commandLink>
+                            </apex:facet>
+                            {!a.meeting.CRMG_GTM__Subject__c}
+                        </apex:column>
+                         <apex:column >
+                            <apex:facet name="header">
+                             <apex:commandLink value="Organizer" action="{!sortList}">
+                                <apex:param name="Organizer"
+                                    value="CreatedBy.name"
+                                    assignTo="{!orderByString}"/>
+                            </apex:commandLink>
+                            </apex:facet>
+                            {!a.meeting.CreatedBy.name}
+                        </apex:column>
+                         <apex:column >
+                            <apex:facet name="header">
+                             <apex:commandLink value="Start Date" action="{!sortList}">
+                                <apex:param name="StartDate"
+                                    value="StartDate__c"
+                                    assignTo="{!orderByString}"/>
+                            </apex:commandLink>
+                            </apex:facet>
+                             <apex:outputText value="{0,date,M/d/yyyy h:mm a}" >
+                                <apex:param value="{!a.meeting.CRMG_GTM__StartDate__c}"/>
+                            </apex:outputText>
+                            
+                        </apex:column>
+<!--                        <apex:column value="{!a.meeting.CRMG_GTM__Subject__c}"/>-->
+<!--                        <apex:column value="{!a.meeting.CreatedBy.name}" headerValue="Organizer"/>-->
+                        
+<!--                        <apex:column value="{!a.meeting.CRMG_GTM__StartDate__c}"/>-->
+                        <apex:column value="{!a.meeting.CRMG_GTM__StartTime__c}"/>
+                        <apex:column value="{!a.meeting.CRMG_GTM__EndTime__c}"/>
+                        <apex:column value="{!a.meeting.CRMG_GTM__Meeting_Id__c}"/>
+                        <apex:column value="{!a.meeting.CRMG_GTM__MeetingURL__c}"/>
+                    </apex:pageBlockTable>        
+                         
+                </apex:pageBlockSection>
+                
+            </apex:pageBlock>
+        </apex:form>
+</apex:page>

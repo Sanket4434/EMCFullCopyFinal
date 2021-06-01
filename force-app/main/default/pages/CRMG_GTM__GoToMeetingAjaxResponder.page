@@ -1,0 +1,4 @@
+<apex:page controller="CRMG_GTM.GoToMeetingAjaxRespController"  action="{!doSearch}"
+contentType="application/x-JavaScript; charset=utf-8" showHeader="false" standardStylesheets="false" sidebar="false">
+{!result}
+</apex:page>

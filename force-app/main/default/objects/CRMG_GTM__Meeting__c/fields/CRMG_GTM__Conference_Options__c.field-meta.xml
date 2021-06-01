@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMG_GTM__Conference_Options__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Conference Options</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Use built-in audio conferencing</fullName>
+                <default>false</default>
+                <label>Use built-in audio conferencing</label>
+            </value>
+            <value>
+                <fullName>Use my own conference call service</fullName>
+                <default>false</default>
+                <label>Use my own conference call service</label>
+            </value>
+            <value>
+                <fullName>Do not provide audio information</fullName>
+                <default>false</default>
+                <label>Do not provide audio information</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

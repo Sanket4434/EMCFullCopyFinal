@@ -1,0 +1,7 @@
+<apex:page standardController="Contact" extensions="joinme.JoinMeButtonController" sidebar="false" showHeader="false" docType="html-5.0">
+  
+  <apex:includeScript value="https://secure.join.me/js/apiv1"></apex:includeScript>
+       
+  <div class="joinMeButton" data-endMeetingRedirect="{!link}meetingid={viewercodeid}" data-authType="popup"></div>
+    
+</apex:page>

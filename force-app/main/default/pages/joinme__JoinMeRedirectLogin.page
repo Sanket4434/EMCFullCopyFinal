@@ -1,0 +1,77 @@
+<apex:page name="JoinMeRedirectLogin" showHeader="true" sidebar="true">
+
+<apex:pageMessages />
+
+<apex:includeScript value="https://secure.join.me/js/apiv1"></apex:includeScript>
+
+<apex:includeScript value="{!$Resource.joinme__jquery}"></apex:includeScript>
+
+<script type="text/javascript">
+
+  function getURLParameter(sParam) {
+
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+
+    for (var i = 0; i < sURLVariables.length; i++) {
+      var sParameterName = sURLVariables[i].split('=');
+      if (sParameterName[0] == sParam) {
+        return sParameterName[1];
+      }
+    }
+  }
+
+  $jm = jQuery.noConflict();
+
+  $jm(document).ready(function() {
+
+    iframeUrl = "https://secure.join.me/host/devicelogin.aspx?app=salesforce&parentWindow=" + encodeURI(window.location.href);
+
+    $jm("#lmi-iframe").attr("src", iframeUrl);
+
+    LMI.PostMessage.ReceiveMessage(function (event) {
+
+      if (event.data === 'LOGINSUCCESS') {
+        var viewercodeid = getURLParameter('meetingid');
+        var id = getURLParameter('id');
+        var baseURL = window.location.origin;
+        var fullURL = baseURL + '/apex/JoinMeEndCallStatus?meetingid=' + viewercodeid + '=&id=' + id;
+
+        window.location.replace(fullURL);
+      }
+    },
+    'https://secure.join.me'
+    );
+
+    var w = $jm('.lmi-panel').width() / 2;
+    w = w - 300;
+
+    $jm('.joinme-logo').css('padding-left', w + 'px');
+  })
+
+</script>
+
+<style type="text/css">
+
+  #lmi-iframe {
+    display: block;
+    margin: 0 auto;
+    padding: 50px 0 0 0;
+    border: 0;
+  }
+
+  .joinme-logo {
+
+    position: absolute;
+    padding-top: 50px;
+
+  }
+
+</style>
+
+<apex:outputPanel styleClass="lmi-panel" layout="block" >
+<apex:image value="{!$Resource.joinme__joinme_logo}" styleClass="joinme-logo"></apex:image>
+<iframe id="lmi-iframe" height="400" width="400" border="0"></iframe>
+</apex:outputPanel>
+
+</apex:page>

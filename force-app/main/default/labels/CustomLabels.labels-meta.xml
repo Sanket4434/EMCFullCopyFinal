@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>AISAccount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AISAccount</shortDescription>
+        <value>0013r00002VTmYpAAL</value>
+    </labels>
+    <labels>
+        <fullName>AccIdForMonthlyReimStatements</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccIdForMonthlyReimStatements</shortDescription>
+        <value>0013100001rSlIu</value>
+    </labels>
+    <labels>
+        <fullName>AccountName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccountName</shortDescription>
+        <value>Anton Paar</value>
+    </labels>
+    <labels>
+        <fullName>Accountid</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Accountid</shortDescription>
+        <value>0013100001m0o3G</value>
+    </labels>
+    <labels>
+        <fullName>AdminVicePresident</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AdminVicePresident</shortDescription>
+        <value>0033r00003c55RMAAY,0033r00003dcN5CAAU,0033r00003dcCg9AAE,0033r00003c55ROAAY,0033r00003c55RHAAY</value>
+    </labels>
+    <labels>
+        <fullName>Anton_Paar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Anton Paar</shortDescription>
+        <value>0013r00002D3DlPAAV</value>
+    </labels>
+    <labels>
+        <fullName>Api_Token</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Triplog API Token</shortDescription>
+        <value>00f7226e3f704aaa9264382180e514e6, 455f8585b41742c2889040dfd8d4b23e</value>
+    </labels>
+    <labels>
+        <fullName>CNCA_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CNCA Account</shortDescription>
+        <value>California Nevada Cement Association (CNCA)</value>
+    </labels>
+    <labels>
+        <fullName>Check_Username</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Check Username</shortDescription>
+        <value>Verifying access.</value>
+    </labels>
+    <labels>
+        <fullName>Community_Account_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Community Account Name</shortDescription>
+        <value>Community Account</value>
+    </labels>
+    <labels>
+        <fullName>Custom_Report_Err_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Custom Report Err Message</shortDescription>
+        <value>Please Enter *** Field in Report Soql field</value>
+    </labels>
+    <labels>
+        <fullName>Dashboard_Page_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dashboard Page Message</shortDescription>
+        <value>Record Updated</value>
+    </labels>
+    <labels>
+        <fullName>Daylight_Saving_TimeZone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Daylight Saving TimeZone</shortDescription>
+        <value>America/Chicago, America/New_York, America/Tijuana, America/Denver, America/Los_Angeles, US/Pacific</value>
+    </labels>
+    <labels>
+        <fullName>Delta_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delta Account</shortDescription>
+        <value>0013100001rSfkZAAS</value>
+    </labels>
+    <labels>
+        <fullName>Delta_Account_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delta Account Name</shortDescription>
+        <value>Acme Corporation,Anton Paar,California Nevada Cement Association (CNCA),CATCO,Delta,Eclipse,Excelligence Learning Corporation,GPS (General Production Service),LendingHome,NexMetro,Rayner,Saverino &amp; Associates,SPBS,Spineology,The Andersons,Tony Demaria Electric,Weiser Security Services</value>
+    </labels>
+    <labels>
+        <fullName>DesignAir</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DesignAir</shortDescription>
+        <value>0013r00002PwqPmAAJ</value>
+    </labels>
+    <labels>
+        <fullName>DriverServicesEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DriverServicesEmail</shortDescription>
+        <value>driverservices@mburse.com</value>
+    </labels>
+    <labels>
+        <fullName>Driver_Forword_Logo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Driver Forword Logo</shortDescription>
+        <value>https://c.na121.content.force.com/servlet/servlet.ImageServer?id=0150Z000007CIdW&amp;oid=00D050000004crK&amp;lastMod=1531917614000</value>
+    </labels>
+    <labels>
+        <fullName>ERMIPayPeriodDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ERMIPayPeriodDate</shortDescription>
+        <value>2021-01-17 to 2021-01-30,2021-01-31 to 2021-02-13,2021-02-14 to 2021-02-27,2021-02-28 to 2021-03-13,2021-03-14 to 2021-03-27,2021-03-28 to 2021-04-13,2021-04-14 to 2021-04-27,2021-04-28 to 2021-05-08</value>
+    </labels>
+    <labels>
+        <fullName>ERMI_ADMIN_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ERMI ADMIN ID</shortDescription>
+        <value>0033r00003f3dCBAAY,0033r00003f3nqlAAA</value>
+    </labels>
+    <labels>
+        <fullName>ERMI_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ERMI Account</shortDescription>
+        <value>001i000001LwNSmAAN</value>
+    </labels>
+    <labels>
+        <fullName>Email_To_Address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email_To_Address</shortDescription>
+        <value>sanket.goswami@getoncrm.com,driverservices@mburse.com,minkeshp@askemc.com</value>
+    </labels>
+    <labels>
+        <fullName>EmployeeMileageReportId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmployeeMileageReportId</shortDescription>
+        <value>a0Q3100000FRmUaEAL</value>
+    </labels>
+    <labels>
+        <fullName>EmployeeRosterReportID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmployeeRosterReportID</shortDescription>
+        <value>a0Q0Z00000I3SghUAF</value>
+    </labels>
+    <labels>
+        <fullName>ErmiAdminAlexis</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErmiAdminAlexis</shortDescription>
+        <value>a.wright@ermi-motion.com</value>
+    </labels>
+    <labels>
+        <fullName>Ermi_Tax_Report_employee_type_picklist</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ermi Tax Report employee type picklist</shortDescription>
+        <value>All Employees,Part Time Employees, Full Time Employees, Salary Employees</value>
+    </labels>
+    <labels>
+        <fullName>Ermi_Tax_Report_month_picklist</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ermi Tax Report month picklist</shortDescription>
+        <value>06-2020,07-2020,08-2020,09-2020,10-2020,11-2020</value>
+    </labels>
+    <labels>
+        <fullName>ExceptionLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ExceptionLabel</shortDescription>
+        <value>Something went wrong!!</value>
+    </labels>
+    <labels>
+        <fullName>FixedandVariableReportId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FixedandVariableReportId</shortDescription>
+        <value>a0Q0Z00000HreLRUAZ</value>
+    </labels>
+    <labels>
+        <fullName>Forgot_Password</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Forgot Password</shortDescription>
+        <value>Your Password Reset link has been sent to your registered email address.</value>
+    </labels>
+    <labels>
+        <fullName>FramptonConstruction</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FramptonConstruction</shortDescription>
+        <value>0013r00002VTkUtAAL</value>
+    </labels>
+    <labels>
+        <fullName>FuelPriceAccId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FuelPriceAccId</shortDescription>
+        <value>0013r00002EkwWMAAZ</value>
+    </labels>
+    <labels>
+        <fullName>Insurancecard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Insurancecard</shortDescription>
+        <value>You submitted an insurance card, NOT an insurance declaration page. We can&apos;t determine if you&apos;re meeting the insurance plan minimum - Submit insurance declaration page immediately.</value>
+    </labels>
+    <labels>
+        <fullName>Is_Update_User_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Is Update User Profile</shortDescription>
+        <value>true</value>
+    </labels>
+    <labels>
+        <fullName>JenniferCNCAEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>JenniferCNCAEmail</shortDescription>
+        <value>jbracco@abelhr.com</value>
+    </labels>
+    <labels>
+        <fullName>Last_N_Month_Mileages</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last N Month Mileages</shortDescription>
+        <value>6</value>
+    </labels>
+    <labels>
+        <fullName>Latest_App_Versions_In_Triplog</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Latest App Versions In Triplog</shortDescription>
+        <value>Android v3.4,iOS v8.4</value>
+    </labels>
+    <labels>
+        <fullName>MileageDashboardMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MileageDashboardMessage</shortDescription>
+        <value>Your mileage is processing in the background and can take a little time. You will receive an email notification once it has been completed.</value>
+    </labels>
+    <labels>
+        <fullName>NewEnglandGypsum</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NewEnglandGypsum</shortDescription>
+        <value>0013r00002U9e5XAAR</value>
+    </labels>
+    <labels>
+        <fullName>Not_Approved_Yet_Mileage_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Approved Yet Mileage Status</shortDescription>
+        <value>Not Approved Yet</value>
+    </labels>
+    <labels>
+        <fullName>Not_Available_any_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Available any User</shortDescription>
+        <value>Your email address is not found, please contact your company administrator.</value>
+    </labels>
+    <labels>
+        <fullName>Org_link</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Org link</shortDescription>
+        <value>https://c.na56.content.force.com</value>
+    </labels>
+    <labels>
+        <fullName>Page_View_State</fullName>
+        <categories>This Label is used in UpdateMileageWithReim</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Page View State</shortDescription>
+        <value>200</value>
+    </labels>
+    <labels>
+        <fullName>PayPeriodDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PayPeriodDate</shortDescription>
+        <value>2021-01-01 to 2021-01-23,2021-01-24 to 2021-02-06,2021-02-07 to 2021-02-20,2021-02-21 to 2021-03-06,2021-03-07 to 2021-03-20,2021-03-21 to 2021-04-03,2021-04-04 to 2021-04-17,2021-04-18 to 2021-05-01,2021-05-02 to 2021-05-15,2021-05-16 to 2021-05-29,2021-05-30 to 2021-06-12,2021-06-13 to 2021-06-26,2021-06-27 to 2021-07-10,2021-07-11 to 2021-07-24,2021-07-25 to 2021-08-07,2021-08-08 to 2021-08-21,2021-08-22 to 2021-09-04,2021-09-05 to 2021-09-18,2021-09-19 to 2021-10-02,2021-10-03 to 2021-10-16,2021-10-17 to 2021-10-30,2021-10-31 to 2021-11-13,2021-11-14 to 2021-11-27,2021-11-28 to 2021-12-11,2021-12-12 to 2021-12-25,2021-12-26 to 2022-01-08</value>
+    </labels>
+    <labels>
+        <fullName>PayPeriodDate2020</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PayPeriodDate2020</shortDescription>
+        <value>2020-06-07 to 2020-06-20,2020-06-21 to 2020-07-04,2020-07-05 to 2020-07-18,2020-07-19 to 2020-08-01,2020-08-02 to 2020-08-15,2020-08-16 to 2020-08-29,2020-08-30 to 2020-09-12,2020-09-13 to 2020-09-26,2020-09-27 to 2020-10-10,2020-10-11 to 2020-10-24,2020-10-25 to 2020-11-07,2020-11-08 to 2020-11-21,2020-11-22 to 2020-12-05,2020-12-06 to 2020-12-19,2020-12-20 to 2020-12-31</value>
+    </labels>
+    <labels>
+        <fullName>PayPeriodDate2021</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PayPeriodDate2021</shortDescription>
+        <value>2021-01-17 to 2021-01-30,2021-01-31 to 2021-02-13,2021-02-14 to 2021-02-27,2021-02-28 to 2021-03-13,2021-03-14 to 2021-03-27,2021-03-28 to 2021-04-10,2021-04-14 to 2021-04-27,2021-04-11 to 2021-05-24,2021-04-25 to 2021-05-08,2021-05-09 to 2021-05-22,2021-05-23 to 2021-06-05,2021-06-06 to 2021-06-19,2021-06-20 to 2021-07-03,2021-07-04 to 2021-07-17,2021-07-18 to 2021-07-31,2021-08-01 to 2021-08-14,2021-08-15 to 2021-08-28,2021-08-29 to 2021-09-11,2021-09-12 to 2021-09-25,2021-09-26 to 2021-10-09,2021-10-10 to 2021-10-23,2021-10-24 to 2021-11-06,2021-11-07 to 2021-11-20,2021-11-21 to 2021-12-04,2021-12-05 to 2021-12-18,2021-12-19 to 2021-12-31</value>
+    </labels>
+    <labels>
+        <fullName>PayPeriodDate2022</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PayPeriodDate2022</shortDescription>
+        <value>2022-01-09 to 2022-01-22</value>
+    </labels>
+    <labels>
+        <fullName>ReimbursementStatementBatch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReimbursementStatementBatch</shortDescription>
+        <value>Acme Corporation,Advanced Inventory Solutions,Anton Paar,California Nevada Cement Association (CNCA),CATCO,Community Account,Controlled Environment System,Delta,Design Air,Excelligence Learning Corporation,Frampton Construction,GPS (General Production Service),LendingHome,NexMetro,PIPSA,Psych360,Rayner,Rainbow Rehab,Saverino &amp; Associates,SPBS,Spineology,The Andersons,Venergy Group,Virginia Carolina,IEC</value>
+    </labels>
+    <labels>
+        <fullName>Report_Lock_Date_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Report Lock Date Message</shortDescription>
+        <value>Lock Date is Recorded</value>
+    </labels>
+    <labels>
+        <fullName>RoleAdminDriver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RoleAdminDriver</shortDescription>
+        <value>Driver/Admin</value>
+    </labels>
+    <labels>
+        <fullName>SPBS_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SPBS Account</shortDescription>
+        <value>0013r00002Eky06AAB</value>
+    </labels>
+    <labels>
+        <fullName>Sample_csv_url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sample_csv_url</shortDescription>
+        <value>https://na56.salesforce.com/servlet/servlet.FileDownload?file=0150Z000009Uxga</value>
+    </labels>
+    <labels>
+        <fullName>SendEmailToAdminAccount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SendEmailToAdminAccount</shortDescription>
+        <value>CATCO</value>
+    </labels>
+    <labels>
+        <fullName>SendEmailToManagerAccount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SendEmailToManagerAccount</shortDescription>
+        <value>Rayner,The Andersons</value>
+    </labels>
+    <labels>
+        <fullName>Send_Email_Bcc_Address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send Email Bcc Address</shortDescription>
+        <value>minkeshp@askemc.com</value>
+    </labels>
+    <labels>
+        <fullName>TerminatedDriverReportId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TerminatedDriverReportId</shortDescription>
+        <value>a0Q0Z000009AJxxUAG</value>
+    </labels>
+    <labels>
+        <fullName>Test_emailAddress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Test_emailAddress</shortDescription>
+        <value>priyanka.goc@gmail.com,natavar.goc@gmail.com</value>
+    </labels>
+    <labels>
+        <fullName>Triplog_Concer_Expense_API</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Triplog Concer Expense API</shortDescription>
+        <value>25ec885ea41f411198d41a950e5dae63</value>
+    </labels>
+    <labels>
+        <fullName>Triplog_Location_API</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Triplog Location API</shortDescription>
+        <value>https://triplogmileage.com/web/api/locations/</value>
+    </labels>
+    <labels>
+        <fullName>Triplog_New_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Triplog New URL for Account Ids added</shortDescription>
+        <value>fde76cdde14449bea46b321225ac8fd1,2eb382ec48224a2fa604db03f982d06e,039802e580a348c1a8996ce3b1342ef9,9e212cd3f74744da9cd5ad8bb788ad78,7640e808d1d04ea2a48ab775e27691f2,7ec51efb57e243468454ef0ef3fb65f8,ddc0406120f5409991a6f944ce062f31,28beeea973f34daf89050a9b6a3b1a71,d32b2be6aa8043f68f61c81ffe30b005,f57b607d0d174f85825ded2aed61c1cb,d380533c57c748a0b84be6e275358fd6,eee849aa15694bc29fd58e07c74f9064,ddc0406120f5409991a6f944ce062f31,09a91dfa46ef41a8acb12ae11860a525,4c28927aba194318a6f6a8f5339413a0,790215e499b94b1f930e6ea448a6f934,0e468789b2f84817a627388b8e6b7b62,2aa69fb44c594336b107ecd13ee37dae,3f92f166dbbd48f1bb02194edd0384a5,75b59c50cefa4f8f9c3b5e824944ffe5,788d5aa1ef68470f8bfd207334efca2e,28beeea973f34daf89050a9b6a3b1a71</value>
+    </labels>
+    <labels>
+        <fullName>Triplog_URL_For_TripStatus</fullName>
+        <categories>Update Trip Status to Triplog</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Triplog URL For TripStatus</shortDescription>
+        <value>https://triplogmileage.com/web/api/tripStatus</value>
+    </labels>
+    <labels>
+        <fullName>Triplog_URL_For_Trips</fullName>
+        <categories>URL</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Triplog URL For Trips</shortDescription>
+        <value>https://triplogmileage.com/web/api/trips?</value>
+    </labels>
+    <labels>
+        <fullName>Triplog_URL_for_Roster_Put_Call</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Triplog URL for Roster Put Call</shortDescription>
+        <value>https://triplogmileage.com/web/api/sendEmail/welcome\</value>
+    </labels>
+    <labels>
+        <fullName>Trips</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Trips</shortDescription>
+        <value>U</value>
+    </labels>
+    <labels>
+        <fullName>TripstobeLogged</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TripstobeLogged</shortDescription>
+        <value>Test Account</value>
+    </labels>
+    <labels>
+        <fullName>UKGPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ultipro login password</shortDescription>
+        <value>$n76HF$uHd]9)@0mII;+]R2,xp@]?.{]F9G3sf^Mnc@1kj5=AK</value>
+    </labels>
+    <labels>
+        <fullName>UKGcustomerAPIKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UKG customerAPIKey</shortDescription>
+        <value>LDXWI</value>
+    </labels>
+    <labels>
+        <fullName>UKGuserAPIKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UKG userAPIKey</shortDescription>
+        <value>BMOUN80000K0</value>
+    </labels>
+    <labels>
+        <fullName>UnApproved_Page_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnApproved Page Message</shortDescription>
+        <value>Records Processed Successfully</value>
+    </labels>
+    <labels>
+        <fullName>UnapproveMileagesMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Your Month Mileages Will Be Synced.</shortDescription>
+        <value>Your Month Mileages Will Be Synced.</value>
+    </labels>
+    <labels>
+        <fullName>UpdateTripIdError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UpdateTripIdError</shortDescription>
+        <value>Please configure triplog details under triplog configuration section</value>
+    </labels>
+    <labels>
+        <fullName>User_Deactivate_End_Point</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Deactivate End Point</shortDescription>
+        <value>https://triplogmileage.com/web/api/users</value>
+    </labels>
+    <labels>
+        <fullName>VariableReimbursementReportID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VariableReimbursementReportID</shortDescription>
+        <value>a0Q3100000G1m7lEAB</value>
+    </labels>
+    <labels>
+        <fullName>Weiser_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Weiser Account</shortDescription>
+        <value>0010Z000024KpO4QAK</value>
+    </labels>
+    <labels>
+        <fullName>YTC_Account_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>YTC Account Name</shortDescription>
+        <value>YTC (Yokohama Tire Corporation)</value>
+    </labels>
+    <labels>
+        <fullName>communityurl</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>communityurl</shortDescription>
+        <value>https://mburse.force.com/Comm/</value>
+    </labels>
+    <labels>
+        <fullName>compliance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>compliance</shortDescription>
+        <value>You are in compliance.</value>
+    </labels>
+    <labels>
+        <fullName>compliancenotmeeting</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>compliancenotmeeting</shortDescription>
+        <value>You are in compliance, but not meeting the mileage threshold. The tax liability displayed will not impact you until the end of the year.</value>
+    </labels>
+    <labels>
+        <fullName>csv_button_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>csv button name</shortDescription>
+        <value>Download Sample CSV</value>
+    </labels>
+    <labels>
+        <fullName>dateofIRS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>dateofIRS</shortDescription>
+        <value>01-11-2020</value>
+    </labels>
+    <labels>
+        <fullName>defaultreimbursementid</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>defaultreimbursementid</shortDescription>
+        <value>a003100000gqhbs</value>
+    </labels>
+    <labels>
+        <fullName>doc_Fail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>doc Fail</shortDescription>
+        <value>Duplicate Contact File</value>
+    </labels>
+    <labels>
+        <fullName>doc_Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>doc Success</shortDescription>
+        <value>Inserted Contact File</value>
+    </labels>
+    <labels>
+        <fullName>doc_sample</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>doc sample</shortDescription>
+        <value>Sample Template</value>
+    </labels>
+    <labels>
+        <fullName>insuranceBottomMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>insuranceBottomMsg</shortDescription>
+        <value>New to the program and have not received your driver packet? It will be emailed within two business days.</value>
+    </labels>
+    <labels>
+        <fullName>insuranceMiddleMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>insuranceMiddleMsg</shortDescription>
+        <value>We review and assess compliance status monthly. Your compliance status will not potentially affect your reimbursement until the end of the year.</value>
+    </labels>
+    <labels>
+        <fullName>insuranceUpperMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>insuranceUpperMsg</shortDescription>
+        <value>We review and assess compliance status monthly. Your compliance status will not potentially affect your reimbursement amount until the end of the year.</value>
+    </labels>
+    <labels>
+        <fullName>insuranceisnotmeeting</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>insuranceisnotmeeting</shortDescription>
+        <value>Name is not in compliance because the personal vehicle exceeds the standard vehicle age minimum.</value>
+    </labels>
+    <labels>
+        <fullName>mileageApprovalBottomMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>mileageApprovalBottomMsg</shortDescription>
+        <value>Please be patient as the mileage is processing in the background. Once the process is completed you will receive an email confirmation.</value>
+    </labels>
+    <labels>
+        <fullName>mileageApprovalTopMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>mileageApprovalTopMsg</shortDescription>
+        <value>Mileage is processing.</value>
+    </labels>
+    <labels>
+        <fullName>msg_After_Fail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>msg After Fail</shortDescription>
+        <value>Not Inserted User</value>
+    </labels>
+    <labels>
+        <fullName>msg_after_succes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>msg after succes</shortDescription>
+        <value>User(s) created successfully. Total User Inserted</value>
+    </labels>
+    <labels>
+        <fullName>noInsurancenotmeetingminimum</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>noInsurancenotmeetingminimum</shortDescription>
+        <value>Name is not in compliance because the personal insurance is not meeting the plan minimum.</value>
+    </labels>
+    <labels>
+        <fullName>novehiclevalue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>novehiclevalue</shortDescription>
+        <value>Name is not in compliance because the vehicle value is below the plan minimum.</value>
+    </labels>
+    <labels>
+        <fullName>reimbursement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>reimbursement</shortDescription>
+        <value>11-2019</value>
+    </labels>
+    <labels>
+        <fullName>reimbursements</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>reimbursements</shortDescription>
+        <value>12-2018,</value>
+    </labels>
+    <labels>
+        <fullName>spbs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>spbs</shortDescription>
+        <value>0013r00002Eky06</value>
+    </labels>
+    <labels>
+        <fullName>unapproveMileageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>unapproveMileageMessage</shortDescription>
+        <value>Mileage is being synced</value>
+    </labels>
+    <labels>
+        <fullName>waitingfordocumentation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>waitingfordocumentation</shortDescription>
+        <value>We are either waiting for documentation submission or reviewing the documentation that has been submitted.</value>
+    </labels>
+</CustomLabels>

@@ -1,0 +1,32 @@
+<apex:page showHeader="false" sidebar="false" controller="CRMG_GTM.ComboBox_Controller">
+<title>ComboBox</title>
+<link href="/sCSS/29.0/sprites/1384456088000/Theme3/default/gc/zen-componentsCompatible.css" rel="stylesheet" type="text/css"/>
+<link href="/sCSS/29.0/sprites/1384456088000/Theme3/default/gc/elements.css" rel="stylesheet" type="text/css"/>
+<link href="/sCSS/29.0/sprites/1384456088000/Theme3/default/gc/common.css" rel="stylesheet" type="text/css"/>
+<link href="/sCSS/29.0/sprites/1387308670000/Theme3/gc/dStandard.css" rel="stylesheet" type="text/css"/>
+<link href="/sCSS/29.0/sprites/1387308670000/Theme3/00DE0000000aL2Y/005E0000001JeiC/gc/dCustom0.css" rel="stylesheet" type="text/css"/>
+<link href="/sCSS/29.0/sprites/1384456088000/Theme3/default/gc/extended.css" rel="stylesheet" type="text/css"/>
+<script src="/jslibrary/1383366200000/sfdc/main.js"></script><script src="/jslibrary/jslabels/1387503688000/en_US.js"></script>
+<script type="text/javascript">
+function pickValue (index) {
+    window.opener.document.getElementById('meetingpage:meetingform:meetingformblock:meetingformpageblock:item:eventSubject').value = index;
+    window.close();
+}
+</script>
+<body class="taskTab brandNoBgrImg subjectSelectionPopup">
+<div class="bPageTitle"><div class="ptBody secondaryPalette">
+<h1 class="pageDescription">Select a Subject below...</h1>
+</div></div>
+<div class="choicesBox tertiaryPalette brandSecondaryBrd">
+<ul>
+<apex:variable var="index" value="{!0}" />
+    <apex:repeat value="{!eventSubjects}" var="evSubject" id="theRepeat">
+		<li class="listItem{!index}" ><A HREF="javascript:pickValue('{!evSubject}');">{!evSubject}</A></li>
+		<apex:variable var="index" value="{!index+1}" />
+     </apex:repeat>
+</ul>
+<br/>
+</div>
+<div class="footer">Copyright &copy; 2000-2014 salesforce.com, inc. All rights reserved.</div>
+</BODY>
+</apex:page>

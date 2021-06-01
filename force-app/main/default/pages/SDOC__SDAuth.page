@@ -1,0 +1,192 @@
+<apex:page controller="SDOC.SDAuth" tabStyle="SDOC__SDTemplate__c">
+<apex:outputPanel id="masterPanel">
+    <style>
+        #one-click-div {
+          top: 0;
+          left: 0;
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          z-index: 2000;
+          background-color: white;
+        }
+        .one-click-div-content {
+          position: fixed;
+          right: 47%;
+          bottom: 50%;
+        }
+    </style>
+    <apex:outputPanel rendered="{!NOT(ranInitARToken)}">
+        <apex:form >
+            <apex:actionFunction action="{!initARToken}" name="initARToken" reRender="masterPanel" />
+            <!--
+            <div id="one-click-div">
+                <div class="one-click-div-content">
+                <div id="one-click-div-message">Click Here To Initialize Your Token</div>
+                </div>
+            </div>
+            -->
+            <script>
+                addEvent(window, 'load', function(){ initARToken(); });
+                function addEvent(element, event, fn) {
+                    if (element.addEventListener) element.addEventListener(event, fn, false);
+                    else if (element.attachEvent) element.attachEvent('on' + event, fn);
+                }
+            </script>
+        </apex:form>
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!ranInitARToken}">
+        <script>
+            var newwindow;
+            function popURL(url)
+                {
+                  newwindow=window.open(url,"SDocs","width=1100,height=700,top=0,resizable,scrollbars,screenX=60,top=100,screenY=100");
+                    try{
+                        newwindow.document.location.href = url;
+                    }catch (exc){
+                        newwindow.close(); 
+                        newwindow=window.open(url,"SDocs","width=1100,height=700,top=0,resizable,scrollbars,screenX=60,top=100,screenY=100");
+                        newwindow.document.location.href = url; 
+                    }
+                    if (window.focus){newwindow.focus()}
+                }
+        </script>
+
+        <apex:form >
+
+        <apex:outputPanel rendered="{!service=='sg'}"> 
+        <p align="center">
+        <br/>
+        <table>
+        <tr>
+        <td colspan="2">
+                <b>SendGrid Config:</b><br/>
+                </td>
+                </tr>
+                <tr>
+                <td>
+                <br/>
+                Login:
+                </td>
+                <td>
+                <apex:inputText value="{!sgu}"/>
+                <br />
+                </td>
+                </tr>
+                <tr>
+                <td>
+                Password: 
+                </td>
+                <td>
+                <apex:inputSecret value="{!sgpw}"/>
+                <br/>
+                </td>
+                </tr>
+                <tr>
+                <td colspa="2">
+                 <br /><br />
+                 <apex:commandbutton action="{!sgSave}" value="Save/Update Sendgrid Credentials" />
+                 <br /><br />
+                 </td>
+                 </tr>
+                 <tr>
+                 <td colspan="2">
+                 <apex:commandbutton action="{!sgremove}" value="Remove Current SendGrid Credentials" />
+                 </td>
+                 </tr>
+                 </table>
+        <br/>
+        </p>
+        </apex:outputPanel>
+
+        <apex:outputPanel rendered="{!NOT(HaveToken) && service!='aws' && service!='sg'}"> 
+        <p align="center">
+        <br/>
+                <b>Authorization Needed:</b><br/>
+                You will now be redirected to your Google Drive sign in page. <br/>
+                You need to verify your account and authorize S-Docs for Salesforce
+                permission to upload documents. <br/>
+                <br/>
+                 <br/>
+        <apex:commandbutton action="{!RequestToken}"
+                         value="Authorize Google Drive Access" />
+        <br/>
+        </p>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!service=='aws'}">
+            <apex:pageBlock >
+                <apex:pageBlockButtons >
+                    <apex:commandButton action="{!s3Save}"
+                    value="Submit S3 Credentials"
+                    oncomplete="alert('S3 Credentials Submitted');" />
+                    <apex:commandButton action="{!s3Remove}"
+                        value="Remove S3 Credentials"
+                        oncomplete="alert('S3 Credentials Removed');" />
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection >
+                    <apex:inputText label="S3 Access Key:" value="{!s3ki}" />
+                    <apex:inputText label="S3 Secret Key:" value="{!s3si}" />
+                    <apex:inputText label="S3 Bucket Name:" value="{!s3bi}" />
+                    <apex:inputText label="S3 Bucket Region (e.g: us-east-2):" value="{!s3ei}" />
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:outputPanel>
+        <apex:outputPanel id="nt" rendered="{!HaveToken && service!='sg'}">
+        <apex:pageBlock title="Upload S-Docs to Google Drive">
+            <apex:outputPanel id="list">
+            <apex:pageBlockSection title="The following S-Docs are queued for upload to Google Drive" columns="1" id="sg" collapsible="false">                       
+                 <apex:pageBlockSectionItem >
+                            <apex:pageBlockTable value="{!sdWrapperList}" var="ag">
+                                <apex:column width="40px" headerValue="View">
+                                    <a href="{!URLFOR(ag.s.SDOC__GD_Link__c, null)}" target="_blank">
+                                        <img src='{!ag.imgLink.imgSrc}' border='0' />
+                                    </a>
+                                </apex:column>
+                                <apex:column headerValue="Document Number">
+                                    <apex:outputLink value="{!URLFOR(ag.s.SDOC__GD_Link__c, null)}" target="_blank">{!ag.s.Name}</apex:outputLink>
+                                </apex:column>
+                                <apex:column value="{!ag.s.SDOC__Document_Name__c}" headerValue="Document Name"/>                          
+                                <apex:column headerValue="Google Docs Status">
+                                     <apex:outputLink rendered="{!NOT(ag.s.SDOC__GD_Status_Text__c=='Queued')}" value="{!URLFOR(ag.s.SDOC__GD_Link__c, null)}" target="_blank">{!ag.s.SDOC__GD_Status_Text__c}</apex:outputLink>
+                                     <apex:outputText rendered="{!ag.s.SDOC__GD_Status_Text__c=='Queued'}" value="{!ag.s.SDOC__GD_Status_Text__c}"/>
+                                </apex:column>                        
+                                <apex:column headerValue="Remove from Queue" style="text-align:center;">
+                                        <apex:commandLink rendered="{!(ag.s.SDOC__GD_Status_Text__c=='Queued')}" value="X" action="{!removeFromQueue}" styleClass="btn" rerender="nt">
+                                            <apex:Param name="did" value="{!ag.s.ID}" />
+                                        </apex:commandLink>
+                                </apex:column>
+                                <apex:column value="{!ag.s.CreatedBy.Name}" headerValue="Created By"/> 
+                                <apex:column value="{!ag.s.CreatedDate}" headerValue="Created On"/> 
+                            </apex:pageBlockTable>
+                    </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>       
+                
+        <apex:outputPanel > 
+
+        <br/>
+                <b>Upload Pending:</b><br/><br/>
+                Click the button below to upload and link the above document(s) to your Google Drive account.<br/>
+                Once the upload is complete, use Google Drive to manage edits and sharing rights for each document.
+                <br/>
+                 <br/>
+        <apex:commandbutton action="{!createDoc}" rerender="list" status="stat"
+                         value="Upload to Google Drive" />
+                        <apex:actionStatus id="stat">
+                            <apex:facet name="start">
+                                Uploading Documents, please wait...
+                                <img src="{!URLFOR($Resource.SDoc,'spinner_large.gif')}" />
+                            </apex:facet>
+                        </apex:actionStatus>
+        </apex:outputPanel>     
+        <br/><br/>
+        <br/><br/>
+        <apex:commandlink action="{!unlink}" value="Unlink S-Docs from my Google Drive account" />
+        </apex:outputPanel>
+        </apex:form>
+
+        <br />
+    </apex:outputPanel>
+</apex:outputPanel>
+</apex:page>

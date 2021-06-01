@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MailingState_for_length</fullName>
+    <active>true</active>
+    <errorConditionFormula>LEN(MailingState) &gt; 2</errorConditionFormula>
+    <errorDisplayField>MailingState</errorDisplayField>
+    <errorMessage>Please Enter Only 2 Characters</errorMessage>
+</ValidationRule>

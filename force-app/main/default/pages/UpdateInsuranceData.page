@@ -112,9 +112,13 @@
                 left: 49%;
                 z-index: 1000000;
             }
+            
+            .driver-name-td{
+                text-align: left !important;
+            }
 
             .slds-table thead th {
-                line-height: 2 !important;
+                line-height: 1 !important;
                 text-align: center;
             }
 
@@ -244,7 +248,8 @@
 
             $scope.currentLevelDateClick = function(event){
                 $(`#currentLeval${event.$index}`).datepicker({
-                    dateFormat: "mm/dd/yy"
+                    dateFormat: "mm/dd/yy",
+                    maxDate: new Date($(`#expirationDate${event.$index}`).val())
                 }).datepicker("show");
             }
             $scope.changeInput = function(event){
@@ -531,17 +536,17 @@
                     <thead>
                         <tr class="slds-line-height_reset">
                             <th>Driver Name</th>
-                            <th>Insurance</th>
+                            <th>Insurance (100/300/50)</th>
                             <th>Meeting Minimum</th>
                             <th>Current Level</th>
                             <th>Expiration Date</th>
-                            <th>Vehicle Value</th>
-                            <th>Vehicle Age</th>
+                            <th><div>Vehicle Value</div> <div>($25,442)</div></th>
+                            <th><div>Vehicle Age</div> <div>(5 yrs)</div></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr dir-paginate="list in insuranceList | itemsPerPage: pageSize" current-page="currentPage" ng-class="{'slds-selected slds-cell-edit slds-is-edited':list.contactId == selectedRow}">
-                            <td>{{list.name}}</td>
+                            <td class="driver-name-td">{{list.name}}</td>
                             <td ng-model="list.insurance" ng-show="!list.isEditable" ng-click="editInsurance(insurance,list.contactId);list.isEditable = !list.isEditable"
                              class="cursor-pointer">
                                 <span class="slds-radio">
@@ -623,7 +628,7 @@
                              class="cursor-pointer">{{list.expirationDate  | date:"MM/dd/yyyy"}}</td>
                             <td ng-model="list.expirationDate" ng-show="list.isEditable">
                                 <input type="text" class="slds-selected date" id="expirationDate{{$index}}" value="{{list.expirationDate}}" ng-model="list.expirationDate"
-                                 ng-click="changeInput(this)" ng-change="inputExpirationDate(this)" placeholder="Select Expiration Date"/>
+                                 ng-click="changeInput(this)" ng-change="inputExpirationDate(this)" placeholder="Select Date"/>
                                  <span class="span-error d-none" id="span-error-exp{{$index}}">Invalid Date</span>
                             </td>
                             <td ng-model="list.vehicleValue" ng-show="!list.isEditable" ng-click="editInsurance(insurance,list.contactId);list.isEditable = !list.isEditable"

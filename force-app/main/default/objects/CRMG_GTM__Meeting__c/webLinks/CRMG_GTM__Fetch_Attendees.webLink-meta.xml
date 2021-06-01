@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMG_GTM__Fetch_Attendees</fullName>
+    <availability>online</availability>
+    <description>Fetch list of attendees for GTM meeting.</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Fetch Attendees</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)}
+
+if({!CRMG_GTM__Meeting__c.CRMG_GTM__GTMId__c}!=null)
+{
+    alert(&apos;value&apos; + {!CRMG_GTM__Meeting__c.CRMG_GTM__GTMId__c});
+    sforce.apex.execute(&quot;GoToMeetingAttendees&quot;,&quot;getAttendees&quot;,{meetingId : &quot;{!CRMG_GTM__Meeting__c.CRMG_GTM__GTMId__c}&quot;});
+    
+}</url>
+</WebLink>

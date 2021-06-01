@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SDOC__Status_Link__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>CASE(SDOC__Status__c,
+&apos;Error&apos;,HYPERLINK( &apos;/&apos;+Id,IMAGE(&quot;/img/msg_icons/error16.png&quot;,&apos;&apos;)+&apos;Error&apos;,&apos;_blank&apos;)
+,
+&apos;Selected&apos;,IMAGE(&apos;/img/s.gif&apos;, &apos;&apos;, 7, 50) &amp; &apos; &apos; &amp; &apos;0%&apos;
+,
+&apos;Completed&apos;, IMAGE(&apos;/img/samples/color_green.gif&apos;,&apos;&apos;,7,50)&amp;&apos; &apos;&amp;&apos;100%&apos;&amp; SDOC__SDoc1_View__c &amp;&apos; &apos;&amp; SDOC__SDoc2_View__c 
+,
+IF (ISNUMBER(SDOC__Status__c),
+      IMAGE(&apos;/img/samples/color_green.gif&apos;, &apos;&apos;, 7, value(SDOC__Status__c)/2) &amp;
+      IMAGE(&apos;/img/s.gif&apos;, &apos;&apos;, 7, (50-value(SDOC__Status__c))/2) &amp; &apos; &apos; &amp; SDOC__Status__c &amp; &apos;%&apos;
+      ,
+      SDOC__Status__c)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Status Link</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

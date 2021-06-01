@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMG_GTM__Conference_Audio_Options__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Conference Audio Options</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>VoIP - Requires microphone and speakers</fullName>
+                <default>true</default>
+                <label>VoIP - Requires microphone and speakers</label>
+            </value>
+            <value>
+                <fullName>Long distance number for:United States</fullName>
+                <default>false</default>
+                <label>Long distance number for:United States</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

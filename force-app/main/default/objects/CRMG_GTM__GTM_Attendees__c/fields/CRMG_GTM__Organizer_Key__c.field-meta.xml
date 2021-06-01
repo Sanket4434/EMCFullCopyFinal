@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMG_GTM__Organizer_Key__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The key of the meeting organizer</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The key of the meeting organizer</inlineHelpText>
+    <label>Organizer Key</label>
+    <length>30</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,127 @@
+<apex:page controller="CRMG_GTM.GTMInviteesController" tabStyle="My_Meetings__tab">
+         <script> 
+                 function checkAll(st){
+                  var countchild = document.getElementById('j_id0:j_id3:j_id4:j_id6:contactTable:tb').childNodes.length;
+                         for(i=0;i<countchild;i++){
+                            if(document.getElementById('j_id0:j_id3:j_id4:j_id6:contactTable:selectallid1').checked){
+                                document.getElementById('j_id0:j_id3:j_id4:j_id6:contactTable:'+i+':selectLine1').checked=true;
+                            }
+                            if(!document.getElementById('j_id0:j_id3:j_id4:j_id6:contactTable:selectallid1').checked){
+                                document.getElementById('j_id0:j_id3:j_id4:j_id6:contactTable:'+i+':selectLine1').checked=false;
+                            }
+                           } 
+                        }
+                 function checkAll1(st){
+                  var countchild = document.getElementById('j_id0:j_id3:j_id4:j_id14:leadTable:tb').childNodes.length;
+                         for(i=0;i<countchild;i++){       
+                            if(document.getElementById('j_id0:j_id3:j_id4:j_id14:leadTable:selectId11').checked){
+                                document.getElementById('j_id0:j_id3:j_id4:j_id14:leadTable:'+i+':selectLine11').checked=true;
+                            }
+                            if(!document.getElementById('j_id0:j_id3:j_id4:j_id14:leadTable:selectId11').checked){
+                                document.getElementById('j_id0:j_id3:j_id4:j_id14:leadTable:'+i+':selectLine11').checked=false;
+                            }
+                           }
+                        }
+                 function checkAll2(st){ 
+                         var countchild = document.getElementById('j_id0:j_id3:j_id4:j_id20:caseTable:tb').childNodes.length;
+                         for(i=0;i<countchild;i++){
+                             if(document.getElementById('j_id0:j_id3:j_id4:j_id20:caseTable:selectId12').checked){
+                                document.getElementById('j_id0:j_id3:j_id4:j_id20:caseTable:'+i+':selectLine12').checked=true;
+                            }
+                            if(!document.getElementById('j_id0:j_id3:j_id4:j_id20:caseTable:selectId12').checked){
+                                document.getElementById('j_id0:j_id3:j_id4:j_id20:caseTable:'+i+':selectLine12').checked=false;
+                            }
+                           } 
+                 }
+         </script>
+        <c:LightningStyle />
+         <apex:form styleClass="Custom-Lightning-Style" >
+             <apex:sectionHeader title="Meeting Scheduler" subtitle="Step 2 of 3 - Select Meeting Participants"/>
+            <apex:pageBlock >
+                <apex:messages />
+                
+                <apex:pageBlockSection columns="1" title="Select From Contacts">
+                    <!--<apex:actionRegion >            
+                        <apex:outputLabel value="View: "
+                            for="viewList"></apex:outputLabel>
+                            <apex:selectList id="contactViewList" size="1"
+                            value="{!contactfilter}">
+                            <apex:actionSupport event="onchange" action="{!contacts}"
+                            rerender="contactTable"/>
+                        <apex:selectOptions value="{!ContactViewOptions}"/>
+                        </apex:selectList>
+                        <apex:actionStatus id="theStatus" startText="updating list..."
+                            stopText=""/>
+                    </apex:actionRegion>-->
+                    <apex:pageBlockTable value="{!contactList}" var="contacts" id="contactTable">
+                        <apex:column >
+                            <apex:facet name="header">
+                                <apex:inputCheckbox onclick="checkAll(this)" id="selectallid1"/>
+                            </apex:facet>
+                            <apex:inputCheckbox value="{!contacts.selected}" id="selectLine1" disabled="{!contacts.selected}" />
+                        </apex:column>
+                        <apex:column headervalue="Contact Name">
+                            <apex:outputtext value="{!contacts.con.Name}"/>
+                        </apex:column>
+                        <apex:column headervalue="Account Name">
+                            <apex:outputtext value="{!contacts.con.Account.Name}"/>
+                        </apex:column>
+                        <apex:column headervalue="Title">
+                            <apex:outputtext value="{!contacts.con.Title}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>                    
+                </apex:pageBlockSection>
+                
+                <apex:pageBlockSection columns="1" title="Select From Leads">
+                    <!--<apex:actionRegion >            
+                        <apex:outputLabel value="View: "
+                            for="viewList"></apex:outputLabel>
+                            <apex:selectList id="leadViewList" size="1"
+                            value="{!leadfilter}">
+                            <apex:actionSupport event="onchange" action="{!allLeads}"
+                            rerender="leadTable"/>
+                        <apex:selectOptions value="{!LeadViewOptions}"/>
+                        </apex:selectList>
+                        <apex:actionStatus id="theStatus" startText="updating list..."
+                            stopText=""/>
+                    </apex:actionRegion>-->
+                    <apex:pageBlockTable value="{!leadList}" var="acc" id="leadTable">
+                        <apex:column >
+                            <apex:facet name="header">
+                                <apex:inputCheckbox onclick="checkAll1(this)" id="selectId11"/>
+                            </apex:facet>
+                            <apex:inputCheckbox value="{!acc.selected}" id="selectLine11" disabled="{!acc.selected}" />
+                        </apex:column>
+                        <apex:column headervalue="Lead Name">
+                            <apex:outputtext value="{!acc.con.Name}"/>
+                        </apex:column>
+                        <apex:column headervalue="Company Name">
+                            <apex:outputtext value="{!acc.con.Company}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>                    
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1" title="Select From Cases">
+                    
+                    <apex:pageBlockTable value="{!caseList}" var="acc" id="caseTable">
+                        <apex:column >
+                            <apex:facet name="header">
+                                <apex:inputCheckbox onclick="checkAll2(this)" id="selectId12"/>
+                            </apex:facet>
+                            <apex:inputCheckbox value="{!acc.selected}" id="selectLine12" disabled="{!acc.selected}" />
+                        </apex:column>
+                        <apex:column headervalue="Case Number">
+                            <apex:outputtext value="{!acc.con.CaseNumber}"/>
+                        </apex:column>
+                        <apex:column headervalue="Contact Name">
+                            <apex:outputtext value="{!acc.con.Contact.Name}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>                    
+                </apex:pageBlockSection>
+                
+                    <apex:commandButton value="Invite Selected Participants" action="{!InviteAndSaveParticipants}" />
+                    <apex:commandButton value="Back" action="{!back}" />   
+                     <apex:commandButton value="Cancel" action="{!cancel1}" />                    
+                
+            </apex:pageBlock>
+        </apex:form>
+</apex:page>

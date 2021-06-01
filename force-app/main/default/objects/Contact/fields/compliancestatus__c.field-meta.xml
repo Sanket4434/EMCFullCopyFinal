@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>compliancestatus__c</fullName>
+    <externalId>false</externalId>
+    <label>compliance status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Yes</fullName>
+                <default>false</default>
+                <label>Yes</label>
+            </value>
+            <value>
+                <fullName>No – Vehicle Age</fullName>
+                <default>false</default>
+                <label>No – Vehicle Age</label>
+            </value>
+            <value>
+                <fullName>No – Vehicle Value</fullName>
+                <default>false</default>
+                <label>No – Vehicle Value</label>
+            </value>
+            <value>
+                <fullName>No – Insurance not meeting minimum</fullName>
+                <default>false</default>
+                <label>No – Insurance not meeting minimum</label>
+            </value>
+            <value>
+                <fullName>Resubmit Insurance – you submitted an insurance card</fullName>
+                <default>false</default>
+                <label>Resubmit Insurance – you submitted an insurance card</label>
+            </value>
+            <value>
+                <fullName>No - Insurance not provided</fullName>
+                <default>false</default>
+                <label>No - Insurance not provided</label>
+            </value>
+            <value>
+                <fullName>No Compliance</fullName>
+                <default>false</default>
+                <label>No Compliance</label>
+            </value>
+            <value>
+                <fullName>Resubmit - Expired Insurance</fullName>
+                <default>false</default>
+                <label>Resubmit - Expired Insurance</label>
+            </value>
+            <value>
+                <fullName>No</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>No</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
