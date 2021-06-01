@@ -397,33 +397,6 @@
 		<members>driverComplianceReportTest</members>
 		<members>drivermanagermydetailcontroller</members>
 		<members>drivermanagermydetailcontroller_Test</members>
-		<members>dsfs__ARC4</members>
-		<members>dsfs__ARC4Test</members>
-		<members>dsfs__AdminController</members>
-		<members>dsfs__AdminControllerTest</members>
-		<members>dsfs__AdminDto</members>
-		<members>dsfs__AdminManager</members>
-		<members>dsfs__AdminManagerTest</members>
-		<members>dsfs__Assert</members>
-		<members>dsfs__AssertTest</members>
-		<members>dsfs__BaseController</members>
-		<members>dsfs__BaseControllerTest</members>
-		<members>dsfs__ConfigurationService</members>
-		<members>dsfs__ConfigurationServiceTest</members>
-		<members>dsfs__ConnectRecipientToDocuSignStatusTest</members>
-		<members>dsfs__CustomButtonController</members>
-		<members>dsfs__CustomButtonControllerTest</members>
-		<members>dsfs__DSAPI</members>
-		<members>dsfs__DSAPITest</members>
-		<members>dsfs__DSAPI_AccountManagement</members>
-		<members>dsfs__DSAPI_Credential</members>
-		<members>dsfs__DSAPI_CredentialTest</members>
-		<members>dsfs__DSAccountCustomFields</members>
-		<members>dsfs__DSClient</members>
-		<members>dsfs__DSClientTest</members>
-		<members>dsfs__DSCredentials</members>
-		<members>dsfs__DSCredentialsTest</members>
-		<members>dsfs__DSCustomField</members>
 		<members>mileageremoveapprovaldateTest</members>
 		<members>mileageremoveapprovaldate_Test</members>
 		<members>processRecords</members>
@@ -507,29 +480,6 @@
 		<members>ReportPage</members>
 		<members>ReportofDriverCompliance</members>
 		<members>Rg_Charting</members>
-		<members>SDOC__SDJobDOC</members>
-		<members>SDOC__SDJobDOCX</members>
-		<members>SDOC__SDJobDelete</members>
-		<members>SDOC__SDJobPDF</members>
-		<members>SDOC__SDJobXML</members>
-		<members>SDOC__SDLicenses</members>
-		<members>SDOC__SDMigrate</members>
-		<members>SDOC__SDPDFUpload</members>
-		<members>SDOC__SDRedirect</members>
-		<members>SDOC__SDRedirectGD</members>
-		<members>SDOC__SDRelationshipDelete</members>
-		<members>SDOC__SDRestoreTemplate</members>
-		<members>SDOC__SDTemplateCSV</members>
-		<members>SDOC__SDTemplateDOC</members>
-		<members>SDOC__SDTemplateDOCX</members>
-		<members>SDOC__SDTemplateEditor</members>
-		<members>SDOC__SDTemplateEditorProperties</members>
-		<members>SDOC__SDTemplateHTML</members>
-		<members>SDOC__SDTemplatePDF</members>
-		<members>SDOC__SDTemplatePPT</members>
-		<members>SDOC__SDTemplateXLS</members>
-		<members>SDOC__SDTemplateXML</members>
-		<members>SDOC__SDTranslate</members>
 		<members>SiteLogin</members>
 		<members>SiteRegister</members>
 		<members>SiteRegisterConfirm</members>
