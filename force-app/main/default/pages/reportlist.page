@@ -1,0 +1,1895 @@
+<apex:page showHeader="false" title="My Reports" sidebar="false" controller="ReportListController" action="{!getRedirected}">
+
+    <head>
+        <apex:include pageName="EMC_Common_Head" />
+        <apex:include pageName="EMC_Common_Scripts" />
+        <script src="{!URLFOR($Resource.EMC_Header_Scripts,'EMC_Header_Scripts/js/angular-sanitize.js')}"></script>
+        <script type="text/javascript" src="{!URLFOR($Resource.EmcCSS,'emc-design/assets/js/select.js')}"></script>
+        <link rel="stylesheet" href="{!URLFOR($Resource.EmcCSS,'emc-design/assets/css/select.css')}" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.EMC_Header_Scripts,'EMC_Header_Scripts/css/select2.css')}" />
+        <script src="{!URLFOR($Resource.modelJs)}"></script>
+        <script src="{!URLFOR($Resource.dirPagination)}"></script>
+        <style>
+            a {
+                cursor: pointer;
+            }
+
+            table tr td {
+                border-top: none !important;
+            }
+
+            .custom-payPeriod {
+                width: 300px !important;
+            }
+
+            .width-dp {
+                width: 125% !important;
+            }
+
+            .modal-footer {
+                padding: 0rem;
+            }
+
+            .ml-45 {
+                position: absolute;
+                top: 4px;
+                margin-left: 30rem;
+            }
+
+            .mt-16 {
+                margin-top: 16px !important;
+            }
+
+            .mr-302 {
+                margin-right: 302px !important;
+            }
+
+            .mt-6 {
+                margin-top: 6px !important;
+            }
+
+            .mt-3 {
+                margin-top: 3px !important;
+            }
+
+            .mb-3 {
+                margin-bottom: 3px !important;
+            }
+
+            .mb-6 {
+                margin-bottom: 6px !important;
+            }
+
+            .ml-300 {
+                margin-left: 300px !important;
+            }
+
+            .row-inline {
+                display: flex;
+                flex-wrap: wrap;
+                width: 387px;
+            }
+
+            .main-input {
+                width: 50% !important;
+                margin: 0 auto;
+            }
+
+            .progress-background {
+                width: 100%;
+                height: 100%;
+                background: #000;
+                opacity: 0.4;
+                top: 0px;
+                left: 0px;
+                position: fixed;
+                z-index: 1000000;
+            }
+
+            .progress {
+                position: fixed;
+                top: 56%;
+                left: 21%;
+                z-index: 1000000;
+                width: 57%;
+            }
+
+            .spinner-background {
+                width: 100%;
+                height: 100%;
+                background: #000;
+                opacity: 0.4;
+                top: 0px;
+                left: 0px;
+                position: fixed;
+                z-index: 1000000;
+            }
+
+            .spinner-load {
+                position: fixed;
+                top: 49%;
+                left: 49%;
+                z-index: 1000000;
+            }
+
+            .attendanceCheck {
+                margin-top: 6px;
+                float: right;
+            }
+
+            .pagination {
+                display: inline-block;
+                padding-left: 0;
+                margin: 20px 0;
+                border-radius: 4px;
+            }
+
+            .pagination>li {
+                display: inline;
+            }
+
+            .pagination>li>a,
+            .pagination>li>span {
+                position: relative;
+                float: left;
+                padding: 6px 12px;
+                margin-left: -1px;
+                line-height: 1.42857143;
+                color: #78bc42;
+                text-decoration: none;
+                background-color: #fff;
+                border: 1px solid #ddd;
+            }
+
+            .pagination>li:first-child>a,
+            .pagination>li:first-child>span {
+                margin-left: 0;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+            }
+
+            .pagination>.disabled>a,
+            .pagination>.disabled>a:focus,
+            .pagination>.disabled>a:hover,
+            .pagination>.disabled>span,
+            .pagination>.disabled>span:focus,
+            .pagination>.disabled>span:hover {
+                color: #777;
+                cursor: not-allowed;
+                background-color: #fff;
+                border-color: #ddd;
+            }
+
+            .pagination>.disabled>a,
+            .pagination>.disabled>a:focus,
+            .pagination>.disabled>a:hover,
+            .pagination>.disabled>span,
+            .pagination>.disabled>span:focus,
+            .pagination>.disabled>span:hover {
+                color: #78bc42;
+                cursor: not-allowed;
+                background-color: #fff;
+                border-color: #ddd;
+            }
+
+            .pagination>.active>a,
+            .pagination>.active>a:focus,
+            .pagination>.active>a:hover,
+            .pagination>.active>span,
+            .pagination>.active>span:focus,
+            .pagination>.active>span:hover {
+                z-index: 3;
+                color: #fff;
+                cursor: default;
+                background-color: #78bc42;
+                border-color: #78bc42;
+            }
+
+            .disable-pagination {
+                pointer-events: none;
+            }
+
+            .paginationformodal {
+                margin: 0px 0 !important;
+            }
+
+            .piginationpages {
+                color: #78bc42 !important;
+            }
+
+            .margin-center {
+                margin: 0 auto;
+            }
+
+            .paginationformodal>a {
+                color: #78bc42 !important;
+            }
+
+            .modal-backdrop.fade {
+                opacity: 0.7 !important;
+            }
+
+            .modal-header {
+                background-color: #78bc42;
+                justify-content: center !important;
+                padding: 0.5rem 0.5rem !important;
+                border-top-left-radius: 0rem !important;
+                border-top-right-radius: 0rem !important;
+                box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            }
+
+            .modal-heading {
+                font-family: 'Proxima Nova Bold' !important;
+                color: #ffffff !important;
+            }
+
+            .form-group-theme {
+                margin-top: 23px;
+            }
+
+            .fade:not(.show) {
+                opacity: 1;
+            }
+
+            .inputLockdate {
+                padding-left: 6rem !important;
+            }
+
+            .datepickerinput {
+                padding-right: 3rem !important;
+            }
+
+            .modal-dialog {
+                z-index: 1057;
+            }
+
+            .tagquestion1 {
+                font-size: 12px !important;
+                position: absolute;
+                top: 1px;
+            }
+
+            .modal-body {
+                padding: 1rem !important;
+            }
+
+            .close-lockdatebtn {
+                margin: 0px !important;
+            }
+
+            .popup-close-btn {
+                margin: 0;
+            }
+
+            .submitBtn {
+                box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            }
+
+            .cancelbtn {
+                margin-left: 8px !important;
+                box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            }
+
+            .popup-close-btn span {
+                color: #79c03f !important;
+                background: #ffffff !important;
+            }
+
+            .mb-20 {
+                margin-bottom: 20px !important;
+            }
+        </style>
+        <script type="text/javascript">
+            var app = angular.module('reportModule', ['ui.bootstrap', 'angularUtils.directives.dirPagination', 'ngSanitize', 'ui.select']);
+            var EditLockDateModel = function () {
+                this.visible = false;
+            };
+
+            EditLockDateModel.prototype.open = function (reportid) {
+                this.visible = true;
+                this.reportId = reportid;
+            };
+            EditLockDateModel.prototype.close = function () {
+                this.visible = false;
+            };
+
+            /* Model Directive For Deactivation Date*/
+            app.directive('editLockDate', [function () {
+                return {
+                    restrict: 'E',
+                    scope: {
+                        model: '='
+                    },
+                    link: function (scope, element, attributes) {
+                        scope.$watch('model.visible', function (newValue) {
+                            var modalElement = element.find('.modal');
+                            modalElement.modal(newValue ? 'show' : 'hide');
+
+                        });
+
+                        var url_string = $(location).attr("href");
+                        var url = new URL(url_string);
+                        scope.ListAllReports = {!AllReports
+                    };
+                    scope.accid = url.searchParams.get("accid");
+                    scope.id = url.searchParams.get("id");
+                    scope.admindriver = false;
+                    scope.showteam = url.searchParams.get("showteam");
+                    scope.admindriver = url.searchParams.get("admindriver");
+                    if(scope.admindriver == undefined || scope.admindriver == '') {
+                scope.admindriver = false;
+            }
+
+
+
+
+
+            scope.updateLockDate = function () {
+                scope.lockDate = $('#report-lockdatepicker').val();
+                scope.reportID = scope.model.reportId;
+                angular.forEach(scope.ListAllReports, function (report) {
+                    if (report.categoryName != undefined) {
+                        report.currentReports.forEach((data) => {
+                            if (data.reportId === scope.reportID) {
+                                data.mileageLockDate = scope.lockDate
+                            }
+                        })
+                    }
+                });
+                var url_locate = "/app/reportdetail?accid=" + scope.accid + "&id=" + scope.id + "&reportid=" + scope.reportID + "&showteam=" + scope.showteam + "&admindriver=" + "true";
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.ReportListController.updateLockDate}', scope.accid, scope.lockDate, scope.id,
+                    function (result, event) {
+                        if (event.status) {
+                            $('.lockdateModal').modal('hide');
+                            location.assign(url_locate);
+                        }
+                        else {
+                            $('.lockdateModal').modal('show');
+                            toastr.error('Some error has occur');
+
+                        }
+                    });
+            }
+
+
+
+            element.on('shown.bs.modal', function () {
+                scope.$apply(function () {
+                    scope.model.visible = true;
+                });
+            });
+
+            element.on('hidden.bs.modal', function () {
+                scope.$apply(function () {
+                    scope.model.visible = false;
+                });
+            });
+                       
+                    },
+            template: '<div class="modal fade show lockdateModal" tabindex="-1" role="dialog"><div class="modal-dialog modal-dialog-centered"><div class="modal-content rounded-0"><button type="button" class="close popup-close-btn close-lockdatebtn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div class="modal-header"><h5 class="modal-heading">Mileage Lock Date</h5></div><div class="modal-body"><form name="signup" class="form" novalidate="true"><div class="form-group-theme row"><label for="inputLockdate:" class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-form-label form-lable inputLockdate">Lock Date:<span class="tagquestion1"  data-toggle="tooltip"  data-placement="top" data-html="true" title="<b>Any changes made to mileage after the lock date will appear next month.</b>"><i class="fa fa-question"></i></span></label><div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 datepickerinput"><div class="input-group"><input id="report-lockdatepicker" class="form-control rounded-0" placeholder="Select Lock Date" required="true" ng-model="selectedlockDate" /><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-calendar-alt"></i></span></div></div></div></div><div class="form-group  justify-content-center text-center"><button class="btn btn-primary submitBtn" ng-click="updateLockDate()">Submit</button><button type="button" class="btn btn-secondary cancelbtn" data-dismiss="modal">Cancel</button></div></form></div></div></div></div>'
+                };
+                 
+            }]);
+
+
+            /*Model For Export Report Send */
+
+            // var StayTimeReportModel = function () {
+            //     this.visible = false;
+            // }
+
+            // StayTimeReportModel.prototype.open = function () {
+            //     this.visible = true;
+            // }
+
+            // StayTimeReportModel.prototype.close = function () {
+            //     this.visible = false;
+            // }
+            // //AI-000150
+            // app.directive('stayTimeReport', ['$filter',
+            //     function ($filter) {
+            //         return {
+            //             restrict: 'E',
+            //             scope: {
+            //                 model: '='
+            //             },
+            //             link: function (scope, element, attributes) {
+            //                 scope.$watch('model.visible', function (newValue) {
+            //                     var modalElement = element.find('.modal');
+            //                     modalElement.modal(newValue ? 'show' : 'hide');
+
+            //                 });
+
+            //                 var url_string = $(location).attr("href");
+            //                 var url = new URL(url_string);
+            //                 var contactData = [];
+            //                 scope.accid = url.searchParams.get("accid");
+            //                 scope.contactList = [];
+            //                 scope.reimbursementList = [];
+            //                 scope.nullOption = {};
+            //                 scope.selectedReimbersment = '';
+            //                 scope.selectedContact = '';
+            //                 scope.nullOption = { Name: 'None', Id: '' };
+            //                 // contactData = [scope.nullOption];
+            //                 scope.reimbursementList = [scope.nullOption];
+            //                 scope.selectContactFun = function (con) {
+            //                     scope.selectedContact = con.Id;
+            //                     Visualforce.remoting.Manager.invokeAction(
+            //                         '{!$RemoteAction.ReportListController.reimbursementListModal}', scope.selectedContact,
+            //                         function (result, event) {
+            //                             scope.reimbursementList = result;
+            //                             scope.reimbursementList.splice(0, 0, scope.nullOption);
+            //                         });
+            //                     //  console.log(scope.contactList);
+            //                 }
+            //                 scope.selectReimbersmentFun = function (reimburesment) {
+            //                     scope.selectedReimbersment = '';
+            //                     scope.selectedReimbersment = reimburesment.Id;
+            //                 }
+            //                 scope.reportExportToExcel = function () {
+            //                     window.open('https://mburse--fullcopy.cs8.my.salesforce.com/apex/StaytimeReportExcel?id=' + scope.selectedReimbersment);
+            //                 }
+
+            //                 element.on('shown.bs.modal', function () {
+            //                     scope.$apply(function () {
+            //                         scope.model.visible = true;
+
+            //                         Visualforce.remoting.Manager.invokeAction(
+            //                             '{!$RemoteAction.ReportListController.contactListModal}', scope.accid,
+            //                             function (result, event) {
+            //                                 contactData = result;
+            //                                 scope.contactList = contactData.map(function (obj) {
+            //                                     obj['Name'] = obj['FirstName'] + ' ' + obj['LastName'];
+            //                                     delete obj['FirstName'];
+            //                                     delete obj['LastName'];
+            //                                     return obj;
+            //                                 });
+            //                                 scope.contactList.splice(0, 0, scope.nullOption);
+            //                             });
+
+            //                     });
+            //                 });
+
+            //                 element.on('hidden.bs.modal', function () {
+            //                     scope.$apply(function () {
+            //                         scope.model.visible = false;
+            //                         scope.selectedContact = '';
+
+            //                     });
+            //                 });
+
+            //             },
+            //             template: '<div class="modal fade show" tabindex="-1" role="dialog"><div class="modal-dialog modal-dialog-centered"><div class="modal-content rounded-0"> <button type="button" class="close popup-close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> </button><div class="modal-header"><h5 class="modal-heading">Export Stay Time Report</h5></div><div class="modal-body"><form name="signup" class="form" novalidate="true"><div class="form-group-theme row mb-20"> <label for="selectContact:" class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-form-label form-lable">Contact: </label><div class="col-xl-7 col-lg-7 col-md-7 col-sm-7"><ui-select ng-model="selectedContact" style="font-size: 16px;" theme="selectize" title="Search contact" ng-change="selectContactFun(selectedContact)" ><ui-select-match placeholder="Search..." style="font-size: 16px;">{{$select.selected.Name}}</ui-select-match> <ui-select-choices repeat="contact in contactList | filter: $select.search" null-option="nullOption"> <span style="font-size: 16px;" ng-bind-html="contact.Name | highlight: $select.search"></span> </ui-select-choices> <ui-select-no-choice></ui-select-no-choice> </ui-select></div></div><div class="form-group-theme row mb-20"> <label for="selectReimbursement:" class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-form-label form-lable">Reimbersments: </label><div class="col-xl-7 col-lg-7 col-md-7 col-sm-7"><ui-select ng-model="selectedReimbersment" style="font-size: 16px;" theme="selectize" title="Search reimbersment" ng-change="selectReimbersmentFun(selectedReimbersment)" ><ui-select-match placeholder="Search..." style="font-size: 16px;">{{$select.selected.Name}}</ui-select-match> <ui-select-choices repeat="reim in reimbursementList | filter: $select.search" null-option="nullOption"> <span style="font-size: 16px;" ng-bind-html="reim.Name | highlight: $select.search"></span> </ui-select-choices> <ui-select-no-choice> </ui-select-no-choice> </ui-select></div></div><div class="form-group  justify-content-center text-center"><button class="btn btn-primary" ng-click="reportExportToExcel()">Download</button><button type="button" class="btn btn-secondary cancelbtn" data-dismiss="modal">Cancel</button></div></form></div></div></div></div>'
+            //         };
+
+            //     }]);
+
+
+            var EditMonthlyTaxReportModel = function () {
+                this.visible = false;
+            }
+
+            EditMonthlyTaxReportModel.prototype.open = function () {
+                this.visible = true;
+            }
+
+            EditMonthlyTaxReportModel.prototype.close = function () {
+                this.visible = false;
+            }
+
+            app.directive('editMonthlyTaxReport', ['$filter',
+                function ($filter) {
+                    return {
+                        restrict: 'E',
+                        scope: {
+                            model: '='
+                        },
+                        link: function (scope, element, attributes) {
+                            scope.$watch('model.visible', function (newValue) {
+                                var modalElement = element.find('.modal');
+                                modalElement.modal(newValue ? 'show' : 'hide');
+                            });
+
+                            var url_string = $(location).attr("href");
+                            var url = new URL(url_string);
+                            var host = url.host;
+                            scope.month = '{!($Label.Ermi_Tax_Report_month_picklist)}';
+                            scope.empl = '{!($Label.Ermi_Tax_Report_employee_type_picklist)}';
+                            scope.monthArr = [];
+                            scope.empType = [];
+                            scope.defaultOption = "Select Month";
+                            scope.defaultEmpOption = "Select Employee Type";
+                            scope.monthArr = scope.month.split(',');
+                            scope.monthArr.splice(0, 0, scope.defaultOption);
+                            scope.monthList = scope.monthArr[0];
+                            scope.selectedMonth = "";
+                            scope.empType = scope.empl.split(',');
+                            scope.empType.splice(0, 0, scope.defaultEmpOption);
+                            scope.empTypeList = scope.empType[0];
+                            scope.selectedempType = "";
+
+                            function refreshModal() {
+                                location.reload();
+                            }
+                            scope.onmonthChange = function (month) {
+                                scope.selectedMonth = month;
+                            }
+                            scope.onemployeeChange = function (el) {
+                                scope.selectedempType = el;
+                            }
+                            scope.downloadTaxReport = function () {
+                                //window_url = 'https://' + host + '/apex/TaxReportPage?month=' +  scope.selectedMonth + '&empType=' + scope.selectedempType;
+                                window_url = 'https://' + host + '/app/TaxReportPage?month=' + scope.selectedMonth + '&empType=' + scope.selectedempType;
+
+                                window.open(window_url, '_blank');
+                                refreshModal();
+                            }
+
+
+                            element.on('shown.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = true;
+                                });
+                            });
+
+                            element.on('hidden.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = false;
+
+                                });
+                            });
+
+                        },
+                        template: '<div class="modal fade driver-dashboard-monthrecord show in monthlyTaxModal" tabindex="-1" role="dialog" aria-labelledby="driver-dashboard-monthrecord" id="driver-dashboard-monthrecord"><div class="fade modal-backdrop"></div><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content rounded-0"> <button type="button" class="close popup-close-btn" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button><div class="modal-body"><h4>Monthly Tax Report</h4><div class="modal-divider"></div><form name="signup" class="form" id="myform"><div class="form-row"><div class="form-group-theme row-inline"> <label for="Month:" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label form-lable">Month:<span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select month</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-6 col-lg-6 col-md-6 col-sm-6"> <select ng-model="monthList" ng-change="onmonthChange(monthList)" class="browser-default custom-select custom-select-xl width-dp"><option ng-repeat="date in monthArr" ng-selected="{{monthList == date}}" value="{{date}}">{{date}}</option> </select></div></div><div class="form-group-theme row-inline"> <label for="Employee:" class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-form-label form-lable">Employee Type: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select employee type</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-6 col-lg-6 col-md-6 col-sm-6"> <select ng-model="empTypeList" ng-change="onemployeeChange(empTypeList)" class="browser-default custom-select custom-select-xl width-dp"><option ng-repeat="empltype in empType" ng-selected="{{empTypeList == empltype}}" value="{{empltype}}">{{empltype}}</option> </select></div></div></div></form></div><div class="modal-footer mb-3"><div class="col-md-12 mt-3 text-center"> <button id="downloadTaxReportBtn" class="btn btn-primary mt-3 mb-3" ng-click="downloadTaxReport()">Download <i class="fa fa-download"></i> </button></div></div></div></div></div>'
+                    };
+
+                }
+            ]);
+
+            // NetChex Time and Attendance Report
+            var EditTimeReportModel = function () {
+                this.visible = false;
+            }
+
+            EditTimeReportModel.prototype.open = function () {
+                this.visible = true;
+            }
+
+            EditTimeReportModel.prototype.close = function () {
+                this.visible = false;
+            }
+
+            app.directive('editTimeAttendanceReport', ['$filter', '$http',
+                function ($filter, $http) {
+                    return {
+                        restrict: 'E',
+                        scope: {
+                            model: '='
+                        },
+                        link: function (scope, element, attributes) {
+                            scope.$watch('model.visible', function (newValue) {
+                                var modalElement = element.find('.modal');
+                                modalElement.modal(newValue ? 'show' : 'hide');
+                                // if (newValue == true) {
+
+                                // }
+                            });
+
+
+                            var count = 0;
+                            var url_string = $(location).attr("href");
+                            var url = new URL(url_string);
+                            var host = url.host;
+
+                            scope.accid = url.searchParams.get("accid");
+                            scope.FrampAcc = '{!($Label.FramptonConstruction)}';
+                            scope.currentPage = 1;
+                            scope.maxRecord = 25;
+                            scope.maxPage = 0;
+
+
+                            scope.showData = [];
+                            scope.itemPerPage = 10;
+
+                            scope.reimburesmentDataList = {!reimburName
+                        };
+                        scope.totalRecords = scope.reimburesmentDataList.length;
+                        scope.maxPage = Math.ceil(scope.totalRecords / scope.itemPerPage)
+                        function refreshModal() {
+                        location.reload();
+                    }
+                    angular.forEach(scope.reimburesmentDataList, function (obj) {
+                        obj["isReimbChecked"] = false;
+                    });
+
+                    scope.showRecord = function (list) {
+                        if (list) {
+                            scope.showData.push(list)
+                        }
+                        if (scope.currentPage === scope.maxPage) {
+                            count++;
+                        }
+                    }
+
+                    scope.onPageChange = function (pageNum) {
+
+                        if (scope.currentPage != scope.maxPage) {
+                            scope.showData = scope.showData.slice(-10)
+                        }
+                        else {
+                            scope.showData = scope.showData.slice(-count);
+                        }
+
+
+                        if (scope.checkboxobj != undefined) {
+                            scope.checkboxobj.isCheckedAll = false;
+                        }
+
+                        angular.forEach(scope.reimburesmentDataList, function (list) {
+                            list.isReimbChecked = false
+                        });
+
+
+                    }
+                    scope.CheckUncheckForAllListReimbursement = function (CheckUncheckForAllListReimbursement) {
+                        console.log(scope.showData, count);
+                        scope.checkboxobj.isCheckedAll = CheckUncheckForAllListReimbursement;
+                        scope.reimburesmentDataList.forEach(arr1 => {
+                            scope.showData.forEach(arr2 => {
+                                if (arr1.reimbId == arr2.reimbId) {
+                                    arr1.isReimbChecked = scope.checkboxobj.isCheckedAll;
+                                } else {
+                                    return;
+                                }
+                            });
+                        });
+
+                    }
+                    scope.CheckUncheckForAllReimbursement = function (CheckUncheckForAllReimbursement, reimblist) {
+                        var chkcount = 0;
+                        var total = scope.reimburesmentDataList.length;
+                        angular.forEach(scope.reimburesmentDataList, function (list) {
+                            if (list.isReimbChecked) {
+                                chkcount++;
+                            }
+                        })
+                        console.log(scope.reimburesmentDataList);
+                        // scope.checkboxobj.isChecked = CheckUncheckForAllReimbursement;
+                        // reimblist.isReimbChecked = scope.checkboxobj.isChecked;
+
+                        let startDate = $('#report-startdatepicker').val();
+                        let endDate = $('#report-enddatepicker').val();
+                        if (total == chkcount) {
+                            scope.checkboxobj.isCheckedAll = true;
+                        } else {
+                            scope.checkboxobj.isCheckedAll = false;
+                        }
+                        if (chkcount != 0) {
+                            if (startDate != '' && endDate != '') {
+                                $('#downloadReimBtn').prop('disabled', false);
+                            }
+                            else {
+                                $('#downloadReimBtn').prop('disabled', true);
+                            }
+                        } else {
+                            $('#downloadReimBtn').prop('disabled', true);
+                        }
+                    }
+                    scope.downloadReimbursement = function () {
+                        var window_url;
+                        scope.stDate = $('#report-startdatepicker').val();
+                        scope.enDate = $('#report-enddatepicker').val();
+                        angular.forEach(scope.reimburesmentDataList, function (reimObj) {
+                            if (reimObj.isReimbChecked === true) {
+                                // Job Costing Summary Report For Frampton Construction Account
+                                if(scope.accid === scope.FrampAcc){
+                                    window_url = 'https://' + host + '/app/JobCostingSummary?id=' + reimObj.reimbId + '&startDate=' + scope.stDate + '&endDate=' + scope.enDate;
+                                }else{
+                                    window_url = 'https://' + host + '/app/TimeandSummaryReport?id=' + reimObj.reimbId + '&startDate=' + scope.stDate + '&endDate=' + scope.enDate;
+                                }
+                               
+                                window.open(window_url, '_blank');
+                            }
+                        });
+                        refreshModal();
+                    }
+
+                    element.on('shown.bs.modal', function () {
+                        scope.$apply(function () {
+                            scope.model.visible = true;
+                        });
+                    });
+
+                    element.on('hidden.bs.modal', function () {
+                        scope.$apply(function () {
+                            scope.model.visible = false;
+                        });
+                    });
+
+                },
+                template: '<div class="modal fade driver-dashboard-monthrecord show in " tabindex="-1" role="dialog" aria-labelledby="driver-dashboard-monthrecord" id="driver-dashboard-monthrecord"><div class="fade modal-backdrop"></div><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content rounded-0"> <button type="button" class="close popup-close-btn" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button><div class="modal-body"><h4>Contact List</h4><div class="modal-divider"></div><form name="signup" class="form"><div class="form-row"><div class="form-group-theme row-inline"> <label for="startDate:" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label form-lable startDate">Start Date: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select start date</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 datepickerinput"><div class="input-group"> <input id="report-startdatepicker" class="form-control rounded-0 reimbdatepicker" placeholder="Select Start Date" required="true" ng-model="selectedstartDate" /><div class="input-group-prepend"> <span class="input-group-text"> <i class="fas fa-calendar-alt"></i> </span></div></div></div></div><div class="form-group-theme row-inline"> <label for="endDate:" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label form-lable endDate">End Date: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select end date</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 datepickerinput"><div class="input-group"> <input id="report-enddatepicker" class="form-control rounded-0 reimbdatepicker" placeholder="Select End Date" required="true" ng-model="selectedendDate" /><div class="input-group-prepend"> <span class="input-group-text"> <i class="fas fa-calendar-alt"></i> </span></div></div></div></div></div></form><div class="table-responsive"><table id="driver-dashbord-month-model"  class="table dt-responsive nowrap no-footer dataTable" cellspacing="0" width="100%"><tbody class="table-a-link"><tr><td ng-model="allList"><div class="input-group main-input"><div class="input-group-prepend"><div class="input-group-text"><input id="allreimbchecked" type="checkbox" ng-model="checkboxobj.isCheckedAll" class="attendanceCheck" ng-click="CheckUncheckForAllListReimbursement(checkboxobj.isCheckedAll)" /></div></div> <span class="form-control" ng-model="alllist">Select All</span></div></td></tr><tr dir-paginate="list in reimburesmentDataList|itemsPerPage:itemPerPage" current-page="currentPage"  ng-model="list" ng-init="showRecord(list)"><td ng-model="list.name"><div class="input-group main-input"><div class="input-group-prepend"><div class="input-group-text"><input id="reimbchecked" type="checkbox" ng-model="list.isReimbChecked" class="attendanceCheck" ng-click="CheckUncheckForAllReimbursement(list.isReimbChecked,list)" /></div></div> <span class="form-control" ng-model="list.name">{{list.name}}</span></div></td></tr></tbody><tfoot><tr></tr></tfoot></table></div></div><div class="modal-footer"><div class="col-md-6" ><dir-pagination-controls max-size="1" direction-links="true" boundary-links="true" responsive="true" auto-hide="false" class="pull-left"  on-page-change="onPageChange(newPageNumber)"></dir-pagination-controls></div><div class="col-md-6"><button id="downloadReimBtn" class="btn btn-primary float-right mr-12" ng-click="downloadReimbursement()" disabled>Download <i class="fa fa-download"></i> </button></div></div></div></div></div>'
+                    };
+
+            }]);
+
+            // var EditTimeCustomReportModel = function(){
+            //     this.visible = false;
+            // }
+
+            // EditTimeCustomReportModel.prototype.open = function(){
+            //     this.visible = true;
+            // }
+
+            // EditTimeCustomReportModel.prototype.close = function(){
+            //     this.visible = false;
+            // }
+
+            // app.directive('editTimeCustomReport', ['$filter', '$http',
+            //     function ($filter, $http) {
+            //         return {
+            //             restrict: 'E',
+            //             scope: {
+            //                 model: '='
+            //             },
+            //             link: function (scope, element, attributes) {
+            //                 scope.$watch('model.visible', function (newValue) {
+            //                     var modalElement = element.find('.modal');
+            //                     modalElement.modal(newValue ? 'show' : 'hide');
+            //                     // if (newValue == true) {
+
+            //                     // }
+            //                 });
+
+
+            //                 var url_string = $(location).attr("href");
+            //                 var url = new URL(url_string);
+            //                 var host = url.host;
+            //                 function refreshModal() {
+            //                     location.reload();
+            //                  }
+            //         scope.downloadReimbursementReport = function () {
+            //             var window_url;
+            //             scope.stCustomDate = $('#report-custom-startdatepicker').val();
+            //             scope.enCustomDate = $('#report-custom-enddatepicker').val();
+            //             window_url = 'https://' + host + '/app/TimeSheetNetchexReport?startDate=' + scope.stCustomDate + '&endDate=' + scope.enCustomDate;
+            //             window.open(window_url, '_blank');
+            //             refreshModal();
+            //         }
+
+            //         element.on('shown.bs.modal', function () {
+            //             scope.$apply(function () {
+            //                 scope.model.visible = true;
+            //             });
+            //         });
+
+            //         element.on('hidden.bs.modal', function () {
+            //             scope.$apply(function () {
+            //                 scope.model.visible = false;
+            //             });
+            //         });
+
+            //     },
+            //     template: '<div class="modal fade driver-dashboard-monthrecord show in " tabindex="-1" role="dialog" aria-labelledby="driver-dashboard-monthrecord" id="driver-dashboard-monthrecord"><div class="fade modal-backdrop"></div><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content rounded-0"> <button type="button" class="close popup-close-btn" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button><div class="modal-body"><h4>Time And Attendance Report</h4><div class="modal-divider"></div><form name="signup" class="form"><div class="form-row"><div class="form-group-theme row-inline"> <label for="startDate:" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label form-lable startDate">Start Date: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select start date</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 datepickerinput"><div class="input-group"> <input id="report-custom-startdatepicker" class="form-control rounded-0 reimbdatepicker2" placeholder="Select Start Date" required="true" ng-model="selectedstartDate" /><div class="input-group-prepend"> <span class="input-group-text"> <i class="fas fa-calendar-alt"></i> </span></div></div></div></div><div class="form-group-theme row-inline"> <label for="endDate:" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label form-lable endDate">End Date: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select end date</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 datepickerinput"><div class="input-group"> <input id="report-custom-enddatepicker" class="form-control rounded-0 reimbdatepicker2" placeholder="Select End Date" required="true" ng-model="selectedendDate" /><div class="input-group-prepend"> <span class="input-group-text"> <i class="fas fa-calendar-alt"></i> </span></div></div></div></div></div></form></div><div class="modal-footer"><div class="col-md-12"> <button id="downloadReimReportBtn" class="btn btn-primary float-right mr-302 mt-3 mb-3" ng-click="downloadReimbursementReport()" disabled>Download <i class="fa fa-download"></i> </button></div></div></div></div></div>'
+            //         };
+
+            // }]);
+
+            var EditNetchexReportModel = function () {
+                this.visible = false;
+            }
+
+            EditNetchexReportModel.prototype.open = function () {
+                this.visible = true;
+            }
+
+            EditNetchexReportModel.prototype.close = function () {
+                this.visible = false;
+            }
+
+            app.directive('editNetchexReport', ['$filter',
+                function ($filter) {
+                    return {
+                        restrict: 'E',
+                        scope: {
+                            model: '='
+                        },
+                        link: function (scope, element, attributes) {
+                            scope.$watch('model.visible', function (newValue) {
+                                var modalElement = element.find('.modal');
+                                modalElement.modal(newValue ? 'show' : 'hide');
+                            });
+                            var url_string = $(location).attr("href");
+                            var url = new URL(url_string);
+                            var host = url.host;
+                            scope.eid = url.searchParams.get("id");
+                            scope.accid = url.searchParams.get("accid");
+                            scope.AISid = '{!($Label.AISAccount)}';
+                            function refreshModal() {
+                             location.reload();
+                             }
+                            scope.netchexpayPeriod = '{!($Label.ERMIPayPeriodDate)}'
+                            console.log("Pay period", scope.netchexpayPeriod);
+                            scope.dateObjArr = [];
+                            scope.originalObjArr = [];
+                            scope.defaultOption = "Select Pay Period";
+                            scope.originalObjArr = scope.netchexpayPeriod.split(',');
+                            var payArr = [];
+                            var myDate = new Date();
+                            var previousMonth = new Date(myDate);
+                            previousMonth.setMonth(myDate.getMonth() - 1);
+                            var nextMonth = new Date(myDate);
+                            nextMonth.setMonth(myDate.getMonth() + 1);
+                            var currentMonth = $filter('date')(new Date(), 'MMMM');
+                            var preMonth = $filter('date')(previousMonth, 'MMMM');
+                            var neMonth = $filter('date')(nextMonth, 'MMMM');
+                            angular.forEach(scope.originalObjArr, function(date){
+                                    var split = date.split(' to ');
+                                    var startMonth = $filter('date')(new Date(split[0]), 'MMMM');
+                                    if(startMonth === currentMonth || startMonth === preMonth || startMonth === neMonth) {
+                                        payArr.push(date);
+                                    }
+                            });
+                            scope.dateObjArr = payArr;
+                            scope.dateObjArr.splice(0, 0, scope.defaultOption);
+                            scope.netchexPayRole = scope.dateObjArr[0];
+                            scope.startDate = '';
+                            scope.endDate = '';
+
+                            //progress bar params
+                            $('.progress-background').hide();
+                            scope.enableBar = false;
+                            scope.deProgressBarWidth = 5;
+                            iCount = 10;
+                            scope.onnetchexPayPeriodChange = function (period) {
+                                scope.splitObj = period.split(' to ');
+                                scope.startDate = scope.splitObj[0];
+                                scope.endDate = scope.splitObj[1];
+                            }
+                            scope.onSubmitPay = function () {
+                                $('.progress-background').show();
+                                scope.enableBar = true;
+                                //$('#spinner').show();
+                                // scope.deleteApi = false;
+                                // scope.startDate = $('.datepicker1').val();
+                                // scope.endDate = $('.datepicker2').val();
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.ReportListController.postTimeSheetImportAPI}', scope.startDate, scope.endDate, scope.eid,
+                                    function (result, event) {
+                                        if (event.status) {
+                                            //  toastr.success('Succesfully send data to netchex');
+                                            //  setTimeout(function () {
+                                            //   location.reload();
+                                            //  }, 2000);
+                                            scope.CheckStatus(result);
+
+                                        }
+                                        else {
+                                            toastr.error('Some error has occur');
+                                        }
+                                    });
+                            }
+                            scope.CheckStatus = function (runTime) {
+
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.ReportListController.CheckStatus}', runTime, 'TimeSheetImportNetchexBatch',
+                                    function (result, event) {
+                                        if (event.status) {
+
+                                            if (result.enablePollar) {
+                                                scope.deProgressBarWidth = scope.deProgressBarWidth == 5 ? 0 : scope.deProgressBarWidth;
+                                                scope.deProgressBarWidth = (iCount != 0 ? (iCount > 95 ? 95 : iCount) / 100 * 100 : 0);
+
+                                                setTimeout(function () {
+                                                    scope.CheckStatus(runTime);
+                                                }, 5000);
+
+                                            } else {
+                                                ///Add code to hide Loader///
+                                                $('#spinner').hide();
+                                                var message = JSON.parse(result.Message);
+                                                if (message[0].IsSuccess) {
+                                                    toastr.success('Succesfully send data to netchex');
+                                                    $('.netchexModal').hide();
+                                                    location.reload();
+                                                } else {
+                                                    toastr.error(message[0].Messages[0]);
+                                                    $('.netchexModal').hide();
+                                                }
+                                                scope.strStatus = 'Completed';
+                                            }
+                                            iCount += (iCount >= 70 ? 1 : 10);
+                                        }
+                                        else {
+                                            toastr.error('Some error has occur');
+                                            $('.netchexModal').hide();
+                                        }
+                                        scope.$apply();
+                                    }, { escape: false }
+                                );
+
+                            }
+
+                            scope.downloadReimbursementReport = function () {
+                                var window_url;
+                                if (scope.accid === scope.AISid) {
+                                    window_url = 'https://' + host + '/app/MileagesforAISAccountReport?startDate=' + scope.startDate + '&endDate=' + scope.endDate;
+                                } else {
+                                    window_url = 'https://' + host + '/app/TimeSheetNetchexReport?startDate=' + scope.startDate + '&endDate=' + scope.endDate;
+                                }
+                                window.open(window_url, '_blank');
+                                refreshModal();
+                            }
+
+                            // scope.onDeletePay = function () {
+                            //     Visualforce.remoting.Manager.invokeAction(
+                            //         '{!$RemoteAction.ReportListController.DeleteNetchexCallout}', scope.startDate, scope.endDate,
+                            //         function (result, event) {
+                            //             if (event.status) {
+                            //                 $('.netchexModal').modal('hide');
+                            //                 toastr.success('Succesfully deleted data');
+                            //                 setTimeout(function () {
+                            //                     location.reload();
+                            //                 }, 2000);
+
+                            //             }
+                            //             else {
+                            //                 toastr.error('Some error has occur');
+                            //             }
+                            //         });
+                            // }
+                            element.on('shown.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = true;
+                                });
+                            });
+
+                            element.on('hidden.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = false;
+
+                                });
+                            });
+
+                        },
+                        template: '<div class="modal fade driver-dashboard-monthrecord show in netchexModal" tabindex="-1" role="dialog" aria-labelledby="driver-dashboard-monthrecord" id="driver-dashboard-monthrecord"><div class="fade modal-backdrop"></div><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content rounded-0"> <button type="button" class="close popup-close-btn" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button><div class="modal-body"><h4 ng-if="accid != AISid">Time and Attendance Payment Report</h4><h4 ng-if="accid === AISid">Biweekly Reimbursement Report</h4><div class="modal-divider"></div><form name="signup" class="form" id="myform"><div class="form-row"><div class="form-group-theme row-inline"> <label for="payRole:" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label form-lable payRole">Pay Period: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select pay period</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-6 col-lg-6 col-md-6 col-sm-6"><select ng-model="netchexPayRole" ng-change="onnetchexPayPeriodChange(netchexPayRole)" class="browser-default custom-select custom-select-xl custom-payPeriod"><option ng-repeat="dateobj in dateObjArr" ng-selected="{{netchexPayRole == dateobj}}" value="{{dateobj}}">{{dateobj}}</option> </select></div></div></div><div class="progress-background"></div><div class="progress" ng-show="enableBar"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{deProgressBarWidth}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ width: ( deProgressBarWidth + \'%\' )}">{{deProgressBarWidth}}%</div></div></form></div><div class="modal-footer mb-3"><div class="col-md-12 mt-3 text-center"> <button id="submitPayment" class="btn btn-primary float-right mt-3" ng-click="onSubmitPay()" ng-if="accid != AISid">Submit</button> <button id="downloadReimReportBtn" class="btn btn-primary float-right mt-3 mb-3" ng-click="downloadReimbursementReport()">Download <i class="fa fa-download"></i> </button></div></div></div></div></div>'
+                    };
+
+                }
+            ]);
+
+            var EditMonthlyNetchexReportModel = function () {
+                this.visible = false;
+            }
+
+            EditMonthlyNetchexReportModel.prototype.open = function () {
+                this.visible = true;
+            }
+
+            EditMonthlyNetchexReportModel.prototype.close = function () {
+                this.visible = false;
+            }
+
+            app.directive('editMonthlyNetchexReport', ['$filter',
+                function ($filter) {
+                    return {
+                        restrict: 'E',
+                        scope: {
+                            model: '='
+                        },
+                        link: function (scope, element, attributes) {
+                            scope.$watch('model.visible', function (newValue) {
+                                var modalElement = element.find('.modal');
+                                modalElement.modal(newValue ? 'show' : 'hide');
+                            });
+
+                            //progress bar params
+                            $('.progress-background').hide();
+                            var url_string = $(location).attr("href");
+                            var url = new URL(url_string);
+                            scope.eid = url.searchParams.get("id");
+                            scope.enableBar = false;
+                            scope.deProgressBarWidth = 5;
+                            iCount = 10;
+
+                            scope.dateNetchexArr = [];
+                            scope.reportDate='';
+                            var todayDate = new Date();
+                            var firstDay = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+                            var fifteenthDay = new Date(todayDate.getFullYear(), todayDate.getMonth(), 15);
+                            var first = $filter('date')(firstDay, 'yyyy-MM-dd');
+                            var fifteenth = $filter('date')(fifteenthDay, 'yyyy-MM-dd');
+                            scope.dateNetchexArr.push(first);
+                            scope.dateNetchexArr.push(fifteenth);
+                            scope.dateNetchexArr.splice(0, 0, "Select Date");
+                            scope.monthlyNetchexPay =  scope.dateNetchexArr[0];
+                            scope.onmonthlyNetchexPayChange = function(mdate){
+                                if (mdate != "Select Date") {
+                                        $('#submitPay').prop('disabled', false);
+                                 }
+                                else {
+                                        $('#submitPay').prop('disabled', true);
+                                }
+                                scope.reportDate = mdate;
+                            }
+                           
+                            scope.onSubmit = function () {
+                                $('.progress-background').show();
+                                scope.enableBar = true;
+                                // $('#spinner').show();
+                                //  scope.deleteApi = false;
+                               // scope.reportDate = $('.datepicker1').val();
+                                console.log(scope.reportDate);
+                                // scope.endDate = $('.datepicker2').val();
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.ReportListController.postVariablePaymentAPI}', scope.reportDate, scope.eid,
+                                    function (result, event) {
+                                        if (event.status) {
+                                            //    toastr.success('Variable Payment is succesfully send to netchex');
+                                            //   setTimeout(function () {
+                                            // location.reload();
+                                            //   }, 2000);
+                                            scope.CheckStatus(result);
+                                        }
+                                        else {
+                                            toastr.error('Some error has occur');
+                                        }
+                                    });
+                            }
+
+                            scope.CheckStatus = function (runTime) {
+
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.ReportListController.CheckStatus}', runTime, 'NetchexVariablePaymentBatch',
+                                    function (result, event) {
+                                        if (event.status) {
+
+                                            console.log('Status Check', result);
+                                            if (result.enablePollar) {
+                                                scope.deProgressBarWidth = scope.deProgressBarWidth == 5 ? 0 : scope.deProgressBarWidth;
+                                                scope.deProgressBarWidth = (iCount != 0 ? (iCount > 95 ? 95 : iCount) / 100 * 100 : 0);
+
+                                                setTimeout(function () {
+                                                    scope.CheckStatus(runTime);
+                                                }, 5000);
+
+                                            } else {
+                                                ///Add code to hide Loader///
+                                                $('#spinner').hide();
+                                                var message = JSON.parse(result.Message);
+                                                if (message[0].IsSuccess) {
+                                                    toastr.success('Variable Payment is succesfully send to netchex');
+                                                    $('.monthlynetchexModal').hide();
+                                                    location.reload();
+                                                } else {
+                                                    toastr.error(message[0].Messages[0]);
+                                                    $('.monthlynetchexModal').hide();
+                                                }
+                                                scope.strStatus = 'Completed';
+                                            }
+                                            iCount += (iCount >= 70 ? 1 : 10);
+                                        }
+                                        else {
+                                            toastr.error('Some error has occur');
+                                            $('.monthlynetchexModal').hide();
+                                        }
+                                        scope.$apply();
+
+                                    }, { escape: false }
+                                );
+
+                            }
+                            // scope.onDelete = function () {
+                            //     // scope.deleteApi = true;
+                            //     Visualforce.remoting.Manager.invokeAction(
+                            //         '{!$RemoteAction.ReportListController.DeleteNetchexCallout}', scope.startDate, scope.endDate,
+                            //         function (result, event) {
+                            //             if (event.status) {
+                            //                 toastr.success('Successfully deleted data');
+                            //                 setTimeout(function () {
+                            //                     location.reload();
+                            //                 }, 2000);
+
+                            //             }
+                            //             else {
+                            //                 toastr.error('Some error has occur');
+                            //             }
+                            //         });
+                            // }
+                            element.on('shown.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = true;
+                                });
+                            });
+
+                            element.on('hidden.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = false;
+
+                                });
+                            });
+
+                        },
+                        template: '<div class="modal fade driver-dashboard-monthrecord show in monthlynetchexModal" tabindex="-1" role="dialog" aria-labelledby="driver-dashboard-monthrecord" id="driver-dashboard-monthrecord"><div class="fade modal-backdrop"></div><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content rounded-0"> <button type="button" class="close popup-close-btn" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button><div class="modal-body"><h4>Monthly Variable Payment Report</h4><div class="modal-divider"></div><form name="signup" class="form" id="myform"><div class="form-row"><div class="form-group-theme row-inline margin-center"> <label for="Date:" class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-form-label form-lable startDate">Date: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select date</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 datepickerinput"><select ng-model="monthlyNetchexPay" ng-change="onmonthlyNetchexPayChange(monthlyNetchexPay)" class="browser-default custom-select custom-select-xl"><option ng-repeat="netDate in dateNetchexArr" ng-selected="{{monthlyNetchexPay == netDate}}" value="{{netDate}}">{{netDate}}</option> </select><!-- <div class="input-group"><input id="report-startdatepicker" class="form-control rounded-0 datepicker1" placeholder="Select Date" required="true" ng-model="selectedstartDate" /><div class="input-group-prepend"> <span class="input-group-text"><i class="fas fa-calendar-alt"></i> </span></div></div>--></div></div></div><div class="progress-background"></div><div class="progress" ng-show="enableBar"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{deProgressBarWidth}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ width: ( deProgressBarWidth + \'%\' )}">{{deProgressBarWidth}}%</div></div></form></div><div class="modal-footer mb-3"><div class="col-md-12 mt-3 text-center"> <button id="submitPay" class="btn btn-primary " ng-click="onSubmit()" disabled>Submit</button></div></div></div></div>'
+                    };
+
+                }
+            ]);
+
+            var EditPartTimeReportModel = function () {
+                this.visible = false;
+            }
+
+            EditPartTimeReportModel.prototype.open = function () {
+                this.visible = true;
+            }
+
+            EditPartTimeReportModel.prototype.close = function () {
+                this.visible = false;
+            }
+
+            app.directive('editPartTimeReport', ['$filter',
+                function ($filter) {
+                    return {
+                        restrict: 'E',
+                        scope: {
+                            model: '='
+                        },
+                        link: function (scope, element, attributes) {
+                            scope.$watch('model.visible', function (newValue) {
+                                var modalElement = element.find('.modal');
+                                modalElement.modal(newValue ? 'show' : 'hide');
+                            });
+                            //progress bar params
+                            $('.progress-background').hide();
+                            var url_string = $(location).attr("href");
+                            var url = new URL(url_string);
+                            var todayDate = new Date();
+                            var firstDay = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+                            var fifteenthDay = new Date(todayDate.getFullYear(), todayDate.getMonth(), 15);
+                            var first = $filter('date')(firstDay, 'yyyy-MM-dd');
+                            var fifteenth = $filter('date')(fifteenthDay, 'yyyy-MM-dd');
+                            scope.eid = url.searchParams.get("id");
+                            scope.enableBar = false;
+                            scope.deProgressBarWidth = 5;
+                            iCount = 10;
+                            scope.dateList = [];
+                            scope.reportDate = '';
+                            scope.dateList.push(first);
+                            scope.dateList.push(fifteenth);
+                            scope.dateList.splice(0, 0, "Select Date");
+                            scope.partTimePay = scope.dateList[0];
+                            scope.onpartlyPayChange = function (mdate) {
+                                if (mdate != "Select Date") {
+                                    $('#submitButton').prop('disabled', false);
+                                }
+                                else {
+                                    $('#submitButton').prop('disabled', true);
+                                }
+                                scope.reportDate = mdate;
+                            }
+                            scope.onSubmitClick = function () {
+                                // $('#spinner').show();
+                                // scope.deleteApi = false;
+                                $('.progress-background').show();
+                                scope.enableBar = true;
+                               // scope.reportDate = $('.datepickerModal').val();
+                                // scope.endDate = $('.datepicker2Modal').val();
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.ReportListController.postFixedAmountAPI}', scope.reportDate, scope.eid,
+                                    function (result, event) {
+                                        if (event.status) {
+                                            /*toastr.success('Fixed Amount Payment is succesfully send to netchex');
+                                            setTimeout(function () {
+                                                location.reload();
+                                            }, 2000);*/
+                                            console.log('Batch Run Time', result);
+                                            scope.CheckStatus(result);
+                                        }
+                                        else {
+                                            toastr.error('Some error has occur');
+                                        }
+                                    });
+                            }
+
+                            scope.CheckStatus = function (runTime) {
+
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.ReportListController.CheckStatus}', runTime, 'NetchexSalaryPartFixAmountBatch',
+                                    function (result, event) {
+                                        if (event.status) {
+
+                                            console.log('Status Check', result);
+                                            if (result.enablePollar) {
+                                                scope.deProgressBarWidth = scope.deProgressBarWidth == 5 ? 0 : scope.deProgressBarWidth;
+                                                scope.deProgressBarWidth = (iCount != 0 ? (iCount > 95 ? 95 : iCount) / 100 * 100 : 0);
+
+                                                setTimeout(function () {
+                                                    scope.CheckStatus(runTime);
+                                                }, 5000);
+
+                                            } else {
+                                                ///Add code to hide Loader///
+                                                $('#spinner').hide();
+                                                var message = JSON.parse(result.Message);
+                                                if (message[0].IsSuccess) {
+                                                    toastr.success('Fixed Amount Payment is succesfully send to netchex');
+                                                    $('.partTimeModal').hide();
+                                                    location.reload();
+                                                } else {
+                                                    toastr.error(message[0].Messages[0]);
+                                                    $('.partTimeModal').hide();
+                                                }
+                                                scope.strStatus = 'Completed';
+                                            }
+                                            iCount += (iCount >= 70 ? 1 : 10);
+                                        }
+                                        else {
+                                            toastr.error('Some error has occur');
+                                            $('.partTimeModal').hide();
+                                        }
+                                        scope.$apply();
+                                    }, { escape: false }
+                                );
+
+                            }
+                            // scope.onDeleteClick = function () {
+                            //     // scope.deleteApi = true;
+                            //     Visualforce.remoting.Manager.invokeAction(
+                            //         '{!$RemoteAction.ReportListController.DeleteNetchexCallout}', scope.startDate, scope.endDate,
+                            //         function (result, event) {
+                            //             if (event.status) {
+                            //                 toastr.success('Successfully deleted data');
+                            //                 setTimeout(function () {
+                            //                     location.reload();
+                            //                 }, 2000);
+
+                            //             }
+                            //             else {
+                            //                 toastr.error('Some error has occur');
+                            //             }
+                            //         });
+                            // }
+                            element.on('shown.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = true;
+                                });
+                            });
+
+                            element.on('hidden.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = false;
+
+                                });
+                            });
+
+                        },
+                        template: '<div class="modal fade driver-dashboard-monthrecord show in partTimeModal" tabindex="-1" role="dialog" aria-labelledby="driver-dashboard-monthrecord" id="driver-dashboard-monthrecord"><div class="fade modal-backdrop"></div><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content rounded-0"> <button type="button" class="close popup-close-btn" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button><div class="modal-body"><h4>Part Time Fixed Amount Payment Report</h4><div class="modal-divider"></div><form name="signup" class="form" id="myform"><div class="form-row"><div class="form-group-theme row-inline margin-center"> <label for="Date:" class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-form-label form-lable startDate">Date: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select date</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 datepickerinput"> <select ng-model="partTimePay" ng-change="onpartlyPayChange(partTimePay)" class="browser-default custom-select custom-select-xl"><option ng-repeat="dt in dateList" ng-selected="{{partTimePay == dt}}" value="{{dt}}">{{dt}}</option> </select></div></div></div><div class="progress-background"></div><div class="progress" ng-show="enableBar"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{deProgressBarWidth}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ width: ( deProgressBarWidth + \'%\' )}">{{deProgressBarWidth}}%</div></div></form></div><div class="modal-footer mb-3"><div class="col-md-12 mt-3 text-center"> <button id="submitButton" class="btn btn-primary " ng-click="onSubmitClick()" disabled>Submit</button></div></div></div></div>'
+                    };
+
+                }
+            ]);
+
+            var EditFullTimeReportModel = function () {
+                this.visible = false;
+            }
+
+            EditFullTimeReportModel.prototype.open = function () {
+                this.visible = true;
+            }
+
+            EditFullTimeReportModel.prototype.close = function () {
+                this.visible = false;
+            }
+
+            app.directive('editFullTimeReport', ['$filter',
+                function ($filter) {
+                    return {
+                        restrict: 'E',
+                        scope: {
+                            model: '='
+                        },
+                        link: function (scope, element, attributes) {
+                            scope.$watch('model.visible', function (newValue) {
+                                var modalElement = element.find('.modal');
+                                modalElement.modal(newValue ? 'show' : 'hide');
+                            });
+                            var url_string = $(location).attr("href");
+                            var url = new URL(url_string);
+                            scope.eid = url.searchParams.get("id");
+                            scope.payPeriod = '{!($Label.ERMIPayPeriodDate)}'
+                            scope.dateArr = [];
+                            scope.defaultOption = "Select Pay Period";
+                            scope.dateArr = scope.payPeriod.split(',');
+                            scope.dateArr.splice(0, 0, scope.defaultOption);
+                            scope.payRole = scope.dateArr[0];
+                            scope.startDate = '';
+                            scope.endDate = '';
+                            //progress bar params
+                            $('.progress-background').hide();
+                            scope.enableBar = false;
+                            scope.deProgressBarWidth = 5;
+                            iCount = 10;
+
+                            scope.onPayPeriodChange = function (periodOpt) {
+                                scope.splitArr = periodOpt.split(' to ');
+                                scope.startDate = scope.splitArr[0];
+                                scope.endDate = scope.splitArr[1];
+                            }
+                            scope.onSubmitPayClick = function () {
+                                $('.progress-background').show();
+                                scope.enableBar = true;
+                                // $('#spinner').show();
+                                //  scope.deleteApi = false;
+                                //  scope.startDate = $('.datepickerReport1').val();
+                                //  scope.endDate = $('.datepickerReport2').val();
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.ReportListController.postHalfFPFullDriverAPI}', scope.startDate, scope.endDate, scope.eid,
+                                    function (result, event) {
+                                        if (event.status) {
+                                            scope.CheckStatus(result);
+                                            //   toastr.success('Full Time Fixed Amount Payment is succesfully send.');
+                                            //  setTimeout(function () {
+                                            //   location.reload();
+                                            //    }, 2000);
+
+                                        }
+                                        else {
+                                            toastr.error('Some error has occur');
+                                        }
+                                    });
+                            }
+                            scope.CheckStatus = function (runTime) {
+
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.ReportListController.CheckStatus}', runTime, 'NetchexFulltimeHalfFPBatch',
+                                    function (result, event) {
+                                        if (event.status) {
+
+                                            console.log('Status Check', result);
+                                            if (result.enablePollar) {
+                                                scope.deProgressBarWidth = scope.deProgressBarWidth == 5 ? 0 : scope.deProgressBarWidth;
+                                                scope.deProgressBarWidth = (iCount != 0 ? (iCount > 95 ? 95 : iCount) / 100 * 100 : 0);
+
+                                                setTimeout(function () {
+                                                    scope.CheckStatus(runTime);
+                                                }, 5000);
+
+                                            } else {
+                                                ///Add code to hide Loader///
+                                                $('#spinner').hide();
+                                                var message = JSON.parse(result.Message);
+                                                if (message[0].IsSuccess) {
+                                                    toastr.success('Full Time Fixed Amount Payment is succesfully send to netchex');
+                                                    $('.fullTimeModal').hide();
+                                                    location.reload();
+                                                } else {
+                                                    toastr.error(message[0].Messages[0]);
+                                                    $('.fullTimeModal').hide();
+                                                }
+                                                scope.strStatus = 'Completed';
+                                            }
+                                            iCount += (iCount >= 70 ? 1 : 10);
+                                        }
+                                        else {
+                                            toastr.error('Some error has occur');
+                                            $('.fullTimeModal').hide();
+                                        }
+                                        scope.$apply();
+                                    }, { escape: false }
+                                );
+
+                            }
+
+
+                            // scope.onDeletePayClick = function () {
+                            //     // scope.deleteApi = true;
+                            //     Visualforce.remoting.Manager.invokeAction(
+                            //         '{!$RemoteAction.ReportListController.DeleteNetchexCallout}', scope.startDate, scope.endDate,
+                            //         function (result, event) {
+                            //             if (event.status) {
+                            //                 toastr.success('Successfully deleted data');
+                            //                 setTimeout(function () {
+                            //                     location.reload();
+                            //                 }, 2000);
+
+                            //             }
+                            //             else {
+                            //                 toastr.error('Some error has occur');
+                            //             }
+                            //         });
+                            // }
+                            element.on('shown.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = true;
+                                });
+                            });
+
+                            element.on('hidden.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = false;
+
+                                });
+                            });
+
+                        },
+                        template: '<div class="modal fade driver-dashboard-monthrecord show in fullTimeModal" tabindex="-1" role="dialog" aria-labelledby="driver-dashboard-monthrecord" id="driver-dashboard-monthrecord"><div class="fade modal-backdrop"></div><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content rounded-0"> <button type="button" class="close popup-close-btn" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button><div class="modal-body"><h4>Salary and Full Time Fixed Amount Payment Report</h4><div class="modal-divider"></div><form name="signup" class="form" id="myform"><div class="form-row"><div class="form-group-theme row-inline"> <label for="payRole:" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label form-lable payRole">Pay Period: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select pay period</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-6 col-lg-6 col-md-6 col-sm-6"> <select ng-model="payRole" ng-change="onPayPeriodChange(payRole)" class="browser-default custom-select custom-select-xl custom-payPeriod"><option ng-repeat="date in dateArr" ng-selected="{{payRole == date}}" value="{{date}}">{{date}}</option> </select></div></div></div><div class="progress-background"></div><div class="progress" ng-show="enableBar"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{deProgressBarWidth}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ width: ( deProgressBarWidth + \'%\' )}">{{deProgressBarWidth}}%</div></div></form></div><div class="modal-footer mb-3"><div class="col-md-12 mt-3 text-center"> <button id="submitPayButton" class="btn btn-primary" ng-click="onSubmitPayClick()">Submit</button></div></div></div></div>'
+                    };
+
+                }
+            ]);
+
+            var DeleteNetchexReportModel = function () {
+                this.visible = false;
+            }
+            DeleteNetchexReportModel.prototype.open = function () {
+                this.visible = true;
+            }
+            DeleteNetchexReportModel.prototype.close = function () {
+                this.visible = false;
+            }
+
+            app.directive('deleteNetchexReport', ['$filter',
+                function ($filter) {
+                    return {
+                        restrict: 'E',
+                        scope: {
+                            model: '='
+                        },
+                        link: function (scope, element, attributes) {
+                            scope.$watch('model.visible', function (newValue) {
+                                var modalElement = element.find('.modal');
+                                modalElement.modal(newValue ? 'show' : 'hide');
+                            });
+                            //progress bar params
+                            $('.progress-background').hide();
+                            scope.enableBar = false;
+                            scope.deProgressBarWidth = 5;
+                            iCount = 10;
+                            scope.onDeletePayClick = function () {
+                                // scope.deleteApi = true;
+                                $('.progress-background').show();
+                                scope.enableBar = true;
+                                scope.startDate = $('.datepickerReport1').val();
+                                scope.endDate = $('.datepickerReport2').val();
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.ReportListController.DeleteNetchexCallout}', scope.startDate, scope.endDate,
+                                    function (result, event) {
+                                        if (event.status) {
+                                            //       toastr.success('Successfully deleted data');
+                                            //  setTimeout(function () {
+                                            //    location.reload();
+                                            //   }, 2000);
+                                            console.log('Batch Run Time', result);
+                                            scope.CheckStatus(result);
+                                        }
+                                        else {
+                                            toastr.error('Some error has occur');
+                                            $('.deleteNetchexReport').hide();
+                                        }
+
+                                    });
+                            }
+
+                            scope.CheckStatus = function (runTime) {
+
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.ReportListController.CheckStatus}', runTime, 'NetchexDeleteCallout',
+                                    function (result, event) {
+                                        if (event.status) {
+
+                                            console.log('Status Check', result);
+                                            if (result.enablePollar) {
+                                                scope.deProgressBarWidth = scope.deProgressBarWidth == 5 ? 0 : scope.deProgressBarWidth;
+                                                scope.deProgressBarWidth = (iCount != 0 ? (iCount > 95 ? 95 : iCount) / 100 * 100 : 0);
+
+                                                setTimeout(function () {
+                                                    scope.CheckStatus(runTime);
+                                                }, 5000);
+
+                                            } else {
+                                                ///Add code to hide Loader///
+                                                $('#spinner').hide();
+                                                //var message = JSON.parse(result.Message);
+                                                //  if(message[0].IsSuccess) {
+                                                toastr.success('Successfully deleted data');
+                                                $('.deleteNetchexReport').hide();
+                                                location.reload();
+                                                // } else {
+                                                //   toastr.error(message[0].Messages[0]);
+                                                //  $('.deleteNetchexReport').hide();
+                                                //   }
+                                                scope.strStatus = 'Completed';
+                                            }
+                                            iCount += (iCount >= 70 ? 1 : 10);
+                                        }
+                                        else {
+                                            toastr.error('Some error has occur');
+                                            $('.deleteNetchexReport').hide();
+                                        }
+                                        scope.$apply();
+                                    }, { escape: false }
+                                );
+
+                            }
+                            element.on('shown.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = true;
+                                });
+                            });
+
+                            element.on('hidden.bs.modal', function () {
+                                scope.$apply(function () {
+                                    scope.model.visible = false;
+
+                                });
+                            });
+
+                        },
+                        template: '<div class="modal fade driver-dashboard-monthrecord show in deleteNetchexReport" tabindex="-1" role="dialog" aria-labelledby="driver-dashboard-monthrecord" id="driver-dashboard-monthrecord"><div class="fade modal-backdrop"></div><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content rounded-0"> <button type="button" class="close popup-close-btn" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button><div class="modal-body"><h4>Delete Netchex Report</h4><div class="modal-divider"></div><form name="signup" class="form" id="myform"><div class="form-row"><div class="form-group-theme row-inline"> <label for="startDate:" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label form-lable startDate">Start Date: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select start date</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 datepickerinput"><div class="input-group"> <input id="report-startdatepicker" class="form-control rounded-0 datepickerReport1" placeholder="Select Start Date" required="true" ng-model="selectedstartDate" /><div class="input-group-prepend"> <span class="input-group-text"> <i class="fas fa-calendar-alt"></i> </span></div></div></div></div><div class="form-group-theme row-inline"> <label for="endDate:" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-form-label form-lable endDate">End Date: <span class="tagquestion1" data-toggle="tooltip" data-placement="top" data-html="true" title="" data-original-title="<b>Please select end date</b>"> <i class="fa fa-question"></i> </span> </label><div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 datepickerinput"><div class="input-group"> <input id="report-enddatepicker" class="form-control rounded-0 datepickerReport2" placeholder="Select End Date" required="true" ng-model="selectedendDate" /><div class="input-group-prepend"> <span class="input-group-text"> <i class="fas fa-calendar-alt"></i> </span></div></div></div></div></div><div class="progress-background"></div><div class="progress" ng-show="enableBar"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{deProgressBarWidth}}" aria-valuemin="0" aria-valuemax="100" ng-style="{ width: ( deProgressBarWidth + \'%\' )}">{{deProgressBarWidth}}%</div></div></form></div><div class="modal-footer mb-3"><div class="col-md-12 mt-3 text-center"> <button id="deletePayButton" class="btn btn-secondary" ng-click="onDeletePayClick()" disabled>Delete</button></div></div></div></div>'
+                    };
+
+                }
+            ]);
+
+            app.controller('reportController', ['$scope', '$filter', function ($scope, $filter) {
+                $scope.ListAllReports = {!AllReports
+
+            }
+            console.log($scope.ListAllReports);
+            $scope.showtaxdifferently = true;
+            angular.forEach($scope.ListAllReports, function (report) {
+                if (report.categoryName != undefined && report.categoryName == "Tax Liability Reports") {
+                    $scope.showtaxdifferently = false;
+                }
+            });
+            $('#spinner').hide();
+            var url_string = $(location).attr("href");
+            var url = new URL(url_string);
+            $scope.AISReport = 'AIS Report';
+            $scope.showteam = url.searchParams.get("showteam");
+            $scope.accid = url.searchParams.get("accid");
+            $scope.id = url.searchParams.get("id");
+            $scope.spbsId = '{!($Label.SPBS_Account)}';
+            $scope.deltaId = '{!($Label.Delta_Account)}';
+            $scope.antonpaarId = '{!($Label.Anton_Paar)}';
+            $scope.ERMIAcc = '{!($Label.ERMI_Account)}';
+            $scope.FrampAcc = '{!($Label.FramptonConstruction)}';
+            $scope.AISId = '{!($Label.AISAccount)}';
+            var ERMIAdminAcc = '{!($Label.ERMI_ADMIN_ID)}';
+            $scope.adminIDs = [];
+            $scope.adminIDs = ERMIAdminAcc.split(',');
+            $scope.admindriver = false;
+            $scope.editDateModel = new EditLockDateModel();
+            // $scope.stayTimeReportModel = new StayTimeReportModel();
+            $scope.editTimeReportModel = new EditTimeReportModel();
+            $scope.editMonthlyTaxReportModel = new EditMonthlyTaxReportModel();
+            // $scope.editTimeCustomReportModel = new EditTimeCustomReportModel();
+            $scope.editNetchexReportModel = new EditNetchexReportModel();
+            $scope.editMonthlyNetchexReportModel = new EditMonthlyNetchexReportModel();
+            $scope.editPartTimeReportModel = new EditPartTimeReportModel();
+            $scope.editFullTimeReportModel = new EditFullTimeReportModel();
+            $scope.deleteNetchexReportModel = new DeleteNetchexReportModel();
+            $scope.admindriver = url.searchParams.get("admindriver");
+            if ($scope.admindriver == undefined || $scope.admindriver == '') {
+                $scope.admindriver = false;
+            }
+         
+        }]);
+        </script>
+    </head>
+
+    <body ng-app="reportModule" ng-controller="reportController" ng-cloak="true">
+        <header>
+            <div class="main-header sticky" id="myHeader">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 p-0">
+                            <nav class="navbar navbar-expand-md my-0 my-md-1 px-0">
+                                <a class="navbar-brand col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-0" ng-show="!admindriver" href="/app/admindashboard?accid={{accid}}&id={{id}}&showteam={{showteam}}">
+                                    <img src="{!URLFOR($Resource.EmcCSS,'emc-design/assets/images/logo/mBurse-logo_rev.png')}" class="img-fluid" href="javascript:void(0)"
+                                        alt="logo" />
+                                </a>
+                                <a class="navbar-brand col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-0" ng-show="admindriver" href="/app/admindriverdashboard?accid={{accid}}&id={{id}}&showteam={{showteam}}&admindriver=true">
+                                    <img src="{!URLFOR($Resource.EmcCSS,'emc-design/assets/images/logo/mBurse-logo_rev.png')}" class="img-fluid" href="javascript:void(0)"
+                                        alt="logo" />
+                                </a>
+
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                                    <span class="navbar-toggler-icon">
+                                        <i class="fa fa-bars"></i>
+                                    </span>
+                                </button>
+                                <div class="collapse navbar-collapse flex-column col-12 col-sm-6 col-md-9 col-lg-9 col-xl-9 ml-3 ml-sm-0 ml-lg-0 align-items-end"
+                                    id="collapsibleNavbar">
+
+                                    <ul class="navbar-nav flex-row">
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white" ng-show="!admindriver" href="/app/admindashboard?accid={{accid}}&id={{id}}&showteam={{showteam}}">Dashboard</a>
+                                            <a class="nav-link text-white" ng-show="admindriver" href="/app/admindriverdashboard?accid={{accid}}&id={{id}}&showteam={{showteam}}&admindriver=true">Dashboard</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white" ng-show="admindriver" href="/app/MileageDashboard?accid={{accid}}&id={{id}}&showteam={{showteam}}&admindriver=true">Mileage</a>
+                                            <a class="nav-link text-white" ng-show="!admindriver" href="/app/MileageDashboard?accid={{accid}}&id={{id}}&showteam={{showteam}}">Mileage</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white" ng-show="!admindriver" href="/app/roster?accid={{accid}}&id={{id}}&showteam={{showteam}}">Drivers</a>
+                                            <a class="nav-link text-white" ng-show="admindriver" href="/app/roster?accid={{accid}}&id={{id}}&showteam={{showteam}}&admindriver=true">Drivers</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link text-white" ng-show="!admindriver" href="/app/reportlist?accid={{accid}}&id={{id}}&showteam={{showteam}}">Reports</a>
+                                            <a class="nav-link text-white" ng-show="admindriver" href="/app/reportlist?accid={{accid}}&id={{id}}&showteam={{showteam}}&admindriver=true">Reports</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white" ng-show="admindriver" href="/app/driveradminmanagermydetail?accid={{accid}}&id={{id}}&showteam={{showteam}}&admindriver=true">My Details</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white" href="/app/secur/logout.jsp">Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="spinner">
+            <div class="spinner-background"></div>
+            <div class="spinner-load">
+                <div class="spinner-border text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <section class="container-fluid">
+            <div class="back-btn my-3">
+                <a ng-show="!admindriver" href="/app/admindashboard?accid={{accid}}&id={{id}}&showteam={{showteam}}">
+                    <i class="fas fa-chevron-left"></i> Back</a>
+                <a ng-show="admindriver" href="/app/admindriverdashboard?accid={{accid}}&id={{id}}&showteam={{showteam}}&admindriver=true">
+                    <i class="fas fa-chevron-left"></i> Back</a>
+            </div>
+            <div class="report-link">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div ng-repeat="report in ListAllReports">
+                            <h3 class="mb-10 d-block">{{report.categoryName}}</h3>
+                            <div ng-if="report.categoryName=='My Custom Reports'" ng-repeat="singlereport in report.currentReports">
+                                <p>
+                                    <a ng-show="!admindriver" ng-href="/app/reportdetail?accid={{accid}}&id={{id}}&reportid={{singlereport.reportId}}&showteam={{showteam}}">{{singlereport.reportName}}</a>
+                                </p>
+                                <p>
+                                    <a ng-show="admindriver" ng-href="/app/reportdetail?accid={{accid}}&id={{id}}&reportid={{singlereport.reportId}}&showteam={{showteam}}&admindriver=true">{{singlereport.reportName}}</a>
+                                </p>
+                            </div>
+                            <div ng-if="report.categoryName=='Reimbursement Reports'" ng-repeat="singlereport in report.currentReports">
+                                <!-- <p><a ng-show="!admindriver" ng-href="/app/reportdetail?accid={{accid}}&id={{id}}&reportid={{singlereport.reportId}}&showteam={{showteam}}">{{singlereport.reportName}}</a></p>   -->
+                                <p>
+                                    <a ng-show="singlereport.lockDate && singlereport.mileageLockDate == null" ng-click="editDateModel.open(singlereport.reportId)">{{singlereport.reportName}}</a>
+                                </p>
+                                <p>
+                                    <a ng-show="!admindriver && (!singlereport.lockDate && singlereport.mileageLockDate == null)" ng-href="/app/reportdetail?accid={{accid}}&id={{id}}&reportid={{singlereport.reportId}}&showteam={{showteam}}">{{singlereport.reportName}}</a>
+                                </p>
+                                <p>
+                                    <a ng-show="admindriver && (!singlereport.lockDate && singlereport.mileageLockDate == null)" ng-href="/app/reportdetail?accid={{accid}}&id={{id}}&reportid={{singlereport.reportId}}&showteam={{showteam}}&admindriver=true">{{singlereport.reportName}}</a>
+                                </p>
+                                <p>
+                                    <a ng-show="!admindriver && singlereport.mileageLockDate != null" ng-href="/app/reportdetail?accid={{accid}}&id={{id}}&reportid={{singlereport.reportId}}&showteam={{showteam}}">{{singlereport.reportName}}</a>
+                                </p>
+                                <p>
+                                    <a ng-show="admindriver &&  singlereport.mileageLockDate != null" ng-href="/app/reportdetail?accid={{accid}}&id={{id}}&reportid={{singlereport.reportId}}&showteam={{showteam}}&admindriver=true">{{singlereport.reportName}}</a>
+                                </p>
+                            </div>
+
+                            <div ng-if="report.categoryName=='Tax Liability Reports'">
+                                <p>
+                                    <a ng-show="!admindriver" href="/app/ReportofDriverCompliance?accid={{accid}}&showteam={{showteam}}&id={{id}}&reportid ='compliancecalculationreport'">Tax Liability</a>
+                                </p>
+                                <p>
+                                    <a ng-show="admindriver" href="/app/ReportofDriverCompliance?accid={{accid}}&showteam={{showteam}}&id={{id}}&reportid ='compliancecalculationreport'&admindriver=true">Tax Liability</a>
+                                </p>
+                                <p ng-if="accid === spbsId || accid === deltaId || accid === antonpaarId">
+                                    <a href="/app/AnnualComplianceReport?accid={{accid}}&showteam={{showteam}}&id={{id}}" title="This report includes details about drivers who's compliance status is yes">Annual Tax Liability Report </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div ng-if="accid === AISId">
+                            <p>
+                                <a ng-click="editNetchexReportModel.open()">Biweekly Reimbursement Report</a>
+                            </p>
+                        </div>
+                        <div ng-if="accid === FrampAcc">
+                            <p>
+                                <a ng-click="editTimeReportModel.open()"> Job Costing Summary Report</a>
+                            </p>
+                        </div>
+                        <div ng-repeat="admin in adminIDs ">
+                            <div ng-if="id === admin">
+                                <p>
+                                    <a ng-click="editTimeReportModel.open()">Time and Attendance Summary Report</a>
+                                </p>
+                                <p>
+                                    <a ng-click="editMonthlyTaxReportModel.open()">Monthly Tax Report</a>
+                                </p>
+                                <!-- <p>
+                                    <a ng-click="editTimeCustomReportModel.open()">Time and Attendance Report</a>
+                                </p> -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div ng-repeat="admin in adminIDs ">
+                            <div ng-if="id === admin">
+                                <h3 class="mb-10 d-block">NetChex Payable Reports</h3>
+                                <p>
+                                    <a ng-click="editNetchexReportModel.open()">Bi-weekly Time and Attendance Payment</a>
+                                </p>
+                                <p>
+                                    <a ng-click="editFullTimeReportModel.open()">Bi-weekly Salary and Full Time Fixed Payment</a>
+                                </p>
+                                <p>
+                                    <a ng-click="editMonthlyNetchexReportModel.open()">Monthly NetChex Variable Payment</a>
+                                </p>
+                                <p>
+                                    <a ng-click="editPartTimeReportModel.open()">Monthly Part Time Fixed Amount Payment</a>
+                                </p>
+
+                                <p>
+                                    <a ng-click="deleteNetchexReportModel.open()">Delete NetChex Report</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div ng-show="showtaxdifferently">
+                            <h3 class="mb-10 d-block">Tax Liability Reports</h3>
+                            <p>
+                                <a ng-show="!admindriver" href="/app/ReportofDriverCompliance?accid={{accid}}&showteam={{showteam}}&id={{id}}&reportid ='compliancecalculationreport'">Tax Liability</a>
+                            </p>
+                            <p>
+                                <a ng-show="admindriver" href="/app/ReportofDriverCompliance?accid={{accid}}&showteam={{showteam}}&id={{id}}&reportid ='compliancecalculationreport'&admindriver=true">Tax Liability</a>
+                            </p>
+                            <p ng-if="accid === spbsId || accid === deltaId || accid === antonpaarId">
+                                <a href="/app/AnnualComplianceReport?accid={{accid}}&showteam={{showteam}}&id={{id}}" title="This report includes details about drivers who's compliance status is yes">Annual Tax Liability Report </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <edit-lock-Date model="editDateModel"></edit-lock-Date>
+            <edit-time-attendance-Report model="editTimeReportModel"></edit-time-attendance-Report>
+            <edit-monthly-tax-Report model="editMonthlyTaxReportModel"></edit-monthly-tax-Report>
+            <!-- <edit-time-custom-Report model="editTimeCustomReportModel"></edit-time-custom-Report> -->
+            <edit-netchex-Report model="editNetchexReportModel"></edit-netchex-Report>
+            <edit-monthly-netchex-Report model="editMonthlyNetchexReportModel"></edit-monthly-netchex-Report>
+            <edit-part-time-Report model="editPartTimeReportModel"></edit-part-time-Report>
+            <edit-full-time-Report model="editFullTimeReportModel"></edit-full-time-Report>
+            <delete-netchex-Report model="deleteNetchexReportModel"></delete-netchex-Report>
+            <!-- <stay-time-report model="stayTimeReportModel"></stay-time-report> -->
+        </section>
+
+
+        <apex:include pageName="EMC_Common_footer" />
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#report-lockdatepicker').datepicker({
+                    format: "mm/dd/yy",
+                    autoclose: true,
+                    todayHighlight: true
+                });
+                $('.reimbdatepicker').datepicker({
+                    format: "yyyy-mm-dd",
+                    autoclose: true,
+                    todayHighlight: true,
+                    orientation: "bottom left"
+                });
+                $('.reimbdatepicker2').datepicker({
+                    format: "yyyy-mm-dd",
+                    autoclose: true,
+                    todayHighlight: true,
+                    orientation: "bottom left"
+                });
+                $('.datepicker1').datepicker({
+                    format: "yyyy-mm-dd",
+                    autoclose: true,
+                    todayHighlight: true,
+                    orientation: "bottom left"
+                });
+                $('.datepicker2').datepicker({
+                    format: "yyyy-mm-dd",
+                    autoclose: true,
+                    todayHighlight: true,
+                    orientation: "bottom left"
+                });
+                $('.datepickerModal').datepicker({
+                    format: "yyyy-mm-dd",
+                    autoclose: true,
+                    todayHighlight: true,
+                    orientation: "bottom left"
+                });
+                $('.datepicker2Modal').datepicker({
+                    format: "yyyy-mm-dd",
+                    autoclose: true,
+                    todayHighlight: true,
+                    orientation: "bottom left"
+                });
+                $('.datepickerReport1').datepicker({
+                    format: "yyyy-mm-dd",
+                    autoclose: true,
+                    todayHighlight: true,
+                    orientation: "bottom left"
+                });
+                $('.datepickerReport2').datepicker({
+                    format: "yyyy-mm-dd",
+                    autoclose: true,
+                    todayHighlight: true,
+                    orientation: "bottom left"
+                });
+                $('.reimbdatepicker').datepicker().on('change', function () {
+                    if ($(this).val() != '') {
+                        $('#downloadReimBtn').prop('disabled', false);
+                    }
+                    else {
+                        $('#downloadReimBtn').prop('disabled', true);
+                    }
+                });
+                var minDate = new Date();
+                minDate.setDate(minDate.getDate());
+                var disabled = minDate;
+                $('#report-lockdatepicker').datepicker('setEndDate', disabled);
+                $('#report-lockdatepicker').datepicker('setStartDate', disabled);
+                $('.datepicker1').on('change', function () {
+                    enableDisableBtn();
+                });
+                // $('.datepickerModal, .datepicker2Modal').on('change', function () {
+                //     enableModalDisableBtn();
+                // });
+                $('.datepickerModal').on('change', function () {
+                    enableModalDisableBtn();
+                });
+                $('.datepickerReport1, .datepickerReport2').on('change', function () {
+                    enableModalBtn();
+                });
+            });
+            function enableDisableBtn() {
+                var startVal = $('.datepicker1').val().trim();
+                // var endVal = $('.datepicker2').val().trim();
+                // var disableBtn = startVal.length == 0 || endVal.length == 0;
+                var disableBtn = startVal.length == 0;
+                if (disableBtn) {
+                    $('#submitPay').prop('disabled', true);
+                    //  $('#deletePay').prop('disabled', true);
+                }
+                else {
+                    $('#submitPay').prop('disabled', false);
+                    //    $('#deletePay').prop('disabled', false);
+                }
+            }
+            function enableModalDisableBtn() {
+                var stVal = $('.datepickerModal').val().trim();
+                //  var enVal = $('.datepicker2Modal').val().trim();
+                var disableModalBtn = stVal.length == 0;
+                if (disableModalBtn) {
+                    $('#submitButton').prop('disabled', true);
+                    // $('#deleteButton').prop('disabled', true);
+                }
+                else {
+                    $('#submitButton').prop('disabled', false);
+                    //  $('#deleteButton').prop('disabled', false);
+                }
+            }
+            function enableModalBtn() {
+                var stdateVal = $('.datepickerReport1').val().trim();
+                var endateVal = $('.datepickerReport2').val().trim();
+                var disableDateModalBtn = stdateVal.length == 0 || endateVal.length == 0;
+                if (disableDateModalBtn) {
+                    $('#submitPayButton').prop('disabled', true);
+                    $('#deletePayButton').prop('disabled', true);
+                }
+                else {
+                    $('#submitPayButton').prop('disabled', false);
+                    $('#deletePayButton').prop('disabled', false);
+                }
+            }
+        </script>
+    </body>
+</apex:page>

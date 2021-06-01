@@ -1,0 +1,19 @@
+<apex:page controller="UKGLoggingController" showHeader="false" sidebar="false" standardStylesheets="true">
+<apex:Pagemessages id="msg"/>
+<apex:form >
+<p><b>Login Page</b><br /></p>
+<apex:panelGrid columns="2" style="margin-top:1em;">
+<p><b>UserName</b><br />
+<apex:inputText required="true" id="username" value="{!username}"/>
+</p>
+<p><b>Password</b><br />
+<apex:inputSecret id="password" value="{!password}"/>
+</p>
+    <apex:commandButton value="Login" id="login"  immediate="true"/>
+  <!--<apex:commandButton action="{!registerUser}" value="Register" id="register"  immediate="true"/>
+  <apex:commandButton action="{!registerUser}" value="Save" id="save"/>
+   <apex:commandButton action="{!registerUser}" value="Cancel" id="cancel"/>
+	-->
+</apex:panelGrid>
+</apex:form>
+</apex:page>

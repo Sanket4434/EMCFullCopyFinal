@@ -1,0 +1,271 @@
+<apex:page showHeader="false" title="mBurse: Login" sidebar="false" docType="html-5.0" controller="adminLoginController" >
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Login Template</title>
+        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.EmcCSS,'emc-design/assets/css/login.css')}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+        <style>
+           .login-btn{
+                background: none !important;
+                background-color: #000000 !important;
+            }
+            .login-btn:hover{
+                background-color: transparent !important;
+            }
+            .browser-wrapper{
+                margin-bottom: 19px;
+                margin-left: 65px;
+            }
+            .browser-text {
+                font-size: 16px;
+                color: #919aa3;
+            }
+            .btn:disabled{
+                cursor: no-drop;
+            }
+            .b-logo{
+                 height: 24px;
+                width: 24px;
+            }
+            .loginError{
+                padding: 25px 50px 0px;
+                font-size: 18px;
+                color: #FF0000;
+                font-weight: bold;
+            }
+            label.error {
+                color: red;
+                font-size: 1rem;
+                display: block;
+                margin-top: 5px;
+            }
+
+            input.error {
+                border: 1px dashed red !important;
+                font-weight: 300 !important;
+                color: red;
+            }
+            .toast-info {
+                background-color: #002366;
+            }
+            .toast-error {
+                background-color: #FF0000 !important;
+            }
+            #toast-container > div {
+            opacity: 5.8 !important;
+            border-radius: 3px 3px 3px 3px !important;
+            width: 100% !important;
+            margin: 10px;
+            
+            }
+            a{
+                cursor: pointer;
+            }
+        </style>
+        <script>
+            $ = jQuery.noConflict();
+
+            $(document).ready(function () {
+                var validator = $("form[id='createform']").validate({
+                    debug: true,
+                    rules: {
+                        username: "required",
+                        password: "required",
+                    },
+                    messages: {
+                        username: "Please enter username",
+                        password: "Please enter a password"
+                    },
+                    submitHandler: function (form) {
+                        var unameid = document.getElementById('username').value;
+                        var passid = document.getElementById('password').value;
+                        console.log(unameid, passid);
+
+                        Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.adminLoginController.login}', unameid, passid,
+                            function (result, event) {
+                                if (event.status) {
+                                    if (result.isValid == 'valid') {
+                                        console.log(result);
+                                        if (result.pgReference != null || result.pgReference != undefined) {
+                                            var textArea = document.createElement('textarea');
+                                            textArea.innerHTML = result.pgReference;
+                                            var urlToLoad = textArea.value;
+                                            window.location.href = urlToLoad;
+                                        }else{
+                                            console.log(result);
+                                            toastr.error('Your Password Is Incorrect!');
+                                            document.getElementById('password').value = "";
+                                            var errorArea = document.getElementById('errorMsg');
+                                            if(result.remainingAttempt != 0){
+                                                errorArea.innerHTML = "You have "+ result.remainingAttempt  +" attempts before you are locked out."
+                                            }else{
+                                                let userelement =  document.getElementById('username');
+                                                let passelement =  document.getElementById('password');
+                                                let loginBtn = document.getElementById('login');
+                                                errorArea.innerHTML = "You are locked out for 15 minutes.";
+                                                userelement.disabled = true;
+                                                passelement.disabled = true;
+                                                loginBtn.disabled = true;
+                                                if(userelement.disabled === true && passelement.disabled === true){
+                                                    setTimeout(() => {
+                                                        toastr.info('You are now locked in. You can try again to Sign in!');
+                                                        errorArea.innerHTML = "";
+                                                        userelement.disabled = false;
+                                                        passelement.disabled = false;
+                                                        loginBtn.disabled = false;
+                                                        userelement.value = "";
+                                                        passelement.value = "";
+                                                    }, 900000)
+                                                }
+                                            }
+                                          
+                                        }
+                                    }
+                                   else {
+                                        console.log(result);
+                                        document.getElementById('username').value = "";
+                                        document.getElementById('password').value = "";
+                                        $.confirm({
+                                            title: 'Encountered an error!',
+                                            content: ' Your Username Or Password Is Incorrect !',
+                                            type: 'red',
+                                            animation: 'rotateXR',
+                                            closeAnimation: 'rotateXR',
+                                            typeAnimated: true,
+                                            buttons: {
+                                                tryAgain: {
+                                                    text: 'Try again',
+                                                    btnClass: 'btn-red',
+                                                    action: function () {
+                                                    }
+                                                },
+                                                close: {
+                                                    isHidden: true // hide the button
+                                                }
+                                            }
+                                        });
+                                    }
+                                 
+                                } else if (event.type === 'exception') {
+                                    // document.getElementById("responseErrors").innerHTML =
+                                    //     event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                                    console.log(event.message);
+                                } else {
+                                    console.log(event.message);
+                                }
+                            },
+                            { escape: true }
+                        );
+                    }
+                })
+            });
+        
+            this.setOptions = function () {
+                    toastr.options.positionClass = "toast-bottom-right";
+                    toastr.options.closeButton = true;
+                    toastr.options.progressBar = true;
+                };
+
+            this.setOptions();
+            this.clear = function () {
+                toastr.clear();
+            };
+
+            forgotPassword = function(){
+                Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.adminLoginController.redirectToMyVF}',
+                            function (result, event) {
+                                if (event.status) {
+                                    if (result != null) {
+                                        window.location.href = result;
+                                        console.log(result);
+                                    } else {
+                                        $.confirm({
+                                            title: 'Encountered an error!',
+                                            content: 'Invalid Return Value In Method !',
+                                            type: 'red',
+                                            animation: 'rotateXR',
+                                            closeAnimation: 'rotateXR',
+                                            typeAnimated: true,
+                                            buttons: {
+                                                tryAgain: {
+                                                    isHidden: true // hide the button
+                                                },
+                                                close: {
+                                                    text: 'Close',
+                                                    btnClass: 'btn-red'
+                                                }
+                                            }
+                                        });
+                                    }
+                                 
+                                } else if (event.type === 'exception') {
+                                    // document.getElementById("responseErrors").innerHTML =
+                                    //     event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                                    console.log(event.message);
+                                } else {
+                                    console.log(event.message);
+                                }
+                            },
+                            { escape: true }
+                        );
+            }
+        </script>
+    </head>
+
+    <body>
+        <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+            <div class="container">
+                <div class="card login-card">
+                    <div class="row no-gutters">
+                        <div class="col-md-5">
+                            <img src="{!URLFOR($Resource.EmcCSS,'emc-design/assets/images/login.jpg')}" alt="login" class="login-card-img" />
+                        </div>
+                        <div class="col-md-7">
+                            <div class="loginError" id="errorMsg">
+                            </div>
+                            <div class="card-body">
+                                <div class="brand-wrapper">
+                                    <img src="{!URLFOR($Resource.EmcCSS,'emc-design/assets/images/logo/mBurse-logo.png')}" alt="logo" class="logo" />
+                                </div>
+                                <p class="login-card-description">Sign into your account</p>
+                                <form action="" class="needs-validation" id="createform">
+                                    <div class="form-group">
+                                        <label for="username" class="sr-only">Work Email Address</label>
+                                        <input type="text" name="username" id="username"   class="form-control" placeholder="Work Email Address" required="true" />
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label for="password" class="sr-only">Password</label>
+                                        <input type="password" name="password" id="password"  class="form-control" placeholder="***********" required="true" />
+                                    </div>
+                                    <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login" />
+                                </form>
+                                <a href="" class="forgot-password-link" onclick="forgotPassword();return false;">Forgot password?</a>
+                            </div>
+                            <div class="browser-wrapper">
+                                <div class="browser-text">Browser Not Supported</div>
+                                <img src="{!URLFOR($Resource.EmcCSS,'emc-design/assets/images/logo/internet-explorer.png')}" alt="logo" class="b-logo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+
+    </html>
+</apex:page>
