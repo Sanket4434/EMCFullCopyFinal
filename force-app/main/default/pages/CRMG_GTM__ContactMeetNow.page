@@ -1,3 +1,0 @@
-<apex:page standardController="Contact" extensions="CRMG_GTM.GTMMeetNowController" action="{!meetnow}">
- <apex:pageMessages ></apex:pageMessages>
-</apex:page>

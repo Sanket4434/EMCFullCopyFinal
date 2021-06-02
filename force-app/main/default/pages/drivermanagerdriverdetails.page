@@ -1435,7 +1435,6 @@
             }
             $scope.ok = function () {
                 $scope.$modalInstance.close();
-                $scope.reimbursementDialog.close();
             };
             $scope.cancel = function () {
                 $scope.$modalInstance.dismiss('cancel');

@@ -32,7 +32,7 @@
                     <Row>
                         <Cell><Data ss:Type="String">{!wrap.EmployeeId}</Data></Cell>
                         <Cell><Data ss:Type="String">{!wrap.EntryDate}</Data></Cell>
-                        <Cell><Data ss:Type="String">{!wrap.HoursOrAmount}</Data></Cell>
+                        <Cell><Data ss:Type="Number">{!wrap.HoursOrAmount}</Data></Cell>
                         <Cell><Data ss:Type="String">{!wrap.CompanyCode}</Data></Cell>
                         <Cell><Data ss:Type="String">{!wrap.GrossToNetCode}</Data></Cell>
                         <Cell><Data ss:Type="String">{!wrap.TypeCode}</Data></Cell>

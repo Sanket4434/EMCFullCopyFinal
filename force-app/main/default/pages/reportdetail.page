@@ -315,6 +315,7 @@
                         // return keyEvent.which !== 32;
                     };
                 $scope.report = {!obj_current_reportStr};
+                console.log($scope.report);
                 $scope.SPBSAcc = '{!($Label.SPBS_Account)}';
                 $scope.EngGypAcc = '{!($Label.NewEnglandGypsum)}';
                 $scope.reportname = $scope.report.Name;
@@ -508,6 +509,7 @@
                     else if (getdataofmanagervar != "nodata") {
                         $scope.getdataofmanager = getdataofmanagervar;
                     }
+                    console.log($scope.getdataofmanager);
                 var map3 = new Map();
                 $scope.valueofkey = [];
                 for(var i = 0;i<$scope.getdataofmanager.length;i++)
@@ -565,9 +567,11 @@
                                $scope.finnalData[keyData.replace(/\s/g, "")]=$scope.arrayvalues[index+1]
                              }
                             for(i = 0 ; i < $scope.numericheaderarray.length; i++){
-                                if (keyData == $scope.numericheaderarray[i]) {
-                                    $scope.finnalData[keyData.replace(/\s/g, "")] = ($scope.arrayvalues[index + 1]).toLocaleString();
-                                }
+                              
+                                if(keyData == $scope.numericheaderarray[i]){
+                                    $scope.finnalData[keyData.replace(/\s/g, "")]=($scope.arrayvalues[index+1]).toLocaleString();
+                                    
+                               }
                             }
                            
                             $scope.ind = index+1;
@@ -749,7 +753,7 @@
                         previousSortKey=keyname;
                     }
                      /* AI - 000616 : added column name ComplianceStatus InsuranceDeclarationPage and ActiveDriver */
-                    if(keyname === 'Name' || keyname === 'Email' || keyname === 'CoCode' || keyname === 'DriverName' || keyname === 'Manager' || keyname === 'ContactName'|| keyname === 'E-mail' || keyname === 'MileageApprover' || keyname === 'Status' || keyname === 'ComplianceStatus' || keyname === 'InsuranceDeclarationPage' || keyname === 'ActiveDriver'){
+                    if(keyname === 'Name' || keyname === 'Email' || keyname === 'DriverName' || keyname === 'CoCode' || keyname === 'Manager' || keyname === 'ContactName'|| keyname === 'E-mail' || keyname === 'MileageApprover' || keyname === 'Status' || keyname === 'ComplianceStatus' || keyname === 'InsuranceDeclarationPage' || keyname === 'ActiveDriver'){
                         $scope.finnalArr.sort(function (a, b) {
 
                                             var nameA = (a[keyname] == null) ? '' : (a[keyname].toLowerCase()),
@@ -769,7 +773,7 @@
                                             }
                                         })
                     }
-                    if (keyname === 'Month' || keyname === 'FixedAmount' || keyname === 'EmployeeID' || keyname === 'VariableReimbursement')) {
+                    if (keyname === 'Month' || keyname === 'FixedAmount' || keyname === 'EmployeeID' || keyname === 'VariableReimbursement') {
                                        $scope.finnalArr.sort(function (a, b) {
                                             
                                             var dateA = (a[keyname] == null) ? '' : (a[keyname]),
@@ -789,7 +793,7 @@
                                             }
                                         })
                     }
-                    if (keyname === 'TotalMileage' || keyname === 'Mileage' || keyname === 'MonthlyFixedAmount' || keyname === 'VariableAmount' || keyname === 'VariableReimbursementRate' || keyname === 'TotalMonthlyReimbursement' || keyname === 'MonthlyVariableAmount' || keyname === 'MonthlyApprovedVariableAmount' || keyname === 'TotalApprovedMiles' || keyname === 'TotalApprovedVariable' || keyname === 'TotalReimbursement' ){
+                    if (keyname === 'TotalMileage' || keyname === 'Mileage' || keyname === 'MonthlyFixedAmount' || keyname === 'VariableAmount'  || keyname === 'VariableReimbursementRate' || keyname === 'TotalMonthlyReimbursement' || keyname === 'MonthlyVariableAmount' || keyname === 'MonthlyApprovedVariableAmount' || keyname === 'TotalApprovedMiles' || keyname === 'TotalApprovedVariable' || keyname === 'TotalReimbursement') {
 
                                 $scope.finnalArr.sort(function (a, b) {
                                             var nameA = (a[keyname] == null) ? '' : parseFloat(a[keyname]),
@@ -1167,9 +1171,8 @@
                         <tbody>
                             <tr dir-paginate="row in finnalArr|itemsPerPage:pageSize|filter:search" current-page="currentPage"><!-- dataList -->
                                 <!-- <td ng-repeat="header in headerlisttosplit">{{row[header]}}</td> -->
-                                
                                  <td ng-repeat="header in headerlisttosplit">{{row[header.alias]}}</td>
-                               
+                                      
                             </tr>
                             <tr  ng-if="showbtn == true && (finnalArr | filter:search).length == 0">
                                 <td colspan="{{headerlength}}" class="table-nodata">No record available.</td>

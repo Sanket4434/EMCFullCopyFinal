@@ -22,7 +22,7 @@ export default class Paginator extends LightningElement {
     @api defaultPageSize(totalPage, perSize){
         this.pages = [];
         this.paginate = [];
-      //  console.log('inside paginate default', totalPage , perSize, Math.ceil( totalPage / perSize));
+        console.log('inside paginate default', totalPage , perSize, Math.ceil( totalPage / perSize));
         let numberOfPages = Math.ceil( totalPage / perSize);
         for (let index = 1; index <= numberOfPages; index++) {
             this.pages.push(index);

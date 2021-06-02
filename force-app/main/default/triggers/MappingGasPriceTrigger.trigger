@@ -72,7 +72,7 @@ Trigger MappingGasPriceTrigger on Employee_Mileage__c (before insert, before upd
                 
             }
             
-            //System.debug('cityStateDate has no of records ' + cityStateDate);
+            System.debug('cityStateDate has no of records ' + cityStateDate);
             if(!cityStateDate.isEmpty())
             {
                 for(Gas_Prices__c gs : [Select Id,

@@ -2064,7 +2064,7 @@
                                             {{yr}}
                                         </a>
                                     </h5>
-                                    <h5 class="mb-0 ml-5" ng-if="accid === ERMIAcc && driverType != 'Driver - Salary' ">
+                                    <!-- <h5 class="mb-0 ml-5" ng-if="accid === ERMIAcc && driverType != 'Driver - Salary' ">
                                         <a class="collapsed" data-toggle="collapse" href="#collapseTimeCard{{$index}}" aria-expanded="false" aria-controls="collapseTimeCard"
                                             ng-click="fetchTimeAttendence(yr)">
                                             T &amp; A
@@ -2075,7 +2075,7 @@
                                             ng-click="fetchReimbMileage(yr)">
                                             Reimbursement
                                         </a>
-                                    </h5>
+                                    </h5> -->
                                 </div>
                                 <div id="collapseCard{{$index}}" class="collapse" role="tabpanel" aria-labelledby="Cardheading" data-parent="#accordion">
                                     <!--  ng-show="fetchMileageClicked" -->
@@ -2148,7 +2148,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div ng-if="accid === ERMIAcc && driverType != 'Driver - Salary' " id="collapseTimeCard{{$index}}" class="collapse" role="tabpanel" aria-labelledby="Cardheading"
+                                <!-- <div ng-if="accid === ERMIAcc && driverType != 'Driver - Salary' " id="collapseTimeCard{{$index}}" class="collapse" role="tabpanel" aria-labelledby="Cardheading"
                                     data-parent="#accordion">
                                     <div class="card-body pad-0">
                                         <div class="table-responsive">
@@ -2268,7 +2268,7 @@
                                         </div>
 
                                     </div>
-                                </div> 
+                                </div> -->
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,0 @@
-<apex:page standardStylesheets="false" showHeader="true" sidebar="true" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0"
-			standardController="Contact" recordSetVar="Contacts" extensions="cirrusadv.FlightsController" id="flightPage">
-
-<c:StartFlights objType="Contact" flightsCon="{!flightsCon}" id="pageComp" />
-
-</apex:page>

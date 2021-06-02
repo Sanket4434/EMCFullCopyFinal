@@ -8,7 +8,6 @@ import approveMileages from '@salesforce/apex/GetDriverData.approveMileages';
 
 export default class ModalPopup extends LightningElement {
     @api modalHeader;
-    @track spinnerLoad = false;
     @api modalContent;
     @api approvedTripList;
     @api isChecked = false;
@@ -41,7 +40,6 @@ export default class ModalPopup extends LightningElement {
 
     // No Button Click Event
     handleNoEmailSend() {
-        this.spinnerLoad = true;
         if (this.isChecked != null) {
             this.sendEmailValue = false;
             this.SendEmailCheck();
@@ -55,26 +53,27 @@ export default class ModalPopup extends LightningElement {
     }
 
     // Will Send Email To List Of Users For Approve / Reject
-  async  SendEmailCheck() {
-      try{
+    SendEmailCheck() {
         this.approveTrip = this.approvedTripList;
         this.selectedCheck = this.isChecked;
-        let approveData = await approveMileages({
+        approveMileages({
                 checked: this.selectedCheck,
                 emailaddress: this.approveTrip,
                 sendEmail: this.sendEmailValue
-            });
-            if(approveData){
-                const emailSend = new CustomEvent("handlesendemailevent", {
-                    detail: approveData
-                });
-                this.dispatchEvent(emailSend);
-                this.spinnerLoad = false;
-            }
-      }catch (error) {
-        console.log(error);
-    }
-       
+            })
+            .then((result) => {
+                console.log(result);
+                if(result){
+                    const emailSend = new CustomEvent("handlesendemailevent", {
+                        detail: result
+                    });
+              
+                    this.dispatchEvent(emailSend);
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     // Close 'X' Event

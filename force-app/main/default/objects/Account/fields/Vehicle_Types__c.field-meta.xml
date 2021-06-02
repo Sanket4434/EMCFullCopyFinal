@@ -8,108 +8,9 @@
     <trackHistory>false</trackHistory>
     <type>MultiselectPicklist</type>
     <valueSet>
+        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
-            <value>
-                <fullName>2021 test vehicle</fullName>
-                <default>false</default>
-                <label>2021 test vehicle</label>
-            </value>
-            <value>
-                <fullName>2021 new test</fullName>
-                <default>false</default>
-                <label>2021 new test</label>
-            </value>
-            <value>
-                <fullName>2021 Test Ford</fullName>
-                <default>false</default>
-                <label>2021 Test Ford</label>
-            </value>
-            <value>
-                <fullName>2019 Ford Fusion</fullName>
-                <default>false</default>
-                <label>2019 Ford Fusion</label>
-            </value>
-            <value>
-                <fullName>2019 Honda Civic</fullName>
-                <default>false</default>
-                <label>2019 Honda Civic</label>
-            </value>
-            <value>
-                <fullName>2019 Chevrolet Malibu</fullName>
-                <default>false</default>
-                <label>2019 Chevrolet Malibu</label>
-            </value>
-            <value>
-                <fullName>2019 Toyota Camry</fullName>
-                <default>false</default>
-                <label>2019 Toyota Camry</label>
-            </value>
-            <value>
-                <fullName>2019 Dodge Journey</fullName>
-                <default>false</default>
-                <label>2019 Dodge Journey</label>
-            </value>
-            <value>
-                <fullName>2019 Ford Escape</fullName>
-                <default>false</default>
-                <label>2019 Ford Escape</label>
-            </value>
-            <value>
-                <fullName>2019 Full Size Sedan 2</fullName>
-                <default>false</default>
-                <label>2019 Full Size Sedan 2</label>
-            </value>
-            <value>
-                <fullName>2019 Mid Size Sedan 4</fullName>
-                <default>false</default>
-                <label>2019 Mid Size Sedan 4</label>
-            </value>
-            <value>
-                <fullName>2019 SUV 1</fullName>
-                <default>false</default>
-                <label>2019 SUV 1</label>
-            </value>
-            <value>
-                <fullName>2019 Full Size Sedan 3</fullName>
-                <default>false</default>
-                <label>2019 Full Size Sedan 3</label>
-            </value>
-            <value>
-                <fullName>2019 Ford Taurus</fullName>
-                <default>false</default>
-                <label>2019 Ford Taurus</label>
-            </value>
-            <value>
-                <fullName>2019 Ford Explorer</fullName>
-                <default>false</default>
-                <label>2019 Ford Explorer</label>
-            </value>
-            <value>
-                <fullName>2019 Ford F-150</fullName>
-                <default>false</default>
-                <label>2019 Ford F-150</label>
-            </value>
-            <value>
-                <fullName>2019 Dodge Durango</fullName>
-                <default>false</default>
-                <label>2019 Dodge Durango</label>
-            </value>
-            <value>
-                <fullName>2019 Ford F-250</fullName>
-                <default>false</default>
-                <label>2019 Ford F-250</label>
-            </value>
-            <value>
-                <fullName>2019 Full Size Sedan</fullName>
-                <default>false</default>
-                <label>2019 Full Size Sedan</label>
-            </value>
-            <value>
-                <fullName>2020 Dodge Charger</fullName>
-                <default>false</default>
-                <label>2020 Dodge Charger</label>
-            </value>
             <value>
                 <fullName>2020 Ford F-150</fullName>
                 <default>false</default>
@@ -310,7 +211,177 @@
                 <default>false</default>
                 <label>2021 Compact SUV</label>
             </value>
+            <value>
+                <fullName>2021 Mid Size SUV</fullName>
+                <default>false</default>
+                <label>2021 Mid Size SUV</label>
+            </value>
+            <value>
+                <fullName>2021 Mileage Rate</fullName>
+                <default>false</default>
+                <label>2021 Mileage Rate</label>
+            </value>
+            <value>
+                <fullName>2021 Clare Rose Reimbursement Rate</fullName>
+                <default>false</default>
+                <label>2021 Clare Rose Reimbursement Rate</label>
+            </value>
+            <value>
+                <fullName>2021 Full Size Sedan 2</fullName>
+                <default>false</default>
+                <label>2021 Full Size Sedan 2</label>
+            </value>
+            <value>
+                <fullName>2021 SUV 1</fullName>
+                <default>false</default>
+                <label>2021 SUV 1</label>
+            </value>
+            <value>
+                <fullName>2021 Mid Size Sedan 4</fullName>
+                <default>false</default>
+                <label>2021 Mid Size Sedan 4</label>
+            </value>
+            <value>
+                <fullName>2021 Full Size Sedan 3</fullName>
+                <default>false</default>
+                <label>2021 Full Size Sedan 3</label>
+            </value>
+            <value>
+                <fullName>2021 Ford F-150</fullName>
+                <default>false</default>
+                <label>2021 Ford F-150</label>
+            </value>
+            <value>
+                <fullName>2021 Ford Taurus</fullName>
+                <default>false</default>
+                <label>2021 Ford Taurus</label>
+            </value>
+            <value>
+                <fullName>2020 Dodge Charger</fullName>
+                <default>false</default>
+                <label>2020 Dodge Charger</label>
+            </value>
+            <value>
+                <fullName>2016 Chevrolet Malibu</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2016 Chevrolet Malibu</label>
+            </value>
+            <value>
+                <fullName>2016 Dodge Charger</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2016 Dodge Charger</label>
+            </value>
+            <value>
+                <fullName>2016 Dodge Journey</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2016 Dodge Journey</label>
+            </value>
+            <value>
+                <fullName>2017 Toyota Camry</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2017 Toyota Camry</label>
+            </value>
+            <value>
+                <fullName>2019 Chevrolet Malibu</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Chevrolet Malibu</label>
+            </value>
+            <value>
+                <fullName>2019 Dodge Durango</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Dodge Durango</label>
+            </value>
+            <value>
+                <fullName>2019 Dodge Journey</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Dodge Journey</label>
+            </value>
+            <value>
+                <fullName>2019 Ford Escape</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Ford Escape</label>
+            </value>
+            <value>
+                <fullName>2019 Ford Explorer</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Ford Explorer</label>
+            </value>
+            <value>
+                <fullName>2019 Ford F-150</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Ford F-150</label>
+            </value>
+            <value>
+                <fullName>2019 Ford F-250</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Ford F-250</label>
+            </value>
+            <value>
+                <fullName>2019 Ford Fusion</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Ford Fusion</label>
+            </value>
+            <value>
+                <fullName>2019 Ford Taurus</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Ford Taurus</label>
+            </value>
+            <value>
+                <fullName>2019 Full Size Sedan</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Full Size Sedan</label>
+            </value>
+            <value>
+                <fullName>2019 Full Size Sedan 2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Full Size Sedan 2</label>
+            </value>
+            <value>
+                <fullName>2019 Full Size Sedan 3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Full Size Sedan 3</label>
+            </value>
+            <value>
+                <fullName>2019 Honda Civic</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Honda Civic</label>
+            </value>
+            <value>
+                <fullName>2019 Mid Size Sedan 4</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Mid Size Sedan 4</label>
+            </value>
+            <value>
+                <fullName>2019 SUV 1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 SUV 1</label>
+            </value>
+            <value>
+                <fullName>2019 Toyota Camry</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2019 Toyota Camry</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
-    <visibleLines>4</visibleLines>
+    <visibleLines>7</visibleLines>
 </CustomField>

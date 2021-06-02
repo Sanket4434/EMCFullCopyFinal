@@ -809,7 +809,6 @@
                              location.reload();
                              }
                             scope.netchexpayPeriod = '{!($Label.ERMIPayPeriodDate)}'
-                            console.log("Pay period", scope.netchexpayPeriod);
                             scope.dateObjArr = [];
                             scope.originalObjArr = [];
                             scope.defaultOption = "Select Pay Period";

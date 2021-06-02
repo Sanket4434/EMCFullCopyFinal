@@ -26,6 +26,11 @@
                 <default>false</default>
                 <label>Developer</label>
             </value>
+            <value>
+                <fullName>Testing</fullName>
+                <default>false</default>
+                <label>Testing</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

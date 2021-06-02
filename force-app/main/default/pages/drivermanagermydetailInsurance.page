@@ -373,9 +373,7 @@
                         $scope.insurance_parameters = [];
                         $scope.insurance_parameters = JSON.parse('{!accInsuranceList}');
                         console.log("insurance->",$scope.insurance_parameters);
-                        $scope.insuranceMessage = '{!($Label.insuranceMiddleMsg)}'; 
-                        $scope.lowerInsuranceMessage = '{!($Label.insuranceBottomMsg)}';
-
+                        
                         var url_locate = "/app/drivermanagerdashboard?accid="+$scope.accid+"&id="+$scope.id+"&showteam="+$scope.showteam;
                         console.log(url_locate);
                         $scope.logodocumentid ='{!logoDocument_id}';
@@ -600,8 +598,7 @@
                                         
                                             {escape: false}
                                         );
-                                        var toastrMsg = $scope.lowerInsuranceMessage
-                                        toastr.success(toastrMsg);
+                                        toastr.success("We review and assess compliance status once a month.Your interim compliance status will not affect your reimbursement amount.");
                                         $scope.loadDriverInsurance();
                                         $scope.IsVisiblebtn = false;
                                         setTimeout(function(){
@@ -778,11 +775,11 @@
                   </button> -->
                  
                   <div class="modal-body text-center">
-                      <h4 class="fileupload-title-2">Thank you for uploading your insurance declaration page.</h4>
+                      <h4 class="fileupload-title-2">We review and assess compliance status monthly. Your compliance status will not potentially affect your reimbursement amount until the end of the year.</h4>
                       <div class="w-100">
                           <img src="{!URLFOR($Resource.EmcCSS,'emc-design/assets/images/adminroster-importfile-loader.svg')}" width="15%" class="img-fluid" alt="Admin roster import file loader"/>
                       </div>
-                      <p class="fileupload-title-2 font-weight-bold">{{insuranceMessage}}</p>
+                      <p class="fileupload-title-2 font-weight-bold">New to the program and have not received your driver packet? We will email it within two business days.</p>
                   </div>
               </div>
           </div>

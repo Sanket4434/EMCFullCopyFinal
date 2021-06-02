@@ -932,7 +932,7 @@ export default class DataTableComponent extends LightningElement {
       if (this.pageClick) {
         this.pageClick = false;
       }
-    }, 100);
+    }, 4000);
     this.searchData = [];
     var mileagecount = 0;
     this.totalmileage = 0;

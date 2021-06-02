@@ -103,7 +103,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Delta Account Name</shortDescription>
-        <value>Acme Corporation,Anton Paar,California Nevada Cement Association (CNCA),CATCO,Delta,Eclipse,Excelligence Learning Corporation,GPS (General Production Service),LendingHome,NexMetro,Rayner,Saverino &amp; Associates,SPBS,Spineology,The Andersons,Tony Demaria Electric,Weiser Security Services</value>
+        <value>Acme Corporation,Advanced Inventory Solutions,Anton Paar,California Nevada Cement Association (CNCA),CATCO,Controlled Environment System,Delta,Design Air,Ermi,Excelligence Learning Corporation,Frampton Construction,GPS (General Production Service),LendingHome,NexMetro,PIPSA,Psych360,Rayner,Rainbow Rehab,Saverino &amp; Associates,SPBS,Spineology,The Andersons,Venergy Group,Virginia Carolina,IEC,New England Gypsum,Thrifty Supply Company,Dynamond,Progressive Safety,Clare Rose</value>
     </labels>
     <labels>
         <fullName>DesignAir</fullName>
@@ -124,14 +124,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Driver Forword Logo</shortDescription>
-        <value>https://c.na121.content.force.com/servlet/servlet.ImageServer?id=0150Z000007CIdW&amp;oid=00D050000004crK&amp;lastMod=1531917614000</value>
+        <value>https://c.na121.content.force.com/servlet/servlet.ImageServer?id=0150Z000007CIdW&amp;oid=00D6s0000004bN4&amp;lastMod=1531917614000</value>
     </labels>
     <labels>
         <fullName>ERMIPayPeriodDate</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ERMIPayPeriodDate</shortDescription>
-        <value>2021-01-17 to 2021-01-30,2021-01-31 to 2021-02-13,2021-02-14 to 2021-02-27,2021-02-28 to 2021-03-13,2021-03-14 to 2021-03-27,2021-03-28 to 2021-04-13,2021-04-14 to 2021-04-27,2021-04-28 to 2021-05-08</value>
+        <value>2021-01-17 to 2021-01-30,2021-01-31 to 2021-02-13,2021-02-14 to 2021-02-27,2021-02-28 to 2021-03-13,2021-03-14 to 2021-03-27,2021-03-28 to 2021-04-10,2021-04-11 to 2021-04-24,2021-04-25 to 2021-05-08,2021-05-09 to 2021-05-22,2021-05-23 to 2021-06-05,2021-06-06 to 2021-06-19,2021-06-20 to 2021-07-03,2021-07-04 to 2021-07-17,2021-07-18 to 2021-07-31,2021-08-01 to 2021-08-14,2021-08-15 to 2021-08-28,2021-08-29 to 2021-09-11,2021-09-12 to 2021-09-25,2021-09-26 to 2021-10-09,2021-10-10 to 2021-10-23,2021-10-24 to 2021-11-06,2021-11-07 to 2021-11-20,2021-11-21 to 2021-12-04,2021-12-05 to 2021-12-18,2021-12-19 to 2021-12-31</value>
     </labels>
     <labels>
         <fullName>ERMI_ADMIN_ID</fullName>
@@ -187,7 +187,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Ermi Tax Report month picklist</shortDescription>
-        <value>06-2020,07-2020,08-2020,09-2020,10-2020,11-2020</value>
+        <value>06-2020,07-2020,08-2020,09-2020,10-2020,11-2020,12-2020,01-2021,02-2021,03-2021,04-2021,05-2021,06-2021,07-2021,08-2021,09-2021,10-2021,11-2021,12-2021</value>
     </labels>
     <labels>
         <fullName>ExceptionLabel</fullName>
@@ -419,7 +419,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Triplog New URL for Account Ids added</shortDescription>
-        <value>fde76cdde14449bea46b321225ac8fd1,2eb382ec48224a2fa604db03f982d06e,039802e580a348c1a8996ce3b1342ef9,9e212cd3f74744da9cd5ad8bb788ad78,7640e808d1d04ea2a48ab775e27691f2,7ec51efb57e243468454ef0ef3fb65f8,ddc0406120f5409991a6f944ce062f31,28beeea973f34daf89050a9b6a3b1a71,d32b2be6aa8043f68f61c81ffe30b005,f57b607d0d174f85825ded2aed61c1cb,d380533c57c748a0b84be6e275358fd6,eee849aa15694bc29fd58e07c74f9064,ddc0406120f5409991a6f944ce062f31,09a91dfa46ef41a8acb12ae11860a525,4c28927aba194318a6f6a8f5339413a0,790215e499b94b1f930e6ea448a6f934,0e468789b2f84817a627388b8e6b7b62,2aa69fb44c594336b107ecd13ee37dae,3f92f166dbbd48f1bb02194edd0384a5,75b59c50cefa4f8f9c3b5e824944ffe5,788d5aa1ef68470f8bfd207334efca2e,28beeea973f34daf89050a9b6a3b1a71</value>
+        <value>fde76cdde14449bea46b321225ac8fd1,2eb382ec48224a2fa604db03f982d06e,039802e580a348c1a8996ce3b1342ef9,9e212cd3f74744da9cd5ad8bb788ad78,7640e808d1d04ea2a48ab775e27691f2,7ec51efb57e243468454ef0ef3fb65f8,ddc0406120f5409991a6f944ce062f31,28beeea973f34daf89050a9b6a3b1a71,d32b2be6aa8043f68f61c81ffe30b005,f57b607d0d174f85825ded2aed61c1cb,d380533c57c748a0b84be6e275358fd6,ddc0406120f5409991a6f944ce062f31,09a91dfa46ef41a8acb12ae11860a525,4c28927aba194318a6f6a8f5339413a0,790215e499b94b1f930e6ea448a6f934,0e468789b2f84817a627388b8e6b7b62,2aa69fb44c594336b107ecd13ee37dae,3f92f166dbbd48f1bb02194edd0384a5,75b59c50cefa4f8f9c3b5e824944ffe5,788d5aa1ef68470f8bfd207334efca2e,28beeea973f34daf89050a9b6a3b1a71,68ca70bf7b464fbc8f515dcb530dada4,8249da3b805a4a058a2e6d2a04d70e69,eee849aa15694bc29fd58e07c74f9064,6e1b74b1532e4f4fb68a78d90e9fe1f6,ba78474e875c43318e9b0258144d053a</value>
     </labels>
     <labels>
         <fullName>Triplog_URL_For_TripStatus</fullName>
@@ -456,28 +456,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>TripstobeLogged</shortDescription>
-        <value>Test Account</value>
-    </labels>
-    <labels>
-        <fullName>UKGPassword</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Ultipro login password</shortDescription>
-        <value>$n76HF$uHd]9)@0mII;+]R2,xp@]?.{]F9G3sf^Mnc@1kj5=AK</value>
-    </labels>
-    <labels>
-        <fullName>UKGcustomerAPIKey</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>UKG customerAPIKey</shortDescription>
-        <value>LDXWI</value>
-    </labels>
-    <labels>
-        <fullName>UKGuserAPIKey</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>UKG userAPIKey</shortDescription>
-        <value>BMOUN80000K0</value>
+        <value>Acme Corporation,Advanced Inventory Solutions,Anton Paar,California Nevada Cement Association (CNCA),CATCO,Community Account,Controlled Environment System,Delta,Design Air,Ermi,Excelligence Learning Corporation,Frampton Construction,GPS (General Production Service),LendingHome,NexMetro,PIPSA,Psych360,Rayner,Rainbow Rehab,Saverino &amp; Associates,SPBS,Spineology,The Andersons,Venergy Group,Virginia Carolina,IEC,New England Gypsum,Thrifty Supply Company,Dynamond,Progressive Safety,Clare Rose,</value>
     </labels>
     <labels>
         <fullName>UnApproved_Page_Message</fullName>

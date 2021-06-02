@@ -159,7 +159,7 @@ public with sharing class BiweeklyPayPeriod {
         Map<Id,Decimal> tripStayTimeMap = new Map<Id,Decimal>();
         Map<Id,Decimal> tripTotalTimeMap = new Map<Id,Decimal>();
         for(AggregateResult ar : [SELECT EmployeeReimbursement__r.Contact_Id__c cid, SUM(Driving_Time__c) rtotal, 
-                                        SUM(Stay_Time__c) stay , SUM(Drive_Stay_Time__c) ttime
+                                        SUM(Stay_Time__c) stay , SUM(Total_Time__c) ttime
                                     FROM Employee_Mileage__c 
                                     WHERE EmployeeReimbursement__r.Contact_Id__c =: contactid 
                                     AND Trip_Date__c >= : Date.valueOf(startdates)
@@ -174,7 +174,6 @@ public with sharing class BiweeklyPayPeriod {
         objWrap.endDate = enddates;
         objWrap.totaldrivingTime = Utils.ConvertMinuteToHours(Integer.valueOf(tripdateDrivingTimeMap.get(contactid)));
         objWrap.totalStayTime = Utils.ConvertMinuteToHours(Integer.valueOf(tripStayTimeMap.get(contactid)));
-        objWrap.totalTime = Utils.ConvertMinuteToHours(Integer.valueOf(tripTotalTimeMap.get(contactid)));
         objWrap.totalTime = Utils.ConvertMinuteToHours(Integer.valueOf(tripTotalTimeMap.get(contactid)));
         return objWrap;
     }

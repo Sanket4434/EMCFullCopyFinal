@@ -143,16 +143,8 @@
 		<members>HubSpot_Inc__HubSpotPendingChanges</members>
 		<members>HubSpot_Inc__HubSpotVersionResource</members>
 		<members>InsertLastMonthReimbursementTest</members>
-		<members>InsuranceNotificationForDrivers</members>
-		<members>InsuranceNotificationForDriversTest</members>
 		<members>JobCostingSummaryReport</members>
 		<members>JobCostingSummaryReportTest</members>
-		<members>LightningForgotPasswordController</members>
-		<members>LightningForgotPasswordControllerTest</members>
-		<members>LightningLoginFormController</members>
-		<members>LightningLoginFormControllerTest</members>
-		<members>LightningSelfRegisterController</members>
-		<members>LightningSelfRegisterControllerTest</members>
 		<members>LoadMileageLocationBatch</members>
 		<members>LoadMileageLocationBatchTest</members>
 		<members>LoadMileageLocationBatchTestMock</members>
@@ -172,12 +164,8 @@
 		<members>MappingGasPriceTriggerTest</members>
 		<members>MassSyncTrips</members>
 		<members>MassSyncTripsTest</members>
-		<members>MetadataService</members>
-		<members>MetadataServiceTest</members>
 		<members>MileageJsonDeserialize</members>
 		<members>MileageJsonDeserialize_Test</members>
-		<members>MileageNotificationForDrivers</members>
-		<members>MileageNotificationForDriversTest</members>
 		<members>MileageTriggerHandler</members>
 		<members>MonthlyReimbursementStatement</members>
 		<members>MonthlyReimbursementStatementTest</members>
@@ -185,7 +173,6 @@
 		<members>MultiselectControllerTest</members>
 		<members>MyProfilePageController</members>
 		<members>MyProfilePageControllerTest</members>
-		<members>MyRestResource</members>
 		<members>NetchexDeleteCallout</members>
 		<members>NetchexDeleteCalloutTest</members>
 		<members>NetchexDeleteMockclass</members>
@@ -199,8 +186,6 @@
 		<members>NetchexVariablePaymentBatchTest</members>
 		<members>PackageInfo</members>
 		<members>PackageInfoTest</members>
-		<members>PickListValueInsertTest</members>
-		<members>PickListValueInsert_handler</members>
 		<members>PopulateFuelPriceonMileage</members>
 		<members>PopulateFuelPriceonMileageTest</members>
 		<members>RG_AttachmentforContact</members>
@@ -343,12 +328,10 @@
 		<members>TriplogUserIdUpdateBatchTestMock</members>
 		<members>TriplogUserJSON</members>
 		<members>TriplogUserJSON_Test</members>
-		<members>UKGLoggingController</members>
 		<members>UpdateEmpReimFuelPrice</members>
 		<members>UpdateEmpReimFuelPriceTest</members>
 		<members>UpdateFuelPriceController</members>
 		<members>UpdateFuelPriceControllerTest</members>
-		<members>UpdateInsuranceDataController</members>
 		<members>UpdateLastToLastMonthMileagesBatch</members>
 		<members>UpdateLastToLastMonthMileagesBatchTest</members>
 		<members>UpdateMileageByContactController</members>
@@ -401,12 +384,10 @@
 		<members>mileageremoveapprovaldate_Test</members>
 		<members>processRecords</members>
 		<members>processRecords_Test</members>
-		<members>schMileageNotificationForDriversTest</members>
 		<members>scheduledGetTripBatch</members>
 		<members>scheduledGetTripBatchTest</members>
 		<members>scheduledIntMntBatch</members>
 		<members>scheduledIntMntBatchTest</members>
-		<members>scheduledMileageNotificationForDrivers</members>
 		<members>scheduledRG_InsertLastMonthReimbursement</members>
 		<members>scheduledRG_InsertLastMonthTest</members>
 		<members>scheduledSendMileageCommunity</members>
@@ -488,10 +469,8 @@
 		<members>TaxReportPage</members>
 		<members>TimeSheetNetchexReport</members>
 		<members>TimeandSummaryReport</members>
-		<members>UKGConnector</members>
 		<members>Unauthorized</members>
 		<members>UnderConstruction</members>
-		<members>UpdateInsuranceData</members>
 		<members>UpdateMileageByContact</members>
 		<members>UpdateMileageWithReim</members>
 		<members>UpdateReimAndMileage</members>
@@ -638,9 +617,6 @@
 		<members>Triplog_URL_for_Roster_Put_Call</members>
 		<members>Trips</members>
 		<members>TripstobeLogged</members>
-		<members>UKGPassword</members>
-		<members>UKGcustomerAPIKey</members>
-		<members>UKGuserAPIKey</members>
 		<members>UnApproved_Page_Message</members>
 		<members>UnapproveMileagesMessage</members>
 		<members>UpdateTripIdError</members>
@@ -1384,7 +1360,6 @@
 		<members>Product2</members>
 		<members>Project__c</members>
 		<members>PromptAction</members>
-		<members>PromptError</members>
 		<members>QuickText</members>
 		<members>QuickTextUsage</members>
 		<members>Recommendation</members>
@@ -1413,7 +1388,6 @@
 		<members>Trip_Date_Netchex__c</members>
 		<members>TriplogPutCall__c</members>
 		<members>Tripslog__c</members>
-		<members>UKG_Integration__c</members>
 		<members>User</members>
 		<members>UserProvisioningRequest</members>
 		<members>Vehicle_URL_Mapping__c</members>

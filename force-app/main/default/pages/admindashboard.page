@@ -2312,11 +2312,11 @@
                                         <th class="w-328" id="name" ng-click="sort('name')">Name
                                             <span class="sort-icon pull-right" ng-show="sortKey=='name'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
                                         </th>
-                                        <th class="w-200" ng-click="sort('threshold')">Approval
+                                       <!-- <th class="w-200" ng-click="sort('threshold')">Approval
                                             <br/>Threshold
                                             <span class="sort-icon pull-right" ng-show="sortKey=='threshold'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}">
                                             </span>
-                                        </th>
+                                        </th> -->
                                         <th class="w-180" ng-click="sort('totalMileages')">Submitted
                                             <br/> Mileage
                                             <span class="sort-icon pull-right" ng-show="sortKey=='totalMileages'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
@@ -2345,11 +2345,11 @@
                                         <td ng-model="LastMonthReimbursement.name">
                                             <a href="/app/driverdashboardfromadminmanager?accid={{accid}}&id={{LastMonthReimbursement.contactid}}&adminid={{aid}}&showteam={{showteam}}">{{LastMonthReimbursement.name.replace('\\','') }} </a>
                                         </td>
-                                        <td ng-model="LastMonthReimbursement.threshold">                                            
+                                       <!-- <td ng-model="LastMonthReimbursement.threshold">                                            
                                             <input type="text" ng-change="showbtn(LastMonthReimbursement.contactid,LastMonthReimbursement.threshold)" ng-model="LastMonthReimbursement.threshold" 
                                                 id="numberinput" class="numinputedit form-control rounded-0 col-md-6"
                                             />
-                                        </td>
+                                        </td> -->
                                         <td ng-model="LastMonthReimbursement.totalMileages">
                                             {{LastMonthReimbursement.totalMileages | number:2}}
 
@@ -2402,11 +2402,11 @@
                                         <th id="nameforunapprove" ng-click="sort1('name')">Name
                                             <span class="sort-icon pull-right" ng-show="sortKey1=='name'" ng-class="{'fa fa-chevron-up':reverse1,'fa fa-chevron-down':!reverse1}"></span>
                                         </th>
-                                        <th ng-click="sort1('threshold')">Approval
+                                       <!-- <th ng-click="sort1('threshold')">Approval
                                             <br/> Threshold
                                             <span class="sort-icon pull-right" ng-show="sortKey1=='threshold'" ng-class="{'fa fa-chevron-up':reverse1,'fa fa-chevron-down':!reverse1}">
                                             </span>
-                                        </th>
+                                        </th> -->
                                         <th ng-click="sort1('totalMileages')">Unapproved
                                             <br/> Mileage
                                             <span class="sort-icon pull-right" ng-show="sortKey1=='totalMileages'" ng-class="{'fa fa-chevron-up':reverse1,'fa fa-chevron-down':!reverse1}"></span>
@@ -2445,9 +2445,9 @@
                                         <td ng-model="UnapprovedReimburesement.name">
                                             <a ng-click="openmodalForunapprovedata(UnapprovedReimburesement.name,UnapprovedReimburesement.contactid,UnapprovedReimburesement,UnapprovedReimburesement.managerName)">{{UnapprovedReimburesement.name}} </a>
                                         </td>
-                                        <td ng-model="UnapprovedReimburesement.threshold">
+                                       <!-- <td ng-model="UnapprovedReimburesement.threshold">
                                             {{UnapprovedReimburesement.threshold | number:2 }}
-                                        </td>
+                                        </td> -->
                                         <td ng-model="UnapprovedReimburesement.totalMileages">
                                             {{UnapprovedReimburesement.totalMileages | number:2 }}
                                         </td>

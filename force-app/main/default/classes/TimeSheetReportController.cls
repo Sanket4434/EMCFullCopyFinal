@@ -42,12 +42,10 @@ public with sharing class TimeSheetReportController {
             objWrapper.GrossToNetCode = '1';
             objWrapper.TypeCode = 'R';
             if(reimbTotalTimeMap.get(currentContact.Id) == null ){
-                objWrapper.HoursOrAmount = '0';
+                objWrapper.HoursOrAmount = 0;
             }
             else{
-                //objWrapper.HoursOrAmount = (reimbTotalTimeMap.get(currentContact.Id)).divide(60, 2);
-                objWrapper.HoursOrAmount = Utils.ConvertMinuteToHours(Integer.valueOf(reimbTotalTimeMap.get(currentContact.Id)));
-                
+                objWrapper.HoursOrAmount = (reimbTotalTimeMap.get(currentContact.Id)).divide(60, 2);
             }
             timeWrapperList.add(objWrapper);
         }
@@ -59,7 +57,7 @@ public with sharing class TimeSheetReportController {
         public string EmployeeId { get; set; }
         public string GrossToNetCode { get; set; }
         public string TypeCode { get; set; }
-        public string HoursOrAmount { get; set; }
+        public double HoursOrAmount { get; set; }
         public ReibursementWrapper(){
         }
     }

@@ -8,10 +8,6 @@
     position: relative;
 }
 
-.accounts_list{
-    margin-left: 4px;
-}
-
 .search-result_left-pad {
     padding-left: 35px !important;
 }
@@ -25,7 +21,7 @@
 .slds-combobox_container {
     margin-left: 4px;
     /* width: 95%; */
-    width: 179px;
+    width: 171px;
 }
 
 .slds-dropdown_fluid {

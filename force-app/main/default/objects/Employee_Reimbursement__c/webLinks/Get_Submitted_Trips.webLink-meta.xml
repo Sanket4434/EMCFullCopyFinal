@@ -22,8 +22,8 @@ var str = todayDate.split(&quot;-&quot;);
 var priMin = str[1]+&apos;-&apos;+str[0]+&apos;-1&apos;;
 var lastDayOfMonth = new Date(str[1], str[0], 0);
 var priMax = str[1]+&apos;-&apos;+str[0]+&apos;-&apos;+lastDayOfMonth.getDate();
-//var priMin = &apos;2020-08-28&apos;;
-//var priMax = &apos;2020-08-31&apos;;
+//var priMin = &apos;2021-04-25&apos;;
+//var priMax = &apos;2021-04-30&apos;;
 var fuel,
 fuel = &apos;{!Employee_Reimbursement__c.Fuel_Price__c}&apos;;
 if (fuel != &quot;&quot;) {
